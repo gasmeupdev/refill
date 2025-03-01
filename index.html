@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gas Refill Booking</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9vHRNDqwaJ4CSgonCIaSg5xvWW1aLG0A&libraries=places"></script>
+    <style>
+        .step { display: none; }
+        .step.active { display: block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Book Your Gas Refill</h2>
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <form id="multiStepForm">
+            <!-- Step 1: Name & Email -->
+            <div class="step active" id="step1">
+                <h3>Step 1: Contact Info</h3>
+                <input type="text" id="name" placeholder="Full Name" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <button type="button" onclick="nextStep()">Next</button>
+            </div>
+
+            <!-- Step 2: Phone -->
+            <div class="step" id="step2">
+                <h3>Step 2: Phone Number</h3>
+                <input type="text" id="phone" placeholder="Phone Number" required>
+                <button type="button" onclick="prevStep()">Back</button>
+                <button type="button" onclick="nextStep()">Next</button>
+            </div>
+
+            <!-- Step 3: Address -->
+            <div class="step" id="step3">
+                <h3>Step 3: Address</h3>
+                <input type="text" id="address" placeholder="Enter Address" required>
+                <button type="button" onclick="prevStep()">Back</button>
+                <button type="button" onclick="nextStep()">Next</button>
+            </div>
+
+            <!-- Step 4: Schedule -->
+            <div class="step" id="step4">
+                <h3>Step 4: Choose a Date & Time</h3>
+                <input type="date" id="schedule_date" required>
+                <input type="time" id="schedule_time" step="900" required> <!-- 900 seconds = 15 min -->
+                <button type="button" onclick="prevStep()">Back</button>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+
+        <p id="response"></p>
+    </div>
+
+    <script>
+        const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycby_h9wIxR01HByts9v904Y_p9V3rYSDhVk-cbVcFUWiLwmmwy51wGlfROUyXQ5v0M-D/exec";
+
+        // ✅ Fix: Multi-Step Navigation
+        let stepIndex = 0;
+        const steps = document.querySelectorAll(".step");
+        const totalSteps = steps.length;
+
+        function updateProgressBar() {
+            const progress = ((stepIndex + 1) / totalSteps) * 100;
+            document.getElementById("progressBar").style.width = progress + "%";
+        }
+
+        function nextStep() {
+            if (stepIndex < totalSteps - 1) {
+                steps[stepIndex].classList.remove("active");
+                stepIndex++;
+                steps[stepIndex].classList.add("active");
+                updateProgressBar();
+            }
+        }
+
+        function prevStep() {
+            if (stepIndex > 0) {
+                steps[stepIndex].classList.remove("active");
+                stepIndex--;
+                steps[stepIndex].classList.add("active");
+                updateProgressBar();
+            }
+        }
+
+        // ✅ Initialize progress bar on page load
+        document.addEventListener("DOMContentLoaded", updateProgressBar);
+
+        // ✅ Fix: Google Maps Autocomplete
+        function initAutocomplete() {
+            const input = document.getElementById("address");
+            new google.maps.places.Autocomplete(input);
+        }
+        window.addEventListener('load', initAutocomplete);
+
+        // ✅ Fix: Form Submission to Google Sheets
+        document.getElementById("multiStepForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const formData = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                phone: document.getElementById("phone").value,
+                address: document.getElementById("address").value,
+                date: document.getElementById("schedule_date").value,
+                time: document.getElementById("schedule_time").value,
+                secret: "MY_SECURE_KEY" // ✅ Include the secret key
+            };
+
+            try {
+                const response = await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(formData)
+                    // mode: "no-cors"  // ❌ Try removing this for better error handling
+                });
+
+                document.getElementById("response").textContent = "Form submitted successfully!";
+                document.getElementById("multiStepForm").reset();
+            } catch (error) {
+                document.getElementById("response").textContent = "Network error. Please check your connection.";
+            }
+        });
+    </script>
+</body>
+</html>
