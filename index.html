@@ -15,24 +15,27 @@
 <body>
     <div class="container">
         <h2>Book Your Gas Refill</h2>
+        
         <!-- Progress Bar -->
         <div class="progress-container">
             <div class="progress-bar" id="progressBar"></div>
         </div>
 
-        <form id="multiStepForm" method="POST" action="https://script.google.com/macros/s/AKfycbyXzylCeFrXA_O8WGH0-_ENM9UfIPTVhrwxOvkRo7Jywv86HPjmZ-ivgQqx_BGer1iuMQ/exec">            
+        <!-- Form: Now using direct POST action -->
+        <form id="multiStepForm" method="POST" action="https://script.google.com/macros/s/AKfycbwYN5UCzLWQNDP-wHvrXkX_e0TOYVmsezioVvdqA944XJoRQhpU03GVELbzR9n8psRE2A/exec">
+            
             <!-- Step 1: Name & Email -->
             <div class="step active" id="step1">
                 <h3>Step 1: Contact Info</h3>
-                <input type="text" id="name" placeholder="Full Name" required>
-                <input type="email" id="email" placeholder="Email" required>
+                <input type="text" name="Name" id="name" placeholder="Full Name" required>
+                <input type="email" name="Email" id="email" placeholder="Email" required>
                 <button type="button" onclick="nextStep()">Next</button>
             </div>
 
             <!-- Step 2: Phone -->
             <div class="step" id="step2">
                 <h3>Step 2: Phone Number</h3>
-                <input type="text" id="phone" placeholder="Phone Number" required>
+                <input type="text" name="Phone" id="phone" placeholder="Phone Number" required>
                 <button type="button" onclick="prevStep()">Back</button>
                 <button type="button" onclick="nextStep()">Next</button>
             </div>
@@ -40,7 +43,7 @@
             <!-- Step 3: Address -->
             <div class="step" id="step3">
                 <h3>Step 3: Address</h3>
-                <input type="text" id="address" placeholder="Home Address" required>
+                <input type="text" name="Address" id="address" placeholder="Home Address" required>
                 <button type="button" onclick="prevStep()">Back</button>
                 <button type="button" onclick="nextStep()">Next</button>
             </div>
@@ -48,8 +51,8 @@
             <!-- Step 4: Schedule -->
             <div class="step" id="step4">
                 <h3>Step 4: Choose a Date & Time</h3>
-                <input type="date" id="schedule_date" required>
-                <input type="time" id="schedule_time" step="900" required> <!-- 900 seconds = 15 min -->
+                <input type="date" name="Date" id="schedule_date" required>
+                <input type="time" name="Time" id="schedule_time" step="900" required> <!-- 900 seconds = 15 min -->
                 <button type="button" onclick="prevStep()">Back</button>
                 <button type="submit">Submit</button>
             </div>
@@ -59,9 +62,7 @@
     </div>
 
     <script>
-        const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxpWsvWr0tHQb4Dp_tbHfdkO1tKhboFvV7B0uqNqwaZF-AHcEOW1-teFBoYun2SHcX2Jg/exec";
-
-        // ✅ Fix: Multi-Step Navigation
+        // ✅ Multi-Step Navigation
         let stepIndex = 0;
         const steps = document.querySelectorAll(".step");
         const totalSteps = steps.length;
@@ -92,51 +93,12 @@
         // ✅ Initialize progress bar on page load
         document.addEventListener("DOMContentLoaded", updateProgressBar);
 
-        // ✅ Fix: Google Maps Autocomplete
+        // ✅ Google Maps Autocomplete
         function initAutocomplete() {
             const input = document.getElementById("address");
             new google.maps.places.Autocomplete(input);
         }
         window.addEventListener('load', initAutocomplete);
-
-        document.getElementById("multiStepForm").addEventListener("submit", async function(event) {
-        event.preventDefault();
-    
-        const formData = {
-            name: document.getElementById("name").value,
-            email: document.getElementById("email").value,
-            phone: document.getElementById("phone").value,
-            address: document.getElementById("address").value,
-            date: document.getElementById("schedule_date").value,
-            time: document.getElementById("schedule_time").value,
-            secret: "MY_SECURE_KEY" // ✅ Must match Google Apps Script
-        };
-    
-        try {
-            const response = await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
-                method: "POST",
-                headers: { 
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formData)
-            });
-    
-            const result = await response.json();
-    
-            if (response.ok) {
-                document.getElementById("response").textContent = "Form submitted successfully!";
-                document.getElementById("multiStepForm").reset();
-            } else {
-                throw new Error(result.error || "Something went wrong");
-            }
-        } catch (error) {
-            document.getElementById("response").textContent = `Network error: ${error.message}`;
-        }
-    });
-
-
-
-
     </script>
 </body>
 </html>
