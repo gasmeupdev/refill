@@ -59,7 +59,7 @@
     </div>
 
     <script>
-        const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwitoW4DGyiqUpaJkSjvmJvaiUUb6fsfJX4lT6JD5xSgsN7KaXS_AuvthcRDi5LnVzCEg/exec";
+        const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbykccoQZbsRi9IUBBTqf7ogh8HDKOFcAzCILM_Z9JPGmyBYVZGO3kVlUew5cAoilicU3Q/exec";
 
         // ✅ Fix: Multi-Step Navigation
         let stepIndex = 0;
@@ -99,7 +99,6 @@
         }
         window.addEventListener('load', initAutocomplete);
 
-        // ✅ Fix: Form Submission to Google Sheets
         document.getElementById("multiStepForm").addEventListener("submit", async function(event) {
         event.preventDefault();
     
@@ -120,7 +119,6 @@
                 body: JSON.stringify(formData)
             });
     
-            // ✅ Handle the response correctly
             const result = await response.json();
     
             if (response.ok) {
@@ -133,6 +131,7 @@
             document.getElementById("response").textContent = `Network error: ${error.message}`;
         }
     });
+
 
     </script>
 </body>
