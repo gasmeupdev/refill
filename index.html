@@ -21,9 +21,8 @@
             <div class="progress-bar" id="progressBar"></div>
         </div>
 
-        <!-- Form: Now using direct POST action -->
-        <form id="multiStepForm" method="POST" action="https://script.google.com/macros/s/AKfycbwYN5UCzLWQNDP-wHvrXkX_e0TOYVmsezioVvdqA944XJoRQhpU03GVELbzR9n8psRE2A/exec">
-            
+        <!-- Form -->
+        <form id="multiStepForm">
             <!-- Step 1: Name & Email -->
             <div class="step active" id="step1">
                 <h3>Step 1: Contact Info</h3>
@@ -52,16 +51,16 @@
             <div class="step" id="step4">
                 <h3>Step 4: Choose a Date & Time</h3>
                 <input type="date" name="Date" id="schedule_date" required>
-                <input type="time" name="Time" id="schedule_time" step="900" required> <!-- 900 seconds = 15 min -->
+                <input type="time" name="Time" id="schedule_time" step="900" required>
                 <button type="button" onclick="prevStep()">Back</button>
                 <button type="submit">Submit</button>
             </div>
         </form>
-
-        <p id="response"></p>
     </div>
 
     <script>
+        const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyXzylCeFrXA_O8WGH0-_ENM9UfIPTVhrwxOvkRo7Jywv86HPjmZ-ivgQqx_BGer1iuMQ/exec";
+
         // ✅ Multi-Step Navigation
         let stepIndex = 0;
         const steps = document.querySelectorAll(".step");
@@ -99,6 +98,30 @@
             new google.maps.places.Autocomplete(input);
         }
         window.addEventListener('load', initAutocomplete);
+
+        // ✅ Handle Form Submission (Prevents page reload & shows success alert)
+        document.getElementById("multiStepForm").addEventListener("submit", async function(event) {
+            event.preventDefault(); // Stop default form submission
+
+            const formData = new FormData(this);
+
+            try {
+                const response = await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
+                    method: "POST",
+                    body: formData
+                });
+
+                if (response.ok) {
+                    alert("Booking successful! 🚀 We will reach out to you soon.");
+                    this.reset();
+                    window.location.href = "/"; // Redirect to home page after clicking "OK"
+                } else {
+                    throw new Error("Submission failed.");
+                }
+            } catch (error) {
+                alert("Network error: " + error.message);
+            }
+        });
     </script>
 </body>
 </html>
