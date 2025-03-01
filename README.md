@@ -12,4 +12,5 @@ Things to remember:
 - So this "closes" the loop we make between the information users fill out on the form, submit it, and send it to the Google Sheet row. Y'all can then do what you please with the information there. (there's some cool ideas to integrate other systems into Sheets, like: 
   - did someone handle this yet, cost (formula for determining pricing, profit), distance from HQ, estimated travel
   - Gas type should just be a dropdown
+  - Payment processors - what makes the most sense to start out? (something proprietary, or would it be better to embed something)
   - 
