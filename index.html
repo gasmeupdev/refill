@@ -59,7 +59,7 @@
     </div>
 
     <script>
-        const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyv8Noiuaqnv0oON_LjcQRJ5hcEmG9sRmOUrooFI3VLHBDrLHyasghbn_Q6WyKlITI_jQ/exec";
+        const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxmDYA_6qdGgUt881cAgtEuWnHk2V4aO4K1dMonzhw46sGYHqJeVMtrUIOQ8pA73Sadlw/exec";
 
         // ✅ Fix: Multi-Step Navigation
         let stepIndex = 0;
@@ -101,32 +101,39 @@
 
         // ✅ Fix: Form Submission to Google Sheets
         document.getElementById("multiStepForm").addEventListener("submit", async function(event) {
-            event.preventDefault();
-
-            const formData = {
-                name: document.getElementById("name").value,
-                email: document.getElementById("email").value,
-                phone: document.getElementById("phone").value,
-                address: document.getElementById("address").value,
-                date: document.getElementById("schedule_date").value,
-                time: document.getElementById("schedule_time").value,
-                secret: "MY_SECURE_KEY" // ✅ Include the secret key
-            };
-
-            try {
-                const response = await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(formData)
-                    // mode: "no-cors"  // ❌ Try removing this for better error handling
-                });
-
+        event.preventDefault();
+    
+        const formData = {
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            phone: document.getElementById("phone").value,
+            address: document.getElementById("address").value,
+            date: document.getElementById("schedule_date").value,
+            time: document.getElementById("schedule_time").value,
+            secret: "MY_SECURE_KEY" // ✅ Must match your script
+        };
+    
+        try {
+            const response = await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData)
+            });
+    
+            // ✅ Handle the response correctly
+            const result = await response.json();
+    
+            if (response.ok) {
                 document.getElementById("response").textContent = "Form submitted successfully!";
                 document.getElementById("multiStepForm").reset();
-            } catch (error) {
-                document.getElementById("response").textContent = "Network error. Please check your connection.";
+            } else {
+                throw new Error(result.error || "Something went wrong");
             }
-        });
+        } catch (error) {
+            document.getElementById("response").textContent = `Network error: ${error.message}`;
+        }
+    });
+
     </script>
 </body>
 </html>
