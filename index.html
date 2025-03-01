@@ -59,7 +59,7 @@
     </div>
 
     <script>
-        const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbx4a6VmOttwA0k9Iz2I2QSTBiNQoAR71ql51jigIdGOXFDZLAIN0A8J250Gt6UyZP-LiA/exec";
+        const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzp8XYEUtSYqiR-XXK-LVsMDHET1XDeFAh4a5U3ijjG045RZg1cSgcoKJJBzJEvJX7f/exec";
 
         // ✅ Fix: Multi-Step Navigation
         let stepIndex = 0;
@@ -100,24 +100,23 @@
         window.addEventListener('load', initAutocomplete);
 
         document.getElementById("multiStepForm").addEventListener("submit", async function(event) {
-            event.preventDefault();
-        
-            const formData = {
-                name: document.getElementById("name").value,
-                email: document.getElementById("email").value,
-                phone: document.getElementById("phone").value,
-                address: document.getElementById("address").value,
-                date: document.getElementById("schedule_date").value,
-                time: document.getElementById("schedule_time").value,
-                secret: "MY_SECURE_KEY" // ✅ Must match your script
+        event.preventDefault();
+    
+        const formData = {
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            phone: document.getElementById("phone").value,
+            address: document.getElementById("address").value,
+            date: document.getElementById("schedule_date").value,
+            time: document.getElementById("schedule_time").value,
+            secret: "MY_SECURE_KEY" // ✅ Must match Google Apps Script
         };
     
         try {
             const response = await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
                 method: "POST",
                 headers: { 
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin": "*"
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify(formData)
             });
@@ -134,6 +133,7 @@
             document.getElementById("response").textContent = `Network error: ${error.message}`;
         }
     });
+
 
 
 
