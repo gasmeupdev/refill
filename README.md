@@ -13,6 +13,10 @@ Things to remember:
   - did someone handle this yet, cost (formula for determining pricing, profit), distance from HQ, estimated travel
   - Gas type should just be a dropdown
   - Payment processors - what makes the most sense to start out? (something proprietary, or would it be better to embed something)
+<<<<<<< HEAD
   - Excel functions too - how can we use to implement different
  
 Fill up tires for extra charge? Cleaning windows and shit for additional costs. 
+=======
+  - 
+>>>>>>> 25f4164d5c9834f09b3ff4c13a9433398a02e990
