@@ -15,5 +15,9 @@ Things to remember:
   - Payment processors - what makes the most sense to start out? (something proprietary, or would it be better to embed something)
 
   - Excel functions too - how can we use to implement different
- 
-Fill up tires for extra charge? Cleaning windows and shit for additional costs. 
+
+ ## Short-term Roadmap 
+- Fill up tires for extra charge? Cleaning windows and shit for additional costs. 
+- First page to show "how it works" Button to take people to booking 
+- Time intervals should be an hour
+- Payments integration 
