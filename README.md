@@ -1,5 +1,6 @@
 https://gasmeupdev.github.io/refill/
 
+## Technical Overview
 Things to remember: 
 - In the sheet, if we delete rows, then it will default to filling the highest-up open row 
 - Time is in 15-minute increments (only accepts that, change the scale of the time selecter to be that) 
