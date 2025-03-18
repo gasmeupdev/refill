@@ -6,7 +6,7 @@ Things to remember:
 - Time is in 15-minute increments (only accepts that, change the scale of the time selecter to be that) 
 - This is an SPA (Single page architecture), so the URL doesn't change from step-to-step
 
-
+- STephens and i talked long term strategy 
 
 - This utilizes a Google Apps Script, which is setup FROM the Google Sheet (that's where it's accesible if you want to find it quickly). It's a custom JS connector to accept data from external resources (which in this case, is our html form) 
 
