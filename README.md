@@ -39,5 +39,5 @@ PRE-Dynamic Model
 - .2 a gallon upcharge
 - Air in your tire up-charge, PSI measurement
 - Estimated total before checkout. For example, if we're refilling 10 gallons of gas, it;'s going to cost me X dollars.
-- 
+- How to develop as an app insetead - what are the steps 
  
