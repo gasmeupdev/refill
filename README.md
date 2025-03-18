@@ -19,6 +19,7 @@ Things to remember:
 - Fill up tires for extra charge? Cleaning windows and shit for additional costs. 
 - First page to show "how it works" Button to take people to booking
 
+- Longer Term thought on zip code availability (only allow booking in a certain number of them) 
 - Time intervals should be an hour (only 5p-11p, 5a-7a)
 - Payments integration 
 - Car year, license plate
