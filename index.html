@@ -1,4 +1,3 @@
-<!-- MAIN FORM (index.html) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,34 +35,23 @@
                 <button type="button" onclick="nextStep()">Next</button>
             </div>
             <div class="step" id="step3">
-                <h3>Step 3: Fuel Type</h3>
+                <h3>Step 3: Fuel Type & Amount</h3>
                 <select name="Gas Type" required>
                     <option value="Regular 87">Regular 87</option>
                     <option value="Mid-Grade 89">Mid-Grade 89</option>
                     <option value="Premium 91">Premium 91</option>
                     <option value="Diesel">Diesel</option>
                 </select>
-                <h3>Step 3: Fuel Needed</h3>
-                <p>How much of your fuel do you need added to your car? The steps are in 1/8 increments.</p>
-                <input type="range" name="Fuel Needed" min="1" max="8" step="1">
+                <p>How much gas do you need? Select below:</p>
+                <input type="range" name="Fuel Needed" min="1" max="9" step="1">
                 <button type="button" onclick="prevStep()">Back</button>
                 <button type="button" onclick="nextStep()">Next</button>
             </div>
             <div class="step" id="step4">
                 <h3>Step 4: Choose a Time</h3>
                 <input type="date" name="Date" required>
-                <select name="Time" required>
-                    <option value="05:00 AM">05:00 AM</option>
-                    <option value="06:00 AM">06:00 AM</option>
-                    <option value="07:00 AM">07:00 AM</option>
-                    <option value="05:00 PM">05:00 PM</option>
-                    <option value="06:00 PM">06:00 PM</option>
-                    <option value="07:00 PM">07:00 PM</option>
-                    <option value="08:00 PM">08:00 PM</option>
-                    <option value="09:00 PM">09:00 PM</option>
-                    <option value="10:00 PM">10:00 PM</option>
-                    <option value="11:00 PM">11:00 PM</option>
-                </select>
+                <select name="Time" required id="schedule_time"></select>
+                <p id="time_warning" style="color: red; display: none;">FYI: Our hours are 5PM - 11PM & 5AM - 7AM.</p>
                 <button type="button" onclick="prevStep()">Back</button>
                 <button type="button" onclick="nextStep()">Next</button>
             </div>
@@ -76,97 +64,12 @@
                 </table>
                 <p>Service Fee: $15</p>
                 <p>Additional Charge: $0.20 per gallon</p>
-                <p>Optional: Tire pressure reading - $5</p>
-                <p>Optional: Refill tire air - $5</p>
                 <button type="button" onclick="prevStep()">Back</button>
                 <button type="submit">Proceed to Checkout</button>
             </div>
         </form>
     </div>
 
-    <script>
-        const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyXzylCeFrXA_O8WGH0-_ENM9UfIPTVhrwxOvkRo7Jywv86HPjmZ-ivgQqx_BGer1iuMQ/exec";
-
-        // ✅ Multi-Step Navigation
-        let stepIndex = 0;
-        const steps = document.querySelectorAll(".step");
-        const totalSteps = steps.length;
-
-        function updateProgressBar() {
-            const progress = ((stepIndex + 1) / totalSteps) * 100;
-            document.getElementById("progressBar").style.width = progress + "%";
-        }
-
-        function nextStep() {
-            if (stepIndex < totalSteps - 1) {
-                steps[stepIndex].classList.remove("active");
-                stepIndex++;
-                steps[stepIndex].classList.add("active");
-                updateProgressBar();
-            }
-        }
-
-        function prevStep() {
-            if (stepIndex > 0) {
-                steps[stepIndex].classList.remove("active");
-                stepIndex--;
-                steps[stepIndex].classList.add("active");
-                updateProgressBar();
-            }
-        }
-
-        // ✅ Initialize progress bar on page load
-        document.addEventListener("DOMContentLoaded", updateProgressBar);
-
-        // ✅ Google Maps Autocomplete
-        function initAutocomplete() {
-            const input = document.getElementById("address");
-            new google.maps.places.Autocomplete(input);
-        }
-        window.addEventListener('load', initAutocomplete);
-
-        // ✅ Time Selection - Only Allow 15-Minute Increments
-        document.getElementById("schedule_time").addEventListener("change", function () {
-            const timeValue = this.value;
-            const [hour, minutes] = timeValue.split(":").map(Number);
-
-            if (minutes % 15 !== 0) {
-                alert("Please select a time in 15-minute increments.");
-                this.value = ""; // Reset time selection
-            }
-
-            // Show warning if time is outside of 7:15 AM - 11:45 PM
-            const warning = document.getElementById("time_warning");
-            if (hour < 7 || (hour === 7 && minutes < 15) || hour >= 24) {
-                warning.style.display = "block";
-            } else {
-                warning.style.display = "none";
-            }
-        });
-
-        // ✅ Handle Form Submission
-        document.getElementById("multiStepForm").addEventListener("submit", async function(event) {
-            event.preventDefault();
-
-            const formData = new FormData(this);
-
-            try {
-                const response = await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
-                    method: "POST",
-                    body: formData
-                });
-
-                if (response.ok) {
-                    alert("Booking successful! 🚀 We will reach out to you soon.");
-                    this.reset();
-                    window.location.href = "/refill/home.html"; // Redirect to home page after clicking "OK"
-                } else {
-                    throw new Error("Submission failed.");
-                }
-            } catch (error) {
-                alert("Network error: " + error.message);
-            }
-        });
-    </script>
+    <script src="scripts.js"></script>
 </body>
 </html>
