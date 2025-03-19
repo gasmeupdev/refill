@@ -1,3 +1,4 @@
+<!-- MAIN FORM (index.html) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,89 +6,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gas Refill Booking</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh5XxodKgwBLU3RipuMvQr-WwsqVN12w8&libraries=places"></script>
-    <style>
-        .step { display: none; }
-        .step.active { display: block; }
-        .warning { color: red; font-size: 0.9em; display: none; }
-    </style>
 </head>
 <body>
     <div class="container">
         <h2>Book Your Gas Refill</h2>
-        
-        <!-- Progress Bar -->
-        <div class="progress-container">
-            <div class="progress-bar" id="progressBar"></div>
-        </div>
-
-        <!-- Form -->
         <form id="multiStepForm">
-            <!-- Step 1: Name & Email -->
             <div class="step active" id="step1">
                 <h3>Step 1: Contact Info</h3>
-                <p>E.g. - you have 1/4 of your tank currrently filled, and you want to fill it fully, you would select 3/4. </p>
-                <input type="text" name="Name" id="name" placeholder="Full Name" required>
-                <input type="email" name="Email" id="email" placeholder="Email" required>
-                <input type="text" name="Phone" id="phone" placeholder="Phone Number" required>
+                <input type="text" name="Name" placeholder="Full Name" required>
+                <input type="email" name="Email" placeholder="Email" required>
+                <input type="text" name="Phone" placeholder="Phone Number" required>
                 <button type="button" onclick="nextStep()">Next</button>
             </div>
-
-            <!-- Step 2: Address -->
-            <div class="step" id="step3">
-                <h3>Step 2: Address</h3>
-                <input type="text" name="Address" id="address" placeholder="Car Address" required>
+            <div class="step" id="step2">
+                <h3>Step 2: Car Details</h3>
+                <input type="text" name="Car Make" placeholder="Car Make" required>
+                <input type="text" name="Car Model" placeholder="Car Model" required>
+                <input type="text" name="Car Year" placeholder="Car Year" required>
+                <input type="text" name="License Plate" placeholder="License Plate Number" required>
                 <button type="button" onclick="prevStep()">Back</button>
                 <button type="button" onclick="nextStep()">Next</button>
             </div>
-
-            <!-- Step 3: Car Information -->
-            <div class="step" id="step4">
-                <h3>Step 3: Car Information</h3>
-                <input type="text" name="Car Make" id="car_make" placeholder="Car Make (e.g., Toyota)" required>
-                <input type="text" name="Car Model" id="car_model" placeholder="Car Model (e.g., Camry)" required>
-                <input type="text" name="Car Color" id="car_color" placeholder="Car Color (e.g., Red)" required>
-
-                <label for="gas_type">Select Gas Type:</label>
-                <select name="Gas Type" id="gas_type" required>
+            <div class="step" id="step3">
+                <h3>Step 3: Fuel Selection</h3>
+                <select name="Gas Type" required>
                     <option value="Regular 87">Regular 87</option>
                     <option value="Mid-Grade 89">Mid-Grade 89</option>
                     <option value="Premium 91">Premium 91</option>
                     <option value="Diesel">Diesel</option>
                 </select>
-
-                <label for="keys_available">Will you be available to provide keys?</label>
-                <select name="Keys Available" id="keys_available" required>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-
+                <input type="range" name="Fuel Needed" min="1" max="8" step="1">
                 <button type="button" onclick="prevStep()">Back</button>
                 <button type="button" onclick="nextStep()">Next</button>
             </div>
-
-            <div class="step" id="step5">
-                <label for="fill_tires">Fill up tires with air for a small additional charge?</label>
-                <select name="Tire Refill" id="fill_tires" required>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
+            <div class="step" id="step4">
+                <h3>Step 4: Choose a Time</h3>
+                <input type="date" name="Date" required>
+                <select name="Time" required>
+                    <option value="05:00 AM">05:00 AM</option>
+                    <option value="06:00 AM">06:00 AM</option>
+                    <option value="07:00 AM">07:00 AM</option>
+                    <option value="05:00 PM">05:00 PM</option>
+                    <option value="06:00 PM">06:00 PM</option>
+                    <option value="07:00 PM">07:00 PM</option>
+                    <option value="08:00 PM">08:00 PM</option>
+                    <option value="09:00 PM">09:00 PM</option>
+                    <option value="10:00 PM">10:00 PM</option>
+                    <option value="11:00 PM">11:00 PM</option>
                 </select>
-
                 <button type="button" onclick="prevStep()">Back</button>
                 <button type="button" onclick="nextStep()">Next</button>
             </div>
-
-            <!-- Step 4: Schedule -->
             <div class="step" id="step5">
-                <h3>Step 4: Choose a Date & Time</h3>
-                <input type="date" name="Date" id="schedule_date" required>
-                
-                <input type="time" name="Time" id="schedule_time" required>
-                <p id="time_warning" class="warning">⚠️ FYI, our hours are only between 7:15 AM and 11:45 PM.</p>
-                
+                <h3>Estimated Pricing</h3>
+                <table>
+                    <tr><th>Type</th><th>Gallon Price</th><th>1/4 Fill</th><th>1/2 Fill</th><th>Full Fill</th></tr>
+                    <tr><td>Regular</td><td>$4.00</td><td>$16.00</td><td>$32.00</td><td>$64.00</td></tr>
+                    <tr><td>Premium</td><td>$4.50</td><td>$18.00</td><td>$36.00</td><td>$72.00</td></tr>
+                </table>
+                <p>Service Fee: $15</p>
+                <p>Additional Charge: $0.20 per gallon</p>
                 <button type="button" onclick="prevStep()">Back</button>
-                <button type="submit">Submit</button>
+                <button type="submit">Proceed to Checkout</button>
             </div>
         </form>
     </div>
