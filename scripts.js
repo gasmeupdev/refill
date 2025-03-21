@@ -32,6 +32,37 @@ allowedTimes.forEach(time => {
     timeSelect.appendChild(option);
 });
 
+// ✅ Google Maps Autocomplete
+function initAutocomplete() {
+    const input = document.getElementById("address");
+    if (input) {
+        new google.maps.places.Autocomplete(input);
+    }
+}
+window.addEventListener("load", initAutocomplete);
+
+// ✅ Neighborhood Lookup by ZIP
+const zipToNeighborhood = {
+    "15219": "Downtown",
+    "15203": "South Side",
+    "15201": "Lawrenceville",
+    "15213": "Oakland",
+    "15217": "Squirrel Hill",
+    "15206": "East Liberty",
+    "15222": "Strip District"
+    // Add more if needed
+};
+
+function getZipFromAddress(address) {
+    const zipMatch = address.match(/\b\d{5}\b/);
+    return zipMatch ? zipMatch[0] : "";
+}
+
+function getNeighborhood(address) {
+    const zip = getZipFromAddress(address);
+    return zipToNeighborhood[zip] || "Other";
+}
+
 // ✅ Handle Form Submission
 document.getElementById("multiStepForm").addEventListener("submit", async function(event) {
     event.preventDefault();
@@ -55,6 +86,11 @@ document.getElementById("multiStepForm").addEventListener("submit", async functi
     const label = fuelMap[rawValue] || rawValue;
     formData.set("Fuel Needed", label);
 
+    // 🏙️ Get Neighborhood based on Address
+    const address = formData.get("Address");
+    const neighborhood = getNeighborhood(address);
+    formData.append("Neighborhood", neighborhood);
+
     try {
         const response = await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
             method: "POST",
@@ -63,7 +99,7 @@ document.getElementById("multiStepForm").addEventListener("submit", async functi
 
         if (response.ok) {
             alert("Booking successful! 🚀 We will reach out to you soon.");
-            window.location.href = "checkout.html"; // or wherever you want
+            window.location.href = "checkout.html";
         } else {
             throw new Error("Submission failed.");
         }
@@ -71,4 +107,3 @@ document.getElementById("multiStepForm").addEventListener("submit", async functi
         alert("Network error: " + error.message);
     }
 });
-
