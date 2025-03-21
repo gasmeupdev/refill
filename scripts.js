@@ -35,7 +35,25 @@ allowedTimes.forEach(time => {
 // ✅ Handle Form Submission
 document.getElementById("multiStepForm").addEventListener("submit", async function(event) {
     event.preventDefault();
+    
     const formData = new FormData(this);
+
+    // 🔁 Replace Fuel Needed (e.g., 4 ➝ "1/2")
+    const fuelMap = {
+        "1": "1/8",
+        "2": "1/4",
+        "3": "1/3",
+        "4": "1/2",
+        "5": "5/8",
+        "6": "2/3",
+        "7": "3/4",
+        "8": "7/8",
+        "9": "Full"
+    };
+
+    const rawValue = this.querySelector('input[name="Fuel Needed"]').value;
+    const label = fuelMap[rawValue] || rawValue;
+    formData.set("Fuel Needed", label);
 
     try {
         const response = await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
@@ -45,7 +63,7 @@ document.getElementById("multiStepForm").addEventListener("submit", async functi
 
         if (response.ok) {
             alert("Booking successful! 🚀 We will reach out to you soon.");
-            window.location.href = "checkout.html"; // Redirect to checkout after submission
+            window.location.href = "checkout.html"; // or wherever you want
         } else {
             throw new Error("Submission failed.");
         }
@@ -53,3 +71,4 @@ document.getElementById("multiStepForm").addEventListener("submit", async functi
         alert("Network error: " + error.message);
     }
 });
+
