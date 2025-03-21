@@ -76,6 +76,16 @@
                 </table>
                 <p>Service Fee: $15</p>
                 <p>Additional Charge: $0.20 per gallon</p>
+                <label for="keys_available">Would you like a PSI reading for an additional charge?</label>
+                <select name="PSI Reading" id="keys_available" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <label for="keys_available">Would you like air put in your tires for an additional charge?</label>
+                <select name="Tire Refill" id="keys_available" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
                 <button type="button" onclick="prevStep()">Back</button>
                 <button type="submit">Proceed to Checkout</button>
             </div>
