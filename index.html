@@ -19,6 +19,12 @@
                 <input type="text" name="Phone" placeholder="Phone Number" required>
                 <input type="text" name="Address" id="address" placeholder="Car Address" required>
                 <button type="button" onclick="nextStep()">Next</button>
+                <h3>Step 4: Choose a Time</h3>
+                <input type="date" name="Date" required>
+                <select name="Time" required id="schedule_time"></select>
+                <p id="time_warning" style="color: red; display: none;">FYI: Our hours are 5PM - 11PM & 5AM - 7AM.</p>
+                <button type="button" onclick="prevStep()">Back</button>
+                <button type="button" onclick="nextStep()">Next</button>
             </div>
             <div class="step" id="step2">
                 <h3>Step 2: Car Details</h3>
@@ -26,7 +32,7 @@
                 <input type="text" name="Car Model" placeholder="Car Model" required>
                 <input type="text" name="Car Year" placeholder="Car Year" required>
                 <input type="text" name="License Plate" placeholder="License Plate Number" required>
-                <label for="keys_available">Will you be available to provide keys?</label>
+                <label for="keys_available">Please confirm you will be available to provide access.</label>
                 <select name="Keys Available" id="keys_available" required>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
@@ -42,25 +48,32 @@
                     <option value="Premium 91">Premium 91</option>
                     <option value="Diesel">Diesel</option>
                 </select>
-                <p>How much gas do you need? Select below:</p>
-                <input type="range" name="Fuel Needed" min="1" max="9" step="1">
+                <div class="range-container">
+                  <input type="range" name="Fuel Needed" min="1" max="8" step="1" id="fuelRange">
+                
+                  <div class="range-labels">
+                    <span>1/8</span>
+                    <span>1/4</span>
+                    <span>1/3</span>
+                    <span>1/2</span>
+                    <span>5/8</span>
+                    <span>3/4</span>
+                    <span>7/8</span>
+                    <span>Full</span>
+                  </div>
+                </div>
                 <button type="button" onclick="prevStep()">Back</button>
                 <button type="button" onclick="nextStep()">Next</button>
             </div>
-            <div class="step" id="step4">
-                <h3>Step 4: Choose a Time</h3>
-                <input type="date" name="Date" required>
-                <select name="Time" required id="schedule_time"></select>
-                <p id="time_warning" style="color: red; display: none;">FYI: Our hours are 5PM - 11PM & 5AM - 7AM.</p>
-                <button type="button" onclick="prevStep()">Back</button>
-                <button type="button" onclick="nextStep()">Next</button>
-            </div>
+
             <div class="step" id="step5">
                 <h3>Estimated Pricing</h3>
                 <table>
                     <tr><th>Type</th><th>Gallon Price</th><th>1/4 Fill</th><th>1/2 Fill</th><th>Full Fill</th></tr>
-                    <tr><td>Regular</td><td>$4.00</td><td>$16.00</td><td>$32.00</td><td>$64.00</td></tr>
-                    <tr><td>Premium</td><td>$4.50</td><td>$18.00</td><td>$36.00</td><td>$72.00</td></tr>
+                    <tr><td>Regular 87</td><td>$4.00</td><td>$16.00</td><td>$32.00</td><td>$64.00</td></tr>
+                    <tr><td>Mid-Grade 89</td><td>$4.50</td><td>$18.00</td><td>$36.00</td><td>$72.00</td></tr>
+                    <tr><td>Premium 91</td><td>$4.50</td><td>$18.00</td><td>$36.00</td><td>$72.00</td></tr>
+                    <tr><td>Diesel</td><td>$4.50</td><td>$18.00</td><td>$36.00</td><td>$72.00</td></tr>
                 </table>
                 <p>Service Fee: $15</p>
                 <p>Additional Charge: $0.20 per gallon</p>
