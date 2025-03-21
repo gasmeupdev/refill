@@ -52,34 +52,39 @@ function initAutocomplete() {
     const input = document.getElementById("address");
     if (!input) return;
 
-    const autocomplete = new google.maps.places.Autocomplete(input);
-    autocomplete.setFields(["address_components", "formatted_address"]);
+    const autocomplete = new google.maps.places.Autocomplete(input, {
+        types: ["geocode"],
+        componentRestrictions: { country: "us" }
+    });
 
-    autocomplete.addListener("place_changed", () => {
+    autocomplete.addListener("place_changed", function () {
         const place = autocomplete.getPlace();
-        const addressComponents = place.address_components;
+        if (!place || !place.address_components) return;
 
         let zipCode = "";
-        for (let component of addressComponents) {
-            if (component.types.includes("postal_code")) {
-                zipCode = component.long_name;
+        for (let comp of place.address_components) {
+            if (comp.types.includes("postal_code")) {
+                zipCode = comp.long_name;
                 break;
             }
         }
 
+        console.log("Detected ZIP Code:", zipCode);
+
         const neighborhood = zipToNeighborhood[zipCode] || "Other";
 
-        // Create hidden field for neighborhood
-        let hiddenInput = document.querySelector("input[name='Neighborhood']");
-        if (!hiddenInput) {
-            hiddenInput = document.createElement("input");
-            hiddenInput.type = "hidden";
-            hiddenInput.name = "Neighborhood";
-            input.form.appendChild(hiddenInput);
+        // ✅ Add or update hidden neighborhood field
+        let neighborhoodInput = document.querySelector("input[name='Neighborhood']");
+        if (!neighborhoodInput) {
+            neighborhoodInput = document.createElement("input");
+            neighborhoodInput.type = "hidden";
+            neighborhoodInput.name = "Neighborhood";
+            input.form.appendChild(neighborhoodInput);
         }
-        hiddenInput.value = neighborhood;
+        neighborhoodInput.value = neighborhood;
     });
 }
+
 window.addEventListener("load", initAutocomplete);
 
 // ✅ Handle Form Submission
