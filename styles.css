@@ -191,3 +191,23 @@ th {
         margin-bottom: 20px;
     }
 }
+
+
+.range-container {
+    position: relative;
+    margin-top: 20px;
+}
+
+.range-labels {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2px;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.range-labels span {
+    text-align: center;
+    flex: 1;
+}
+
