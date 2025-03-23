@@ -19,7 +19,7 @@
                 <input type="email" name="Email" placeholder="Email" required>
                 <input type="text" name="Phone" placeholder="Phone Number" required>
                 <button type="button" onclick="prevStep()">Back</button>
-                <button type="button" onclick="nextStep()">Next</button>
+                <button type="button" onclick="if(validateStep(stepIndex)) nextStep();">Next</button>
             </div>
             <div class="step" id="step2">
                 <h3>Step 2: Choose a Time for Refill</h3>
@@ -29,7 +29,7 @@
                 <select name="Time" required id="schedule_time"></select>
                 <p id="time_warning" style="color: red; display: none;">FYI: Our hours are 5PM - 11PM & 5AM - 7AM.</p>
                 <button type="button" onclick="prevStep()">Back</button>
-                <button type="button" onclick="nextStep()">Next</button>
+                <button type="button" onclick="if(validateStep(stepIndex)) nextStep();">Next</button>
             </div>
             <div class="step" id="step3">
                 <h3>Step 3: Car Details</h3>
@@ -45,7 +45,7 @@
                     <option value="No">No</option>
                 </select>
                 <button type="button" onclick="prevStep()">Back</button>
-                <button type="button" onclick="nextStep()">Next</button>
+                <button type="button" onclick="if(validateStep(stepIndex)) nextStep();">Next</button>
             </div>
 
             <div class="step" id="step4">
@@ -95,7 +95,7 @@
             </div>
         </form>
     </div>
-
+    <script src="validation.js"></script>
     <script src="scripts.js"></script>
 </body>
 </html>
