@@ -10,6 +10,27 @@ body {
     min-height: 100vh;
 }
 
+.step-section {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.step-section h3 {
+    color: #4a6333;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.step-section ul {
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.step-section ul li {
+    margin-bottom: 5px;
+}
+
+
 /* 🌟 Centered Container */
 .container {
     background: white;
