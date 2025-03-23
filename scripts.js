@@ -24,9 +24,9 @@ function prevStep() {
 // ✅ Time Selection Restricted
 const timeSelect = document.getElementById("schedule_time");
 const allowedTimes = [
-    "05:00 AM", "06:00 AM", "07:00 AM",
-    "05:00 PM", "06:00 PM", "07:00 PM",
-    "08:00 PM", "09:00 PM", "10:00 PM", "11:00 PM"
+    "05:00 AM - 06:00 AM", "06:00 AM - 07:00 AM", "07:00 AM - 08:00 AM",
+    "05:00 PM - 06:00 PM", "06:00 PM - 07:00 PM", "07:00 PM - 08:00 PM",
+    "08:00 PM - 09:00 PM", "09:00 PM - 10:00 PM", "10:00 PM - 11:00 PM", "11:00 PM - 12:00 AM"
 ];
 
 allowedTimes.forEach(time => {
