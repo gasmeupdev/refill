@@ -95,9 +95,15 @@ document.getElementById("multiStepForm").addEventListener("submit", async functi
 
     // 🔁 Replace Fuel Needed (e.g., 4 ➝ "1/2")
     const fuelMap = {
-        "1": "1/8", "2": "1/4", "3": "1/3",
-        "4": "1/2", "5": "5/8", "6": "2/3",
-        "7": "3/4", "8": "7/8", "9": "Full"
+        "1": "1/8", 
+        "2": "1/4", 
+        "3": "1/3",
+        "4": "1/2", 
+        "5": "5/8", 
+        "6": "2/3",
+        "7": "3/4", 
+        "8": "7/8", 
+        "9": "Full"
     };
 
     const rawValue = this.querySelector('input[name="Fuel Needed"]').value;
