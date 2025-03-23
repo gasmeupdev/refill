@@ -46,7 +46,18 @@
                 <button type="button" onclick="prevStep()">Back</button>
                 <button type="button" onclick="nextStep()">Next</button>
             </div>
-            <div class="step" id="step3">
+
+            <div class="step" id="step4">
+                <h3>Estimated Pricing</h3>
+                <table>
+                    <tr><th>Type</th><th>Gallon Price</th><th>1/4 Fill</th><th>1/2 Fill</th><th>Full Fill</th></tr>
+                    <tr><td>Regular 87</td><td>$4.00</td><td>$16.00</td><td>$32.00</td><td>$64.00</td></tr>
+                    <tr><td>Mid-Grade 89</td><td>$4.50</td><td>$18.00</td><td>$36.00</td><td>$72.00</td></tr>
+                    <tr><td>Premium 91</td><td>$4.50</td><td>$18.00</td><td>$36.00</td><td>$72.00</td></tr>
+                    <tr><td>Diesel</td><td>$4.50</td><td>$18.00</td><td>$36.00</td><td>$72.00</td></tr>
+                </table>
+                <p>Service Fee: $15</p>
+                <p>Additional Charge: $0.20 per gallon</p>
                 <h3>Step 4: Fuel Type & Amount</h3>
                 <select name="Gas Type" required>
                     <option value="Regular 87">Regular 87</option>
@@ -68,26 +79,11 @@
                     <span>Full</span>
                   </div>
                 </div>
-                <button type="button" onclick="prevStep()">Back</button>
-                <button type="button" onclick="nextStep()">Next</button>
-            </div>
-
-            <div class="step" id="step5">
-                <h3>Estimated Pricing</h3>
-                <table>
-                    <tr><th>Type</th><th>Gallon Price</th><th>1/4 Fill</th><th>1/2 Fill</th><th>Full Fill</th></tr>
-                    <tr><td>Regular 87</td><td>$4.00</td><td>$16.00</td><td>$32.00</td><td>$64.00</td></tr>
-                    <tr><td>Mid-Grade 89</td><td>$4.50</td><td>$18.00</td><td>$36.00</td><td>$72.00</td></tr>
-                    <tr><td>Premium 91</td><td>$4.50</td><td>$18.00</td><td>$36.00</td><td>$72.00</td></tr>
-                    <tr><td>Diesel</td><td>$4.50</td><td>$18.00</td><td>$36.00</td><td>$72.00</td></tr>
-                </table>
-                <p>Service Fee: $15</p>
-                <p>Additional Charge: $0.20 per gallon</p>
-                <label for="keys_available">Would you like a PSI reading for an additional charge?</label>
+                <!-- <label for="keys_available">Would you like a PSI reading for an additional charge?</label>
                 <select name="PSI Reading" id="keys_available" required>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
-                </select>
+                </select>-->
                 <label for="keys_available">Would you like air put in your tires for an additional charge?</label>
                 <select name="Tire Refill" id="keys_available" required>
                     <option value="Yes">Yes</option>
