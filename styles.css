@@ -158,7 +158,9 @@ th {
     text-align: center;
     position: relative;
 }
-
+.home-logo{ 
+    width: 70%;
+}
 /* 🌟 CTA Button on Homepage */
 .cta-button {
     background: #7ea04d;
