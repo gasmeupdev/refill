@@ -1,7 +1,7 @@
 a/* 🌟 General Styles */
 body {
     font-family: 'Poppins', sans-serif;
-    background: #d2b48c; /*offwhite*/ 
+    /*background: #d2b48c; /*offwhite*/ 
     background: linear-gradient(135deg, #4facfe, #00f2fe); /*original blue*/
     /*background: linear-gradient(135deg, #4a6333, #7ea04d); /* Muted Army Green Gradient */
     margin: 0;
