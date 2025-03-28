@@ -36,7 +36,8 @@ body {
 
 /* 🌟 Centered Container */
 .container {
-    background: #D3D3D3;
+    background: #333;
+    color: #D3D3D3;
     padding: 25px;
     max-width: 450px;
     width: 90%;
