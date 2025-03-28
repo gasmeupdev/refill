@@ -23,6 +23,53 @@ function prevStep() {
 
 // ✅ Time Selection Restricted
 const timeSelect = document.getElementById("schedule_time");
+
+var hoursInDay = 24
+
+//BEGIN SAME DAY BOOK TIME VALIDATION
+// const currentTime = new Date();
+// const currentHour = currentTime.getHours();
+// const allowedTimes = []
+// var minTimeCanBook = Number(currentHour) + 2;
+// for (var b = minTimeCanBook; b<=23; b++) {
+
+//     if (b < 11) {
+//     var timeSlotFirst = b
+// console.log("Hour " + timeSlotFirst); 
+
+//     var timeSlotSecond = b + 1; 
+//     var timeSlotFinal = "0"+ b + ":00 AM - " + "0" + timeSlotSecond + ":00 AM";
+//         console.log("time slot final " + timeSlotFinal);
+//     }
+
+//     else if (b >= 13 ) {
+
+//         var timeSlotFirst = Number(b) - 12
+//         console.log("Hour " + timeSlotFirst); 
+//     var timeSlotSecond = timeSlotFirst + 1; 
+//     var timeSlotFinal = "0"+ timeSlotFirst + ":00 PM - " + "0" + timeSlotSecond + ":00 PM";
+//         console.log("time slot final " + timeSlotFinal);
+//     }
+
+//     else if (b = 12) {
+// console.log("Hour " + b); 
+//     var timeSlotFinal = "12:00 PM - 1:00 PM"
+//     console.log("time slot final " + timeSlotFinal);}
+        
+// else if (b = 11) {
+// console.log("Hour " + b); 
+//     var timeSlotFinal = "11:00 AM - 12:00 PM"
+//     console.log("time slot final " + timeSlotFinal);}
+
+
+    
+//     allowedTimes.push(timeSlotFinal);
+// }
+// END SAME DAY BOOK TIME VALIDATION
+
+
+
+
 const allowedTimes = [
     "05:00 AM - 06:00 AM", "06:00 AM - 07:00 AM", "07:00 AM - 08:00 AM",
     "05:00 PM - 06:00 PM", "06:00 PM - 07:00 PM", "07:00 PM - 08:00 PM",
