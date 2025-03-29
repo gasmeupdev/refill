@@ -69,7 +69,7 @@ body {
 }
 .gauge-b {
   z-index: 3;
-  position: absolute;
+  position: fixed;
   background-color: #222;
   width: 250px;
   height: 125px;
