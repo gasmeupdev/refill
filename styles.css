@@ -188,7 +188,6 @@ th {
 }
 /* 🌟 CTA Button on Homepage */
 .cta-button {
-    position: fixed;
     background: #4facfe;
     color: white;
     border: none;
