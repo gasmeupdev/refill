@@ -75,7 +75,7 @@
                 </select>
                 <div class="range-container">
                 <p>If known, please indicate your aproximate current fuel level:</p>
-                  <input type="range" name="Fuel Needed" min="1" max="10" step="1" id="fuelRange">
+                 
                   <div class="range-labels">
                     <span>Empty </span>
                     <span>   </span>
@@ -86,16 +86,17 @@
                     <span>   </span>
                     <span>Full</span>
                   </div>
+                     <input type="range" name="Fuel Needed" min="1" max="10" step="1" id="fuelRange">
                 </div>
                 <!-- <label for="keys_available">Would you like a PSI reading for an additional charge?</label>
                 <select name="PSI Reading" id="keys_available" required>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>-->
-                <label for="keys_available">"Would you like us to check and adjust your tire pressure for a small additional fee?"</label>
+                <label for="keys_available">Would you like to have your tire pressure inspected and adjusted as needed for no additional charge?</label>
                 <select name="Tire Refill" id="keys_available" required>
-                    <option value="Yes">Yes</option>
                     <option value="No">No</option>
+                    <option value="Yes">Yes</option>
                 </select>
                 <button type="button" onclick="prevStep()">Back</button>
                 <button type="submit">Proceed to Checkout</button>
