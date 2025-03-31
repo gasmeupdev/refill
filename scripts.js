@@ -134,6 +134,80 @@ function initAutocomplete() {
 
 window.addEventListener("load", initAutocomplete);
 
+
+// ✅ Fuel Gauge Logic
+const gauge = document.getElementById("fuelGauge");
+const needle = document.getElementById("gaugeNeedle");
+const bar = document.getElementById("gaugeBar");
+const fuelInput = document.getElementById("fuelLevel");
+
+let center = { x: 0, y: 0 };
+
+function updateCenter() {
+    const rect = gauge.getBoundingClientRect();
+    center = {
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height
+    };
+}
+
+function getAngle(x, y) {
+    const dx = x - center.x;
+    const dy = y - center.y;
+    let angle = Math.atan2(dy, dx) * (180 / Math.PI);
+    angle = Math.max(-90, Math.min(angle, 90));
+    return angle;
+}
+
+function angleToValue(angle) {
+    return Math.round(((angle + 90) / 180) * 100);
+}
+
+function updateGaugeFromAngle(angle) {
+    const value = angleToValue(angle);
+    fuelInput.value = value;
+    needle.style.transform = `rotate(${angle}deg)`;
+
+    // Convert value to visual fill angle (0–180)
+    const fillAngle = (value / 100) * 180;
+    bar.style.background = `conic-gradient(var(--green) ${fillAngle}deg, transparent ${fillAngle}deg)`;
+}
+
+gauge.addEventListener("mousedown", startDrag);
+gauge.addEventListener("touchstart", startDrag, { passive: false });
+
+function startDrag(e) {
+    e.preventDefault();
+    updateCenter();
+
+    const moveHandler = (ev) => {
+        const x = ev.touches ? ev.touches[0].clientX : ev.clientX;
+        const y = ev.touches ? ev.touches[0].clientY : ev.clientY;
+        const angle = getAngle(x, y);
+        updateGaugeFromAngle(angle);
+    };
+
+    const stopHandler = () => {
+        document.removeEventListener("mousemove", moveHandler);
+        document.removeEventListener("mouseup", stopHandler);
+        document.removeEventListener("touchmove", moveHandler);
+        document.removeEventListener("touchend", stopHandler);
+    };
+
+    document.addEventListener("mousemove", moveHandler);
+    document.addEventListener("mouseup", stopHandler);
+    document.addEventListener("touchmove", moveHandler);
+    document.addEventListener("touchend", stopHandler);
+}
+
+window.addEventListener("load", () => {
+    updateCenter();
+    updateGaugeFromAngle(0);
+});
+
+window.addEventListener("resize", updateCenter);
+
+
 // ✅ Handle Form Submission
 document.getElementById("multiStepForm").addEventListener("submit", async function(event) {
     event.preventDefault();
