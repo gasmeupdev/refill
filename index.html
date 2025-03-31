@@ -114,7 +114,9 @@
           const dx = x - center.x;
           const dy = y - center.y;
           let angle = Math.atan2(dy, dx) * (180 / Math.PI);
-          angle = angle < -90 ? -90 : angle > 90 ? 90 : angle;
+        
+          // Clamp to -90 to +90
+          angle = Math.max(-90, Math.min(angle, 90));
           return angle;
         }
         
@@ -128,9 +130,14 @@
           const value = angleToValue(angle);
           fuelInput.value = value;
         
+          // rotate needle
           needle.style.transform = `rotate(${angle}deg)`;
-          bar.style.background = `conic-gradient(var(--green) ${value * 1.8}deg, transparent 0deg)`;
+        
+          // fill background from left to right across 180°
+          const fillAngle = (value / 100) * 180;
+          bar.style.background = `conic-gradient(var(--green) ${fillAngle}deg, transparent ${fillAngle}deg)`;
         }
+
         
         // Listen for drag/tap
         gauge.addEventListener("mousedown", startDrag);
