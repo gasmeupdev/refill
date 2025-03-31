@@ -120,17 +120,20 @@
                     function updateGaugeFromAngle(angle) {
                       const value = angleToValue(angle);
                       fuelInput.value = value;
-                  
+                    
                       needle.style.transform = `rotate(${angle}deg)`;
-                  
+                    
+                      // Reverse fill from left (180°) to right (0°)
                       const fillAngle = (value / 100) * 180;
+                      const startAngle = 180;
+                      const endAngle = 180 - fillAngle;
+                    
                       bar.style.background = `conic-gradient(
-                        var(--green) 0deg ${fillAngle}deg,
-                        transparent ${fillAngle}deg 180deg
+                        var(--green) ${endAngle}deg ${startAngle}deg,
+                        transparent ${startAngle}deg 360deg
                       )`;
                     }
 
-                  
                     function startDrag(e) {
                       e.preventDefault();
                       updateCenter();
