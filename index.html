@@ -123,14 +123,13 @@
                     
                         needle.style.transform = `rotate(${angle}deg)`;
                     
-                        const fillStart = -90;
-                        const fillEnd = fillStart + (value / 100) * 180;
-                    
+                        const fillAngle = (value / 100) * 180;
                         bar.style.background = `conic-gradient(
-                          var(--green) ${fillStart}deg ${fillEnd}deg,
-                          transparent ${fillEnd}deg 270deg
+                          var(--green) 0deg ${fillAngle}deg,
+                          transparent ${fillAngle}deg 180deg
                         )`;
                       }
+
                     
                       function startDrag(e) {
                         e.preventDefault();
@@ -159,10 +158,11 @@
                       gauge.addEventListener("mousedown", startDrag);
                       gauge.addEventListener("touchstart", startDrag, { passive: false });
                     
-                      window.addEventListener("load", () => {
+                     window.addEventListener("load", () => {
                         updateCenter();
-                        updateGaugeFromAngle(0); // default to middle
-                      });
+                        updateGaugeFromAngle(0); // Middle (50%)
+                     });
+
                     
                       window.addEventListener("resize", updateCenter);
                  </script>
