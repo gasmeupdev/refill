@@ -1,7 +1,7 @@
 /* 🌟 General Styles */
 body {
     font-family: 'Poppins', sans-serif;
-    background: #36454F; /*charcoal*/ charc
+    background: #36454F; /*charcoal*/ 
     /*background: linear-gradient(135deg, #d5c0a3, #d5c0a3); /*original blue*/
     /*background: linear-gradient(135deg, #4a6333, #7ea04d); /* Muted Army Green Gradient */
     margin: 0;
@@ -152,17 +152,6 @@ th {
     margin:0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
-    min-height: 100vh;
-    background-color: var(--gray);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-    overflow: hidden;
 }
 
 .gauge {
