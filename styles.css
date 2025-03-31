@@ -168,20 +168,46 @@ body {
 .gauge {
     position: relative;
     width: 200px;
-    height: 200px;
+    height: 100px; /* HALF height now */
+    overflow: hidden;
 }
 
 .progress {
-    position: absolute;
+    position: relative;
     width: 100%;
-    height: 100%;
-    border: .1rem solid var(--white);
-    border-bottom: .1rem solid var(--gray);
+    height: 200px; /* Double height to reveal full circle but show half */
     border-radius: 50%;
-    outline: .2rem solid var(--white);
-    outline-offset: .4rem;
+    background: var(--gray);
+    transform: translateY(-50%);
     overflow: hidden;
 }
+
+.bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: conic-gradient(var(--green) 0deg, transparent 0deg);
+    border-radius: 50%;
+    z-index: 1;
+    pointer-events: none;
+    transition: background 0.2s ease-out;
+}
+
+.needle {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    height: 90%;
+    background-color: var(--white);
+    transform-origin: bottom center;
+    transform: rotate(0deg);
+    z-index: 10;
+}
+
+
 
 .progress::before{
     position: absolute;
@@ -204,28 +230,6 @@ body {
     background-color: var(--gray);
 }
 
-.bar {
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    background-color: var(--green);
-    transform: rotate(90deg);
-    transform-origin: center right;
-    animation: rotate 2s ease-in-out;
-}
-
-.needle {
-    position: absolute;
-    width: 100%;
-    height: 50%;
-    background-color: var(--white)!important;
-    clip-path: polygon(50% 0, 50% 0, 52% 100%, 48% 100%);
-    transform: rotate(90deg);
-    transform-origin: bottom center;
-    animation: rotate 2s ease-in-out;
-    z-index: 300;
-
-}
 
 @keyframes rotate {
     0% {
