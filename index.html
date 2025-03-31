@@ -89,98 +89,91 @@
   <!-- Hidden field to hold fuel value between 0–100 -->
     <input type="hidden" name="Fuel Gauge Level" id="fuelLevelHidden" value="0">
 </div>
+<script>
+    const gauge = document.getElementById("fuelGauge");
+    const needle = document.getElementById("gaugeNeedle");
+    const bar = document.getElementById("gaugeBar");
+    const fuelInput = document.getElementById("fuelLevel");
 
+    // Center of gauge
+    let center = { x: 0, y: 0 };
 
-
-    <script>
-        const gauge = document.getElementById("fuelGauge");
-        const needle = document.getElementById("gaugeNeedle");
-        const bar = document.getElementById("gaugeBar");
-        const fuelInput = document.getElementById("fuelLevel");
-        
-        // Center of gauge (updated on load and resize)
-        let center = { x: 0, y: 0 };
-        
-        function updateCenter() {
-          const rect = gauge.getBoundingClientRect();
-          center = {
+    function updateCenter() {
+        const rect = gauge.getBoundingClientRect();
+        center = {
             x: rect.left + rect.width / 2,
             y: rect.top + rect.height / 2,
-          };
-        }
-        
-        // Calculate angle from center
-        function getAngle(x, y) {
-          const dx = x - center.x;
-          const dy = y - center.y;
-          let angle = Math.atan2(dy, dx) * (180 / Math.PI);
-        
-          // Clamp to -90 to +90
-          angle = Math.max(-90, Math.min(angle, 90));
-          return angle;
-        }
-        
-        // Convert angle (-90 to +90) ➝ 0–100%
-        function angleToValue(angle) {
-          return Math.round(((angle + 90) / 180) * 100);
-        }
-        
-        // Visual update
-        function updateGaugeFromAngle(angle) {
-          const value = angleToValue(angle);
-          fuelInput.value = value;
-        
-          // rotate needle
-          needle.style.transform = `rotate(${angle}deg)`;
-        
-          // fill background from left to right across 180°
-          const fillAngle = (value / 100) * 180;
-          bar.style.background = `conic-gradient(var(--green) ${fillAngle}deg, transparent ${fillAngle}deg)`;
-        }
+        };
+    }
 
-        
-        // Listen for drag/tap
-        gauge.addEventListener("mousedown", startDrag);
-        gauge.addEventListener("touchstart", startDrag, { passive: false });
-        
-        function startDrag(e) {
-          e.preventDefault();
-          updateCenter();
-        
-          const moveHandler = (ev) => {
+    function getAngle(x, y) {
+        const dx = x - center.x;
+        const dy = y - center.y;
+        let angle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+        // Clamp to -90° to +90°
+        angle = Math.max(-90, Math.min(angle, 90));
+        return angle;
+    }
+
+    function angleToValue(angle) {
+        return Math.round(((angle + 90) / 180) * 100);
+    }
+
+    function updateGaugeFromAngle(angle) {
+        const value = angleToValue(angle);
+        fuelInput.value = value;
+
+        // Rotate needle
+        needle.style.transform = `rotate(${angle}deg)`;
+
+        // Fix: fill from -90° (left side) to angle
+        const fillStart = -90;
+        const fillEnd = fillStart + (value / 100) * 180;
+
+        bar.style.background = `conic-gradient(
+            var(--green) ${fillStart}deg ${fillEnd}deg,
+            transparent ${fillEnd}deg 270deg
+        )`;
+    }
+
+    gauge.addEventListener("mousedown", startDrag);
+    gauge.addEventListener("touchstart", startDrag, { passive: false });
+
+    function startDrag(e) {
+        e.preventDefault();
+        updateCenter();
+
+        const moveHandler = (ev) => {
             const x = ev.touches ? ev.touches[0].clientX : ev.clientX;
             const y = ev.touches ? ev.touches[0].clientY : ev.clientY;
             const angle = getAngle(x, y);
             updateGaugeFromAngle(angle);
-          };
-        
-          const stopHandler = () => {
+        };
+
+        const stopHandler = () => {
             document.removeEventListener("mousemove", moveHandler);
             document.removeEventListener("mouseup", stopHandler);
             document.removeEventListener("touchmove", moveHandler);
             document.removeEventListener("touchend", stopHandler);
-          };
-        
-          document.addEventListener("mousemove", moveHandler);
-          document.addEventListener("mouseup", stopHandler);
-          document.addEventListener("touchmove", moveHandler);
-          document.addEventListener("touchend", stopHandler);
-        }
-        
-        // Init position at 50%
-        window.addEventListener("load", () => {
-          updateCenter();
-          updateGaugeFromAngle(0); // Start at 50%
-        });
-        
-        window.addEventListener("resize", updateCenter);
-        fuelInput.addEventListener("change", () => {
-          console.log("Fuel Level Set to:", fuelInput.value + "%");
-        });
+        };
 
+        document.addEventListener("mousemove", moveHandler);
+        document.addEventListener("mouseup", stopHandler);
+        document.addEventListener("touchmove", moveHandler);
+        document.addEventListener("touchend", stopHandler);
+    }
 
-    </script>
+    // Initialize at 50%
+    window.addEventListener("load", () => {
+        updateCenter();
+        updateGaugeFromAngle(0); // midpoint = 50%
+    });
 
+    window.addEventListener("resize", updateCenter);
+</script>
+
+       
                     
              <!--     <div class="range-labels">
                     <span>Empty </span>
