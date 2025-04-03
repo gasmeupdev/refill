@@ -321,7 +321,7 @@ input[type="range"] {
 }
 
 /* Right Column - How It Works */
-.h2.home-how-it-works { 
+.home-how-it-works h2, p{ 
     color: #fac72b;
 }
 .home-how-it-works {
