@@ -141,7 +141,8 @@ th {
 /* second fuel gauge test */
 .speedometer-wrapper {
   position: relative;
-  width: 400px;
+  width: 90%;
+  /*   width: 400px;*/
   margin: 40px auto;
 }
 
@@ -159,9 +160,10 @@ th {
   position: absolute;
   top: -10px;
   width: 6px;
-  height: 60px;
+  height: 75px;
   background: #fff;
   border-radius: 2px;
+  border-color: black; 
   transform: translateX(-50%);
   transition: left 0.2s ease-out;
   z-index: 2;
