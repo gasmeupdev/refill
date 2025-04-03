@@ -69,15 +69,16 @@
               <!--<div class="range-container">-->
               <p>If known, please indicate your aproximate current fuel level:</p>
                 <div class="speedometer-wrapper">
-                  <div class="speedometer">
-                    <div class="needle" id="needle"></div>
                     <div class="ticks">
                         <span class="tick" style="left: 0%">0</span>
-                        <span class="tick" style="left: 25%">25</span>
-                        <span class="tick" style="left: 50%">50</span>
-                        <span class="tick" style="left: 75%">75</span>
-                        <span class="tick" style="left: 100%">100</span>
+                        <span class="tick" style="left: 25%">1/4</span>
+                        <span class="tick" style="left: 50%">1/2</span>
+                        <span class="tick" style="left: 75%">3/4</span>
+                        <span class="tick" style="left: 100%">100% Full</span>
                     </div>
+                  <div class="speedometer">
+                    <div class="needle" id="needle"></div>
+
                   </div>
                     <input type="range" id="fuelInput" min="0" max="100" value="50" style="width:1px; height:1px; opacity:0; position:absolute; left:-9999px;" />
                 </div>
