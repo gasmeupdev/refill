@@ -68,12 +68,22 @@
               </select>
               <!--<div class="range-container">-->
               <p>If known, please indicate your aproximate current fuel level:</p>
-                 <div class="speedometer">
-                      <div class="dial"></div>
-                      <div class="needle" id="needle"></div>
-                      <input type="range" id="fuelInput" min="1" max="100" value="50" />
-                      <div class="value" id="fuelValue">50</div>
+                <div class="speedometer-wrapper">
+                  <div class="speedometer">
+                    <div class="needle" id="needle"></div>
+                    <div class="ticks">
+                      <span class="tick" style="left: 0%">0</span>
+                      <span class="tick" style="left: 25%">25</span>
+                      <span class="tick" style="left: 50%">50</span>
+                      <span class="tick" style="left: 75%">75</span>
+                      <span class="tick" style="left: 100%">100</span>
+                    </div>
+                  </div>
+                  <input type="range" id="fuelInput" min="0" max="100" value="50" />
                 </div>
+            
+                <div class="value" id="fuelValue">50</div>
+              </div>
               <!-- begin fuel gauge-->
               <div class="gauge-wrapper">
                 <label for="fuelLevel" class="gauge-label">If known, please indicate your approximate current fuel level:</label>
