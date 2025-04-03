@@ -153,7 +153,7 @@ updateNeedle(input.value); // Initial
 
 
 // ✅ Fuel Gauge Logic
-const gauge = document.getElementById("fuelGauge");
+/*const gauge = document.getElementById("fuelGauge");
 const needle = document.getElementById("gaugeNeedle");
 const bar = document.getElementById("gaugeBar");
 const fuelInput = document.getElementById("fuelLevel");
@@ -223,7 +223,7 @@ window.addEventListener("load", () => {
 });
 
 window.addEventListener("resize", updateCenter);
-
+*/
 
 // ✅ Handle Form Submission
 document.getElementById("multiStepForm").addEventListener("submit", async function(event) {
