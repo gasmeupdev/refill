@@ -133,6 +133,23 @@ function initAutocomplete() {
 }
 
 window.addEventListener("load", initAutocomplete);
+// second test of fuel gauge test
+const input = document.getElementById("fuelInput");
+const needle = document.getElementById("needle");
+const valueDisplay = document.getElementById("fuelValue");
+
+function updateNeedle(val) {
+  // Map 1-100 to angle range (-90° to 90°)
+  const angle = (val - 1) * 180 / 99 - 90;
+  needle.style.transform = `rotate(${angle}deg)`;
+  valueDisplay.textContent = val;
+}
+
+input.addEventListener("input", () => {
+  updateNeedle(input.value);
+});
+
+updateNeedle(input.value); // Initial
 
 
 // ✅ Fuel Gauge Logic
