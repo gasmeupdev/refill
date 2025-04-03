@@ -166,21 +166,24 @@ th {
   z-index: 2;
 }
 
+/* No major changes to existing code — just add this fix */
 .ticks {
   position: absolute;
   top: 100%;
+  left: 0;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  color: #ccc;
-  padding-top: 4px;
+  height: 20px;
+  pointer-events: none;
 }
 
 .tick {
   position: absolute;
+  bottom: 0;
   transform: translateX(-50%);
+  color: #eee;
+  font-size: 12px;
 }
+
 
 input[type="range"] {
   width: 100%;
