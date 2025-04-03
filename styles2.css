@@ -316,7 +316,7 @@ input[type="range"] {
 .home-about {
     flex: 1;
     padding: 30px;
-    color: #1F29337;
+    color: #063246;
     text-align: left;
 }
 
@@ -413,13 +413,13 @@ input[type="range"] {
 .card h2 {
     margin: 0 0 10px;
     font-size: 18px;
-    color: #02c8f7;
+    color: #063246;
 }
 
 .card p {
     margin: 0;
     font-size: 14px;
-    color: #444;
+    color: #063246;
 }
 
 .animated {
