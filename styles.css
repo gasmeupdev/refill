@@ -137,16 +137,18 @@ button:hover {
 
 .needle {
   position: absolute;
-  /*top: -25px; taller outside */
-  width: 7px;
-  height: 70px;
+  top: 50%; /* start from vertical center */
+  left: 50%; /* just default, JS will override */
+  transform: translate(-50%, -50%); /* center both X and Y */
+  width: 6px;
+  height: 50px;
   background: white;
-  border: 1px solid black;
+  border: 3px solid black;
   border-radius: 3px;
-  transform: translateX(-50%);
   transition: left 0.2s ease-out;
   z-index: 5;
 }
+
 
 .ticks {
   position: absolute;
