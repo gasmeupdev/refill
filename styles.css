@@ -150,7 +150,11 @@ th {
   position: relative;
   height: 40px;
   border-radius: 20px;
-  background: linear-gradient(to right, red, orange, yellow, green);
+  background: linear-gradient(to right, 
+      rgba(255, 0, 0, 0.6), 
+      rgba(255, 165, 0, 0.6), 
+      rgba(255, 255, 0, 0.6), 
+      rgba(0, 128, 0, 0.6));
   opacity: 85%;
   box-shadow: inset 0 0 8px rgba(0,0,0,0.6);
   overflow: hidden;
@@ -160,14 +164,15 @@ th {
   position: absolute;
   top: -10px;
   width: 6px;
-  height: 75px;
-  background: #fff;
-  border-radius: 2px;
-  border-color: black; 
+  height: 60px;
+  background: white;
+  border: 3px solid black;
+  border-radius: 3px;
   transform: translateX(-50%);
   transition: left 0.2s ease-out;
   z-index: 2;
 }
+
 
 /* No major changes to existing code — just add this fix */
 .ticks {
