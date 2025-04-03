@@ -138,6 +138,60 @@ th {
     }
 }
 
+/* second fuel gauge test */
+.speedometer {
+  position: relative;
+  width: 300px;
+  height: 150px;
+  margin: 40px auto 0;
+}
+
+.dial {
+  width: 100%;
+  height: 100%;
+  border-radius: 50% 50% 0 0;
+  background: radial-gradient(circle at bottom, #444, #222);
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 6px solid #444;
+}
+
+.needle {
+  position: absolute;
+  width: 4px;
+  height: 70%;
+  background: red;
+  top: 15%;
+  left: 50%;
+  transform-origin: bottom center;
+  transform: rotate(0deg);
+  transition: transform 0.3s ease-in-out;
+}
+
+input[type="range"] {
+  width: 100%;
+  margin-top: 40px;
+  appearance: none;
+  background: transparent;
+  position: relative;
+  z-index: 2;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  background: #00ffcc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.value {
+  font-size: 1.5em;
+  margin-top: 10px;
+}
+
 /*begin fuel gauge*/
 :root {
     /* --gray: rgb(253, 251, 252);; */ 
@@ -181,17 +235,7 @@ th {
   z-index: 1;
 }
 
-.needle {
-  position: absolute;
-  top: 100px; /* center of the full circle (halfway down) */
-  left: 100px; /* center horizontally */
-  width: 2px;
-  height: 90px;
-  background: white;
-  transform-origin: top center;
-  transform: rotate(0deg);
-  z-index: 5;
-}
+
 
 
 
