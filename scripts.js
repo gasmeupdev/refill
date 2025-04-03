@@ -139,9 +139,8 @@ const needle = document.getElementById("needle");
 const valueDisplay = document.getElementById("fuelValue");
 
 function updateNeedle(val) {
-  // Map 1-100 to angle range (-90° to 90°)
-  const angle = (val - 1) * 180 / 99 - 90;
-  needle.style.transform = `rotate(${angle}deg)`;
+  const percent = val;
+  needle.style.left = `${percent}%`;
   valueDisplay.textContent = val;
 }
 
@@ -150,6 +149,7 @@ input.addEventListener("input", () => {
 });
 
 updateNeedle(input.value); // Initial
+
 
 
 // ✅ Fuel Gauge Logic
