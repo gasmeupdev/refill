@@ -299,7 +299,7 @@ document.getElementById("multiStepForm").addEventListener("submit", async functi
 
         if (response.ok) {
             alert("Booking successful! 🚀 We will reach out to you soon.");
-            window.location.href = "checkout.html";
+            window.location.href = "https://buy.stripe.com/28oeX47Hnb47aHufYY";
         } else {
             throw new Error("Submission failed.");
         }
