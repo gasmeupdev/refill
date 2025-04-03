@@ -150,6 +150,7 @@ th {
   height: 40px;
   border-radius: 20px;
   background: linear-gradient(to right, red, orange, yellow, green);
+  opacity: 85%;
   box-shadow: inset 0 0 8px rgba(0,0,0,0.6);
   overflow: hidden;
 }
@@ -157,7 +158,7 @@ th {
 .needle {
   position: absolute;
   top: -10px;
-  width: 4px;
+  width: 6px;
   height: 60px;
   background: #fff;
   border-radius: 2px;
