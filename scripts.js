@@ -139,10 +139,12 @@ const needle = document.getElementById("needle");
 const valueDisplay = document.getElementById("fuelValue");
 const speedometer = document.querySelector(".speedometer");
 
+let isDragging = false;
+
 function updateNeedle(val) {
   const min = parseInt(input.min);
   const max = parseInt(input.max);
-  const percent = (val - min) / (max - min); // 0 to 1
+  const percent = (val - min) / (max - min);
   const barWidth = speedometer.offsetWidth;
 
   const px = barWidth * percent;
@@ -150,16 +152,47 @@ function updateNeedle(val) {
   valueDisplay.textContent = val;
 }
 
-speedometer.addEventListener("click", (e) => {
+// Get value from click/drag
+function updateFromPosition(x) {
   const rect = speedometer.getBoundingClientRect();
-  const clickX = e.clientX - rect.left;
-  const percent = clickX / rect.width;
+  const clickX = x - rect.left;
+  const percent = Math.min(Math.max(clickX / rect.width, 0), 1);
   const newVal = Math.round(percent * 100);
   input.value = newVal;
   updateNeedle(newVal);
+}
+
+// Click support
+speedometer.addEventListener("click", (e) => {
+  updateFromPosition(e.clientX);
+});
+
+// Drag support (desktop + mobile)
+speedometer.addEventListener("mousedown", (e) => {
+  isDragging = true;
+  updateFromPosition(e.clientX);
+});
+window.addEventListener("mousemove", (e) => {
+  if (isDragging) updateFromPosition(e.clientX);
+});
+window.addEventListener("mouseup", () => {
+  isDragging = false;
+});
+
+// Touch support for mobile
+speedometer.addEventListener("touchstart", (e) => {
+  isDragging = true;
+  updateFromPosition(e.touches[0].clientX);
+});
+window.addEventListener("touchmove", (e) => {
+  if (isDragging) updateFromPosition(e.touches[0].clientX);
+});
+window.addEventListener("touchend", () => {
+  isDragging = false;
 });
 
 updateNeedle(input.value);
+
 
 
 // ✅ Fuel Gauge Logic
