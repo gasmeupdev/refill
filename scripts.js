@@ -134,51 +134,22 @@ function initAutocomplete() {
 
 window.addEventListener("load", initAutocomplete);
 // second test of fuel gauge test
-const speedometer = document.getElementById("speedometer");
+const input = document.getElementById("fuelInput");
 const needle = document.getElementById("needle");
 const valueDisplay = document.getElementById("fuelValue");
 
-let isDragging = false;
-
-function getAngleFromCenter(x, y, centerX, centerY) {
-  const dx = x - centerX;
-  const dy = y - centerY;
-  const angleRad = Math.atan2(dy, dx);
-  return angleRad * (180 / Math.PI);
-}
-
-function angleToValue(angle) {
-  // Map -90° to 90° => 1 to 100
-  let clamped = Math.max(-90, Math.min(90, angle));
-  return Math.round(((clamped + 90) / 180) * 99 + 1);
-}
-
-function updateNeedleFromMouse(e) {
-  const rect = speedometer.getBoundingClientRect();
-  const centerX = rect.left + rect.width / 2;
-  const centerY = rect.top + rect.height;
-
-  const angle = getAngleFromCenter(e.clientX, e.clientY, centerX, centerY);
-  if (angle < -90 || angle > 90) return; // Keep within arc range
-
+function updateNeedle(val) {
+  // Map 1-100 to angle range (-90° to 90°)
+  const angle = (val - 1) * 180 / 99 - 90;
   needle.style.transform = `rotate(${angle}deg)`;
-  const val = angleToValue(angle);
   valueDisplay.textContent = val;
 }
 
-speedometer.addEventListener("mousedown", (e) => {
-  isDragging = true;
-  updateNeedleFromMouse(e);
+input.addEventListener("input", () => {
+  updateNeedle(input.value);
 });
 
-window.addEventListener("mousemove", (e) => {
-  if (isDragging) updateNeedleFromMouse(e);
-});
-
-window.addEventListener("mouseup", () => {
-  isDragging = false;
-});
-
+updateNeedle(input.value); // Initial
 
 
 // ✅ Fuel Gauge Logic
