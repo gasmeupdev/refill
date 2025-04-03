@@ -145,14 +145,11 @@ function updateNeedle(val) {
   const percent = (val - min) / (max - min); // 0 to 1
   const barWidth = speedometer.offsetWidth;
 
-  // Position needle in px
   const px = barWidth * percent;
   needle.style.left = `${px}px`;
-
   valueDisplay.textContent = val;
 }
 
-// Also support clicking on the speedometer itself
 speedometer.addEventListener("click", (e) => {
   const rect = speedometer.getBoundingClientRect();
   const clickX = e.clientX - rect.left;
@@ -162,11 +159,7 @@ speedometer.addEventListener("click", (e) => {
   updateNeedle(newVal);
 });
 
-input.addEventListener("input", () => {
-  updateNeedle(input.value);
-});
-
-updateNeedle(input.value); // Initial
+updateNeedle(input.value);
 
 
 // ✅ Fuel Gauge Logic
