@@ -74,9 +74,9 @@ input:focus, select:focus {
 
 /* --------------------- Buttons  --------------------- */
 button {
-    background: #00ccff;
-    color: white;
-    border: none;
+    background: #fef8e6;
+    color: black;
+    border: 1px black;
     padding: 12px;
     font-size: 16px;
     border-radius: 8px;
@@ -87,7 +87,7 @@ button {
 }
 
 button:hover {
-    background: #5f8035;
+    background: #fac72b;
 }
 
 
