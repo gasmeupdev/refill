@@ -137,19 +137,36 @@ window.addEventListener("load", initAutocomplete);
 const input = document.getElementById("fuelInput");
 const needle = document.getElementById("needle");
 const valueDisplay = document.getElementById("fuelValue");
+const speedometer = document.querySelector(".speedometer");
 
 function updateNeedle(val) {
-  const percent = val;
-  needle.style.left = `${percent}%`;
+  const min = parseInt(input.min);
+  const max = parseInt(input.max);
+  const percent = (val - min) / (max - min); // 0 to 1
+  const barWidth = speedometer.offsetWidth;
+
+  // Position needle in px
+  const px = barWidth * percent;
+  needle.style.left = `${px}px`;
+
   valueDisplay.textContent = val;
 }
+
+// Also support clicking on the speedometer itself
+speedometer.addEventListener("click", (e) => {
+  const rect = speedometer.getBoundingClientRect();
+  const clickX = e.clientX - rect.left;
+  const percent = clickX / rect.width;
+  const newVal = Math.round(percent * 100);
+  input.value = newVal;
+  updateNeedle(newVal);
+});
 
 input.addEventListener("input", () => {
   updateNeedle(input.value);
 });
 
 updateNeedle(input.value); // Initial
-
 
 
 // ✅ Fuel Gauge Logic
