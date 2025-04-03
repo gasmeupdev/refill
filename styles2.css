@@ -16,7 +16,7 @@ body {
 }
 
 .step-section h3 {
-    color: #00ccff;
+    color: #fac72b;
     font-size: 20px;
     margin-bottom: 8px;
 }
@@ -321,14 +321,18 @@ input[type="range"] {
 }
 
 /* Right Column - How It Works */
+.h2.home-how-it-works { 
+    color: #fac72b;
+}
 .home-how-it-works {
     flex: 1;
-    background: white;
+    background: #083549;
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
     text-align: center;
     position: relative;
+    font-color: white;
 }
 .home-logo{ 
     width: 38%;
