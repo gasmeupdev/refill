@@ -319,6 +319,9 @@ input[type="range"] {
     color: #063246;
     text-align: left;
 }
+.home-about h1, p { 
+    color: #083549;
+}
 
 /* Right Column - How It Works */
 .home-how-it-works h2, p{ 
