@@ -9,10 +9,57 @@
 </head>
 <body>
     <div class="container">
-        <embed src="https://buy.stripe.com/9AQ7uCf9P0ptg1O145">
-       <!-- <h2>Checkout</h2>
-        <p>Your estimated total is: <span id="estimatedTotal">$0.00</span></p>
-        <button onclick="processPayment()">Pay Now</button>-->
+        <!-- Load Stripe.js on your website. -->
+<script src="https://js.stripe.com/v3"></script>
+
+<!-- Create a button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
+<button
+  style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em;cursor:pointer"
+  id="checkout-button-price_1R9GbhAYPE5r9t2NBxFdm2Li"
+  role="link"
+  type="button"
+>
+  Checkout
+</button>
+
+<div id="error-message"></div>
+
+<script>
+(function() {
+  var stripe = Stripe('pk_live_51R9ByqAYPE5r9t2NSXQPY5gL6M5s6VeGyOgqtLtQz8r038OWygnun1XVAw1o3VEWj14Dw07FI9b7KY2wj4LUgm9z00WeEFHQtU');
+
+  var checkoutButton = document.getElementById('checkout-button-price_1R9GbhAYPE5r9t2NBxFdm2Li');
+  checkoutButton.addEventListener('click', function () {
+    /*
+     * When the customer clicks on the button, redirect
+     * them to Checkout.
+     */
+    stripe.redirectToCheckout({
+      lineItems: [{price: 'price_1R9GbhAYPE5r9t2NBxFdm2Li', quantity: 1}],
+      mode: 'payment',
+      /*
+       * Do not rely on the redirect to the successUrl for fulfilling
+       * purchases, customers may not always reach the success_url after
+       * a successful payment.
+       * Instead use one of the strategies described in
+       * https://docs.stripe.com/payments/checkout/fulfill-orders
+       */
+      successUrl: 'https://gasmeupdev.github.io/refill/home.html/success',
+      cancelUrl: 'https://gasmeupdev.github.io/refill/home.html/canceled',
+    })
+    .then(function (result) {
+      if (result.error) {
+        /*
+         * If `redirectToCheckout` fails due to a browser or network
+         * error, display the localized error message to your customer.
+         */
+        var displayError = document.getElementById('error-message');
+        displayError.textContent = result.error.message;
+      }
+    });
+  });
+})();
+</script>
     </div>
 </body>
 </html>
