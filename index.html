@@ -51,6 +51,7 @@
 
             <div class="step active" id="step4">
                 <br>
+                <br>
               <h3>Step 4: Fuel Type & Amount</h3>
               <select name="Gas Type" required>
                   <option value="Regular 87">Regular 87</option>
@@ -59,6 +60,8 @@
                   <option value="Diesel">Diesel - Coming Soon</option>
               </select>
               <!--<div class="range-container">-->
+                <br>
+                <br>
                 <br>
               <p>If known, please indicate your aproximate current fuel level:</p>
                 <div class="speedometer-wrapper">
@@ -90,12 +93,13 @@
                   <input type="hidden" name="Fuel Gauge Level" id="fuelLevelHidden" value="0">
               </div>
 
-                <br> 
+                <br> <br> <br>
                 <label for="keys_available">Would you like to have your tire pressure inspected and filled as needed for no additional charge?</label>
                 <select name="Tire Refill" id="keys_available" required>
                     <option value="No">No</option>
                     <option value="Yes">Yes</option>
                 </select>
+                    <br>
                 <button type="button" onclick="prevStep()">Back</button>
                 <button type="submit">Proceed to Checkout</button>
             </div>
