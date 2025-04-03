@@ -137,8 +137,8 @@ button:hover {
 
 .needle {
   position: absolute;
-  top: -25px; /* taller outside */
-  width: 6px;
+  /*top: -25px; taller outside */
+  width: 7px;
   height: 70px;
   background: white;
   border: 1px solid black;
