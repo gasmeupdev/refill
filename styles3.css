@@ -90,6 +90,14 @@ body {
 .menu li a:hover {
     color: #161919;
 }
+.menu li header {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+
 
 .nav input {
     width: 40px;
