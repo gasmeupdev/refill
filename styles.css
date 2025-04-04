@@ -347,8 +347,6 @@ input[type="range"] {
    /* display: inline-block;*/
     text-decoration: none;
     transition: 0.3s ease-in-out;
-    position: fixed;
-
 }
 
 .cta-button:hover {
