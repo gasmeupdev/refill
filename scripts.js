@@ -5,6 +5,17 @@ let stepIndex = 0;
 const steps = document.querySelectorAll(".step");
 const totalSteps = steps.length;
 
+// sce added 4/4/2025
+function myFunction() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+// end sce 4/4 edits
+
 function nextStep() {
     if (stepIndex < totalSteps - 1) {
         steps[stepIndex].classList.remove("active");
