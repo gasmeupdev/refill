@@ -9,6 +9,59 @@ body {
     align-items: center;
     min-height: 100vh;
 }
+/*beging sce edit */
+.scene {
+display: flex;
+align-items: center;
+gap: 40px;
+}
+
+.vehicle {
+position: relative;
+width: 120px;
+height: 60px;
+border: 2px solid #007BFF;
+border-radius: 10px;
+overflow: hidden;
+}
+
+.fill {
+position: absolute;
+bottom: 0;
+width: 100%;
+background: #007BFF;
+height: 100%;
+animation-duration: 3s;
+animation-fill-mode: forwards;
+animation-timing-function: linear;
+}
+
+.truck-fill {
+animation-name: drain;
+}
+
+.car-fill {
+animation-name: fill;
+}
+
+.pump {
+width: 20px;
+height: 70px;
+background: #007BFF;
+border-radius: 4px;
+}
+
+/* Animations */
+@keyframes drain {
+from { height: 100%; }
+to { height: 0%; }
+}
+
+@keyframes fill {
+from { height: 0%; }
+to { height: 100%; }
+}
+/*end sce edit*/
 
 .step-section {
     margin-bottom: 25px;
