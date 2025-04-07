@@ -6,7 +6,7 @@ from flask_cors import CORS
 app = Flask(__name__) 
 cors(app) 
 
-stripe.api_key = os.environ.get("STRIPE_SECRET") 
+stripe.api_key = os.environ.get("STRIPE_SECRET_KEY") 
 
 @app.route('/create-payment-intent', methods=['POST'])
 def create_paymnt(): 
