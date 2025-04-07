@@ -1,0 +1,42 @@
+// stripe.js
+
+// Replace with your real publishable key
+const stripe = Stripe('pk_live_51R9ByqAYPE5r9t2NSXQPY5gL6M5s6VeGyOgqtLtQz8r038OWygnun1XVAw1o3VEWj14Dw07FI9b7KY2wj4LUgm9z00WeEFHQtU');
+const elements = stripe.elements();
+const card = elements.create('card');
+card.mount('#card-element');
+
+// Optional: handle real-time validation errors
+card.on('change', function(event) {
+  const displayError = document.getElementById('card-errors');
+  if (event.error) {
+    displayError.textContent = event.error.message;
+  } else {
+    displayError.textContent = '';
+  }
+});
+
+// Function to create payment intent and confirm card payment
+function handlePaymentIntent() {
+  fetch('https://refill-l59k.onrender.com/create-payment-intent', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' }
+  })
+  .then(res => res.json())
+  .then(data => {
+    stripe.confirmCardPayment(data.clientSecret, {
+      payment_method: {
+        card: card,
+      }
+    }).then(result => {
+      if (result.error) {
+        alert("Payment failed: " + result.error.message);
+      } else if (result.paymentIntent.status === "requires_capture") {
+        alert("Card authorized! We'll charge the final amount after the gas refill.");
+      }
+    });
+  });
+}
+
+// Expose to global scope or link to button
+document.getElementById("pay-now").addEventListener("click", handlePaymentIntent);
