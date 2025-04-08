@@ -17,6 +17,6 @@ def create_paymnt():
           capture_method='manual',
           automatic_payment_methods={'enabled': True}
       )
-      return jsonify({'clientSecret': intent.client_secret})
+    return jsonify({'clientSecret': intent.client_secret})
   except Exception as e:
-      return jsonify({'error': str(e)}), 400
+    return jsonify({'error': str(e)}), 400
