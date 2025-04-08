@@ -236,7 +236,7 @@ document.getElementById("multiStepForm").addEventListener("submit", async functi
 
         if (response.ok) {
             alert("Booking successful! 🚀 We will reach out to you soon.");
-            window.location.href = "/checkout2.html";
+            window.location.href = "./checkout2.html";
         } else {
             throw new Error("Submission failed.");
         }
