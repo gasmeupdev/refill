@@ -8,6 +8,8 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh5XxodKgwBLU3RipuMvQr-WwsqVN12w8&libraries=places"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+
 </head>
 <body>
     <div class="container">
@@ -16,7 +18,7 @@
         </a>
         <h2>Book Your Gas Refill</h2>
         <form id="multiStepForm">
-            <div class="step" id="step1">
+            <div class="step active" id="step1">
                 <h3>Step 1: Contact Info</h3>
                 <input type="text" name="Name" placeholder="Full Name" required>
                 <input type="email" name="Email" placeholder="Email" required>
@@ -24,7 +26,7 @@
                 <button type="button" onclick="prevStep()">Back</button>
                 <button type="button" onclick="if(validateStep(stepIndex)) nextStep();">Next</button>
             </div>
-            <div class="step" id="step2">
+            <div class="step active" id="step2">
                 <h3>Step 2: Choose a Time for Refill</h3>
                 <p> Our drivers will arrive within the 1-hour time slot you’ve selected. 
                     You’ll receive periodic updates of the drivers status and estimated exact arrival times.</p>
@@ -34,7 +36,7 @@
                 <button type="button" onclick="prevStep()">Back</button>
                 <button type="button" onclick="if(validateStep(stepIndex)) nextStep();">Next</button>
             </div>
-            <div class="step" id="step3">
+            <div class="step active" id="step3">
                 <h3>Step 3: Car Details</h3>
                 <input type="text" name="Car Make" placeholder="Car Make" required>
                 <input type="text" name="Car Model" placeholder="Car Model" required>
@@ -105,13 +107,13 @@
                     <br>
                 <button type="button" onclick="prevStep()">Back</button>
                 <button type="submit">Proceed to Checkout</button>
+                <script src="stripe.js"></script>
             </div>
                 <div id="card-element"></div>
                 <div id="card-errors" role="alert"></div>
                 <button id="pay-now">Submit Payment Hold</button>
                 <!-- Stripe JS -->
-                <script src="https://js.stripe.com/v3/"></script>
-                <script src="stripe.js"></script>
+
         </form>
     </div>
     <script src="validation.js"></script>
