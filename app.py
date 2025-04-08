@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 import stripe
 import os 
-from flask_cors import CORS 
+from flask_cors import cors 
 
 app = Flask(__name__) 
 cors(app) 
