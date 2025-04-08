@@ -20,3 +20,7 @@ def create_paymnt():
           return jsonify({'clientSecret': intent.client_secret})
     except Exception as e:
          return jsonify({'error': str(e)}), 400
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  # Render provides the PORT env var
+    app.run(host="0.0.0.0", port=port)
