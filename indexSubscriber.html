@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Book your gas refill now! We come straight to you. Fill your car up without lifting a finger.">
+    <meta name="description" content="Welcome Back - Book your gas refill now!">
     <title>Gas Refill Booking</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -19,15 +19,15 @@
         <h2>Book Your Gas Refill</h2>
         <form id="multiStepForm">
             <div class="step active" id="step1">
-                <h3>Step 1: Contact Info</h3>
-                <input type="text" name="Name" placeholder="Full Name" required>
+                <h3>Contact Info</h3>
+                <p> Please input the email address and phone number asociated with your account.</p>
                 <input type="email" name="Email" placeholder="Email" required>
                 <input type="text" name="Phone" placeholder="Phone Number" required>
                 <button type="button" onclick="prevStep()">Back</button>
                 <button type="button" onclick="if(validateStep(stepIndex)) nextStep();">Next</button>
             </div>
             <div class="step active" id="step2">
-                <h3>Step 2: Choose a Time for Refill</h3>
+                <h3>Choose a Time for Refill</h3>
                 <p> Our drivers will arrive within the 1-hour time slot you’ve selected. 
                     You’ll receive periodic updates of the drivers status and estimated exact arrival times.</p>
                 <input type="date" name="Date" required>
@@ -37,7 +37,8 @@
                 <button type="button" onclick="if(validateStep(stepIndex)) nextStep();">Next</button>
             </div>
             <div class="step active" id="step3">
-                <h3>Step 3: Car Details</h3>
+                <h3>Car Details</h3>
+                <p> Below are the details for the car linked to your account. To make changes to this information, please email gasmeupsupport@gasmeup.com</p>
                 <input type="text" name="Car Make" placeholder="Car Make" required>
                 <input type="text" name="Car Model" placeholder="Car Model" required>
                 <input type="text" name="Car Year" placeholder="Car Year" required>
