@@ -1,0 +1,63 @@
+<form id="rescheduleForm">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br>
+
+    <label for="phone">Phone Number:</label>
+    <input type="text" id="phone" name="phone" required><br>
+
+    <button type="submit">Reschedule Now</button>
+</form>
+
+<div id="results"></div>
+
+<script>
+    const form = document.getElementById('rescheduleForm');
+    const results = document.getElementById('results');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+
+        const response = await fetch('YOUR_SCRIPT_URL', {
+            method: 'POST',
+            body: JSON.stringify({ email, phone }),
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        const data = await response.json();
+        if (data.success) {
+            results.innerHTML = data.matches.map(match => `
+                <div>
+                    <p><strong>Booking ID:</strong> ${match.bookingId}</p>
+                    <p><strong>Name:</strong> ${match.name}</p>
+                    <p><strong>Address:</strong> ${match.address}</p>
+                    <p><strong>Neighborhood:</strong> ${match.neighborhood}</p>
+                    <p><strong>Date:</strong> ${match.date}</p>
+                    <p><strong>Time:</strong> ${match.time}</p>
+                    <p><strong>Car Make/Model:</strong> ${match.carMake} / ${match.carModel} (${match.carYear})</p>
+                    <p><strong>License Plate:</strong> ${match.licensePlate}</p>
+                    <p><strong>Car Color:</strong> ${match.carColor}</p>
+                    <p><strong>Gas Type:</strong> ${match.gasType}</p>
+                    <p><strong>Fuel Needed:</strong> ${match.fuelNeeded}</p>
+                    <p><strong>Keys Available:</strong> ${match.keysAvailable}</p>
+                    <p><strong>PSI Reading:</strong> ${match.psiReading}</p>
+                    <p><strong>Tire Refill:</strong> ${match.tireRefill}</p>
+                    <p><strong>Estimated Cost:</strong> $${match.estimatedCost}</p>
+                    <p><strong>Full Readout of Math:</strong> ${match.fullReadout}</p>
+                    <p><strong>Price of a Gallon:</strong> $${match.pricePerGallon}</p>
+                    <button onclick="reschedule('${match.bookingId}')">Reschedule</button>
+                </div>
+                <hr>
+            `).join('');
+        } else {
+            results.innerHTML = 'No matching bookings found.';
+        }
+    });
+
+    function reschedule(bookingId) {
+        alert('Rescheduling for booking ID: ' + bookingId);
+        // Add rescheduling logic here
+    }
+</script>
