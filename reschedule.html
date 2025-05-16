@@ -20,7 +20,7 @@
         const email = document.getElementById('email').value;
         const phone = document.getElementById('phone').value;
 
-        const response = await fetch('YOUR_SCRIPT_URL', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbzyco9sCap2S1--MAJI1krIRLP2vK0TaR_I4h2iMbIUNfYHK9qR8B6EgAd0T8wlXCmEvw/exec', {
             method: 'POST',
             body: JSON.stringify({ email, phone }),
             headers: { 'Content-Type': 'application/json' }
