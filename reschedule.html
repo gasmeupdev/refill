@@ -1,51 +1,82 @@
-<form id="rescheduleForm">
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="Email" required><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reschedule Lookup</title>
+</head>
+<body>
+    <h2>Reschedule Your Booking</h2>
+    <form id="rescheduleForm">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="Email" placeholder="Enter your email" required><br>
 
-    <label for="phone">Phone Number:</label>
-    <input type="text" id="phone" name="Phone" required><br>
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="Phone" placeholder="Enter your phone number" required><br>
 
-    <button type="submit">Look Me Up</button>
-</form>
+        <button type="submit">Look Me Up</button>
+    </form>
 
-<div id="results"></div>
+    <div id="results"></div>
 
-<script>
-    document.getElementById("rescheduleForm").addEventListener("submit", async function(event) {
-    event.preventDefault();
+    <script>
+        document.getElementById("rescheduleForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
 
-    const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwHnJUtKevOzFkROXVZ-hnmOH4GRaQGwaVY1kUgWCXdtH5x-R5BlohVF9CuMD0c-AypzQ/exec";
-    const formData = new FormData(this);
+            const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwHnJUtKevOzFkROXVZ-hnmOH4GRaQGwaVY1kUgWCXdtH5x-R5BlohVF9CuMD0c-AypzQ/exec";
+            const formData = new FormData(this);
 
-    try {
-        const response = await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
-            method: "POST",
-            body: formData
+            // Logging form data before submission
+            console.log("Attempting to submit the following data:");
+            for (let pair of formData.entries()) {
+                console.log(pair[0] + ': ' + pair[1]);
+            }
+
+            try {
+                const response = await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
+                    method: "POST",
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log("Server response:", data);
+
+                    if (data.success) {
+                        alert("Lookup successful!");
+                        document.getElementById("results").innerHTML = data.matches.map(match => `
+                            <div>
+                                <p><strong>Name:</strong> ${match.name}</p>
+                                <p><strong>Address:</strong> ${match.address}</p>
+                                <p><strong>Date:</strong> ${match.date}</p>
+                                <p><strong>Time:</strong> ${match.time}</p>
+                                <p><strong>Car Make:</strong> ${match.carMake}</p>
+                                <p><strong>Car Model:</strong> ${match.carModel}</p>
+                                <p><strong>Car Year:</strong> ${match.carYear}</p>
+                                <p><strong>License Plate:</strong> ${match.licensePlate}</p>
+                                <p><strong>Gas Type:</strong> ${match.gasType}</p>
+                                <p><strong>Fuel Needed:</strong> ${match.fuelNeeded}</p>
+                                <p><strong>Tire Refill:</strong> ${match.tireRefill}</p>
+                                <button onclick="reschedule('${match.bookingId}')">Reschedule</button>
+                            </div>
+                            <hr>
+                        `).join('');
+                    } else {
+                        alert("No matching bookings found.");
+                        document.getElementById("results").innerHTML = '<p>No matching bookings found.</p>';
+                    }
+                } else {
+                    throw new Error("Server error: " + response.statusText);
+                }
+            } catch (error) {
+                console.error("Error during fetch:", error);
+                alert("Error: " + error.message);
+            }
         });
 
-        if (response.ok) {
-            const data = await response.json();
-            if (data.success) {
-                alert("Lookup successful!");
-                document.getElementById("results").innerHTML = data.matches.map(match => `
-                    <div>
-                        <p><strong>Name:</strong> ${match.name}</p>
-                        <p><strong>Address:</strong> ${match.address}</p>
-                        <p><strong>Date:</strong> ${match.date}</p>
-                        <p><strong>Time:</strong> ${match.time}</p>
-                        <button onclick="reschedule('${match.bookingId}')">Reschedule</button>
-                    </div>
-                    <hr>
-                `).join('');
-            } else {
-                alert("No matching bookings found.");
-            }
-        } else {
-            throw new Error("Server error");
+        function reschedule(bookingId) {
+            alert('Rescheduling for booking ID: ' + bookingId);
+            // Additional rescheduling logic can be implemented here
         }
-    } catch (error) {
-        alert("Error: " + error.message);
-    }
-});
-
-  </script>
+    </script>
+</body>
+</html>
