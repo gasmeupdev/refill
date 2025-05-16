@@ -5,7 +5,7 @@
     <label for="phone">Phone Number:</label>
     <input type="text" id="phone" name="phone" required><br>
 
-    <button type="submit">Reschedule Now</button>
+    <button type="submit">Look Me Up</button>
 </form>
 
 <div id="results"></div>
@@ -20,44 +20,40 @@
         const email = document.getElementById('email').value;
         const phone = document.getElementById('phone').value;
 
-        const response = await fetch('https://script.google.com/macros/s/AKfycbzyco9sCap2S1--MAJI1krIRLP2vK0TaR_I4h2iMbIUNfYHK9qR8B6EgAd0T8wlXCmEvw/exec', {
-            method: 'POST',
-            body: JSON.stringify({ email, phone }),
-            headers: { 'Content-Type': 'application/json' }
-        });
+        try {
+            const response = await fetch('https://script.google.com/macros/s/AKfycbzOQNNaW2Bh4CR927ZsVQJ6jW3ImyBbpjr8CVuOavbJc7hjZyNCp9kCzGd28ojVZ6drew/exec', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, phone })
+            });
 
-        const data = await response.json();
-        if (data.success) {
-            results.innerHTML = data.matches.map(match => `
-                <div>
-                    <p><strong>Booking ID:</strong> ${match.bookingId}</p>
-                    <p><strong>Name:</strong> ${match.name}</p>
-                    <p><strong>Address:</strong> ${match.address}</p>
-                    <p><strong>Neighborhood:</strong> ${match.neighborhood}</p>
-                    <p><strong>Date:</strong> ${match.date}</p>
-                    <p><strong>Time:</strong> ${match.time}</p>
-                    <p><strong>Car Make/Model:</strong> ${match.carMake} / ${match.carModel} (${match.carYear})</p>
-                    <p><strong>License Plate:</strong> ${match.licensePlate}</p>
-                    <p><strong>Car Color:</strong> ${match.carColor}</p>
-                    <p><strong>Gas Type:</strong> ${match.gasType}</p>
-                    <p><strong>Fuel Needed:</strong> ${match.fuelNeeded}</p>
-                    <p><strong>Keys Available:</strong> ${match.keysAvailable}</p>
-                    <p><strong>PSI Reading:</strong> ${match.psiReading}</p>
-                    <p><strong>Tire Refill:</strong> ${match.tireRefill}</p>
-                    <p><strong>Estimated Cost:</strong> $${match.estimatedCost}</p>
-                    <p><strong>Full Readout of Math:</strong> ${match.fullReadout}</p>
-                    <p><strong>Price of a Gallon:</strong> $${match.pricePerGallon}</p>
-                    <button onclick="reschedule('${match.bookingId}')">Reschedule</button>
-                </div>
-                <hr>
-            `).join('');
-        } else {
-            results.innerHTML = 'No matching bookings found.';
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            if (data.success) {
+                results.innerHTML = data.matches.map(match => `
+                    <div>
+                        <p><strong>Name:</strong> ${match.name}</p>
+                        <p><strong>Address:</strong> ${match.address}</p>
+                        <p><strong>Date:</strong> ${match.date}</p>
+                        <p><strong>Time:</strong> ${match.time}</p>
+                        <button onclick="reschedule('${match.bookingId}')">Reschedule</button>
+                    </div>
+                    <hr>
+                `).join('');
+            } else {
+                results.innerHTML = 'No matching bookings found.';
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            results.innerHTML = 'Error fetching data. Please try again later.';
         }
     });
 
     function reschedule(bookingId) {
         alert('Rescheduling for booking ID: ' + bookingId);
-        // Add rescheduling logic here
+        // Add further rescheduling steps here
     }
 </script>
