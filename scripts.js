@@ -161,19 +161,35 @@ document.getElementById("multiStepForm").addEventListener("submit", async functi
     event.preventDefault();
     
     const formData = new FormData(this);
+    console.log("Form Data Submitted: ");
+    for (let pair of formData.entries()) {
+        console.log(`${pair[0]}: ${pair[1]}`);
+    }
+
     try {
         const response = await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
             method: "POST",
-            body: formData
+            body: formData,
+            redirect: "follow"  // Allows handling of redirects
         });
 
+        console.log("Response Status: " + response.status);  // Log status
+        console.log("Response URL: " + response.url);  // Log final URL
+
         if (response.ok) {
-            alert("Booking successful! 🚀 We will reach out to you soon.");
-            window.location.href = "./checkout2.html";
+            const result = await response.json();
+            console.log("Server response: ", result);
+            if (result.result === 'success') {
+                alert("Booking successful! 🚀 We will reach out to you soon.");
+                window.location.href = "./checkout2.html";
+            } else {
+                alert("Error: " + result.message);
+            }
         } else {
-            throw new Error("Submission failed.");
+            throw new Error("Submission failed with status " + response.status);
         }
     } catch (error) {
         alert("Network error: " + error.message);
+        console.error("Error during submission:", error);
     }
 });
