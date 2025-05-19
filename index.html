@@ -26,7 +26,7 @@
                 <button type="button" onclick="prevStep()">Back</button>
                 <button type="button" onclick="if(validateStep(stepIndex)) nextStep();">Next</button>
             </div>
-            <div class="step active" id="step2">
+            <div class="step" id="step2">
                 <h3>Step 2: Choose a Time for Refill</h3>
                 <p> Our drivers will arrive within the 1-hour time slot you’ve selected. 
                     You’ll receive periodic updates of the drivers status and estimated exact arrival times.</p>
@@ -36,7 +36,7 @@
                 <button type="button" onclick="prevStep()">Back</button>
                 <button type="button" onclick="if(validateStep(stepIndex)) nextStep();">Next</button>
             </div>
-            <div class="step active" id="step3">
+            <div class="step" id="step3">
                 <h3>Step 3: Car Details</h3>
                 <input type="text" name="Car Make" placeholder="Car Make" required>
                 <input type="text" name="Car Model" placeholder="Car Model" required>
@@ -53,7 +53,7 @@
                 <button type="button" onclick="if(validateStep(stepIndex)) nextStep();">Next</button>
             </div>
 
-            <div class="step active" id="step4">
+            <div class="step" id="step4">
                 <br>
                 <br>
               <h3>What type of fuel:</h3>
@@ -63,15 +63,9 @@
                   <option value="Premium 91">Premium 91 - Coming Soon</option>
                   <option value="Diesel">Diesel - Coming Soon</option>
               </select>
-              <!--<div class="range-container">-->
-                <br>
-                <br>
-                <br>
- 
 
                 <br> <br> <br>
                 <h3>Optional: Would you like your tire pressure inspected?</h3>
-                <!--<label for="keys_available">Would you like to have your tire pressure inspected and filled as needed for no additional charge?</label>--> 
                 <select name="Tire Refill" id="keys_available" required>
                     <option value="No">No</option>
                     <option value="Yes">Yes - Additional $5</option>
@@ -79,14 +73,7 @@
                     <br>
                 <button type="button" onclick="prevStep()">Back</button>
                 <button type="submit">Proceed to Checkout</button>
-                <script src="stripe.js"></script>
             </div>
-                <script src="stripe.js"></script>
-                <div id="card-element"></div>
-                <div id="card-errors" role="alert"></div>
-                <button id="pay-now">Submit Payment Hold</button>
-                <!-- Stripe JS -->
-
         </form>
     </div>
     <script src="validation.js"></script>
