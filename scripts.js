@@ -79,14 +79,6 @@ console.log("Hour " + b);
 // END SAME DAY BOOK TIME VALIDATION
 
 
-
-
-// const allowedTimes = [
-//     "05:00 AM - 06:00 AM", "06:00 AM - 07:00 AM", "07:00 AM - 08:00 AM",
-//     "05:00 PM - 06:00 PM", "06:00 PM - 07:00 PM", "07:00 PM - 08:00 PM",
-//     "08:00 PM - 09:00 PM", "09:00 PM - 10:00 PM", "10:00 PM - 11:00 PM", "11:00 PM - 12:00 AM"
-// ];
-
 allowedTimes.forEach(time => {
     const option = document.createElement("option");
     option.value = time;
@@ -163,71 +155,12 @@ function updateNeedle(val) {
   valueDisplay.textContent = val;
 }
 
-// Get value from click/drag
-function updateFromPosition(x) {
-  const rect = speedometer.getBoundingClientRect();
-  const clickX = x - rect.left;
-  const percent = Math.min(Math.max(clickX / rect.width, 0), 1);
-  const newVal = Math.round(percent * 100);
-  input.value = newVal;
-  updateNeedle(newVal);
-}
-
-// Click support
-speedometer.addEventListener("click", (e) => {
-  updateFromPosition(e.clientX);
-});
-
-// Drag support (desktop + mobile)
-speedometer.addEventListener("mousedown", (e) => {
-  isDragging = true;
-  updateFromPosition(e.clientX);
-});
-window.addEventListener("mousemove", (e) => {
-  if (isDragging) updateFromPosition(e.clientX);
-});
-window.addEventListener("mouseup", () => {
-  isDragging = false;
-});
-
-// Touch support for mobile
-speedometer.addEventListener("touchstart", (e) => {
-  isDragging = true;
-  updateFromPosition(e.touches[0].clientX);
-});
-window.addEventListener("touchmove", (e) => {
-  if (isDragging) updateFromPosition(e.touches[0].clientX);
-});
-window.addEventListener("touchend", () => {
-  isDragging = false;
-});
-
-updateNeedle(input.value);
-
 
 // ✅ Handle Form Submission
 document.getElementById("multiStepForm").addEventListener("submit", async function(event) {
     event.preventDefault();
     
     const formData = new FormData(this);
-
-    // 🔁 Replace Fuel Needed (e.g., 4 ➝ "1/2")
-    const fuelMap = {
-        "1": "1/8", 
-        "2": "1/4", 
-        "3": "1/3",
-        "4": "1/2", 
-        "5": "5/8", 
-        "6": "2/3",
-        "7": "3/4", 
-        "8": "7/8", 
-        "9": "Full"
-    };
-
-    const rawValue = this.querySelector('input[name="Fuel Needed"]').value;
-    const label = fuelMap[rawValue] || rawValue;
-    formData.set("Fuel Needed", label);
-
     try {
         const response = await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
             method: "POST",
