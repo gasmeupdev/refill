@@ -1,3 +1,4 @@
+/* ------------------ MAIN NAV ------------------ */
 .main-nav {
   position: fixed;
   top: 0;
@@ -14,7 +15,7 @@
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between; /* 🧭 distribute left and right */
+  justify-content: space-between;
   align-items: center;
   position: relative;
   height: 50px;
@@ -22,11 +23,11 @@
 }
 
 
-/* LOGO centered by default, left on desktop */
+/* ------------------ LOGO ------------------ */
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px; /* spacing between image and text */
+  gap: 10px;
   font-size: 20px;
   font-weight: bold;
   color: #00ccff;
@@ -34,26 +35,48 @@
 }
 
 .logo img {
-  height: 50px;      /* 👈 adjusts logo image height */
+  height: 50px;
   width: auto;
   object-fit: contain;
 }
 
 
-/* HAMBURGER (right on mobile only) */
+/* ------------------ HAMBURGER BUTTON ------------------ */
 .hamburger {
   display: none;
-  font-size: 35px;
-  cursor: pointer;
-  color: #fff;
+  width: 30px;
+  height: 22px;
   position: absolute;
   right: 60px;
   top: 50%;
   transform: translateY(-50%);
+  cursor: pointer;
   z-index: 1001;
 }
 
-/* LINKS (default inline, hidden on mobile) */
+.hamburger .bar {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: white;
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: 0.3s ease;
+}
+
+/* ✖ X icon when active */
+.hamburger.active .top {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active .middle {
+  opacity: 0;
+}
+.hamburger.active .bottom {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+
+/* ------------------ NAV LINKS ------------------ */
 .nav-links {
   display: flex;
   gap: 15px;
@@ -86,24 +109,42 @@
   background: #5f8035;
 }
 
-/* ✅ MOBILE STYLES */
+
+/* ------------------ MOBILE STYLES ------------------ */
 @media (max-width: 768px) {
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background: #2a2a2a;
-    padding: 15px;
-    margin-top: 60px;
-    border-radius: 0 0 10px 10px;
+  .nav-content {
+    justify-content: center;
   }
+
   .logo {
     position: absolute;
-    left: 20%;
+    left: 50%;
     transform: translateX(-50%);
   }
+
   .logo img {
-    height: 40px; /* slightly smaller on mobile */
+    height: 40px;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: #2a2a2a;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 0;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    display: none;
+    animation: fadeIn 0.3s ease;
+    z-index: 999;
   }
 
   .nav-links.show {
@@ -116,8 +157,10 @@
     text-align: center;
     margin-bottom: 10px;
   }
+}
 
-  .hamburger {
-    display: block;
-  }
+/* ------------------ ANIMATION ------------------ */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
