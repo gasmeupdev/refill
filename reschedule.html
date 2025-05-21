@@ -96,6 +96,38 @@
             `;
             document.getElementById("results").insertAdjacentHTML("beforeend", formHtml);
         }
+       async function submitReschedule(event, bookingId) {
+        event.preventDefault();
+
+        const form = event.target;
+        const formData = new FormData(form);
+        formData.append("bookingId", bookingId);
+
+        const GOOGLE_RESCHEDULE_URL = "https://script.google.com/macros/s/YOUR_NEW_RESCHEDULE_SCRIPT_ID/exec";
+
+        console.log("Submitting reschedule for booking ID:", bookingId);
+        for (let pair of formData.entries()) {
+            console.log(pair[0] + ": " + pair[1]);
+        }
+
+        try {
+            const response = await fetch(GOOGLE_RESCHEDULE_URL, {
+                method: "POST",
+                body: formData
+            });
+
+            const result = await response.json();
+            if (result.result === 'success') {
+                alert("Reschedule submitted! ✅");
+                form.parentElement.innerHTML = "<p>Reschedule request received!</p>";
+            } else {
+                alert("Error: " + (result.message || result.error || "Unknown"));
+            }
+        } catch (error) {
+            alert("Failed to submit reschedule: " + error.message);
+            console.error(error);
+        }
+    }
     </script>
 </body>
 </html>
