@@ -14,22 +14,31 @@
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  justify-content: center; /* Center logo by default */
+  justify-content: space-between; /* 🧭 distribute left and right */
   align-items: center;
-  position: relative; /* Required for absolutely positioned hamburger */
+  position: relative;
   height: 50px;
+  padding: 0 10px;
 }
+
 
 /* LOGO centered by default, left on desktop */
 .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* spacing between image and text */
   font-size: 20px;
   font-weight: bold;
   color: #00ccff;
   text-decoration: none;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
 }
+
+.logo img {
+  height: 32px;      /* 👈 adjusts logo image height */
+  width: auto;
+  object-fit: contain;
+}
+
 
 /* HAMBURGER (right on mobile only) */
 .hamburger {
@@ -87,6 +96,14 @@
     padding: 15px;
     margin-top: 60px;
     border-radius: 0 0 10px 10px;
+  }
+  .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .logo img {
+    height: 28px; /* slightly smaller on mobile */
   }
 
   .nav-links.show {
