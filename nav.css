@@ -1,98 +1,91 @@
-/* ------------------ Navigation Styles ------------------ */
 .main-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: #1f1f1f;
-    color: #fff;
-    padding: 10px 20px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #1f1f1f;
+  color: #fff;
+  padding: 10px 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 1000;
 }
-
 
 .nav-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: nowrap; /* 🔁 Fixes layout issue */
-    width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center; /* Center logo by default */
+  align-items: center;
+  position: relative; /* Required for absolutely positioned hamburger */
+  height: 50px;
 }
 
-
+/* LOGO centered by default, left on desktop */
 .logo {
-    font-size: 20px;
-    font-weight: bold;
-    color: #00ccff;
+  font-size: 20px;
+  font-weight: bold;
+  color: #00ccff;
+  text-decoration: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-/* Links + Buttons Layout */
-.nav-links {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-}
-
-.nav-links a {
-    color: #ddd;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-.nav-links a:hover {
-    color: #00ccff;
-}
-
-.nav-links button {
-    background: #00ccff;
-    color: #fff;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.nav-links button:hover {
-    background: #5f8035;
-}
+/* HAMBURGER (right on mobile only) */
 .hamburger {
   display: none;
   font-size: 24px;
   cursor: pointer;
   color: #fff;
-  padding: 8px;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1001;
 }
 
+/* LINKS (default inline, hidden on mobile) */
+.nav-links {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.nav-links a {
+  color: #ddd;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #00ccff;
+}
+
+.nav-links button {
+  background: #00ccff;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.nav-links button:hover {
+  background: #5f8035;
+}
+
+/* ✅ MOBILE STYLES */
 @media (max-width: 768px) {
-  .nav-content {
-    position: relative;
-  }
-
-  .logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .hamburger {
-    position: absolute;
-    right: 20px;
-    top: 10px;
-  }
-
   .nav-links {
     display: none;
     flex-direction: column;
     width: 100%;
     background: #2a2a2a;
     padding: 15px;
-    margin-top: 50px; /* space below fixed nav items */
+    margin-top: 60px;
     border-radius: 0 0 10px 10px;
   }
 
@@ -105,5 +98,9 @@
     width: 100%;
     text-align: center;
     margin-bottom: 10px;
+  }
+
+  .hamburger {
+    display: block;
   }
 }
