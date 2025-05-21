@@ -14,72 +14,73 @@
 
 </head>
 <body>
-    <div class="container">
-        <a href="./home.html">
-            <img class="home-logo" src="./images/gasmeupline2.PNG" alt="Gas Me Up logo"style="width: 200px; height: 100px;">
-        </a>
-        <h2>Book Your Gas Refill</h2>
-        <form id="multiStepForm">
-            <div class="step active" id="step1">
-                <h3>Step 1: Contact Info</h3>
-                <input type="text" name="Name" placeholder="Full Name" required>
-                <input type="email" name="Email" placeholder="Email" required>
-                <input type="text" name="Phone" placeholder="Phone Number" required>
-                <button type="button" onclick="prevStep()">Back</button>
-                <button type="button" onclick="if(validateStep(stepIndex)) nextStep();">Next</button>
-            </div>
-            <div class="step" id="step2">
-                <h3>Step 2: Choose a Time for Refill</h3>
-                <p> Our drivers will arrive within the 1-hour time slot you’ve selected. 
-                    You’ll receive periodic updates of the drivers status and estimated exact arrival times.</p>
-                <input type="date" name="Date" required>
-                <select name="Time" required id="schedule_time"></select>
-                <p id="time_warning" style="color: red; display: none;">FYI: Our hours are 5PM - 11PM & 5AM - 7AM.</p>
-                <button type="button" onclick="prevStep()">Back</button>
-                <button type="button" onclick="if(validateStep(stepIndex)) nextStep();">Next</button>
-            </div>
-            <div class="step" id="step3">
-                <h3>Step 3: Car Details</h3>
-                <input type="text" name="Car Make" placeholder="Car Make" required>
-                <input type="text" name="Car Model" placeholder="Car Model" required>
-                <input type="text" name="Car Year" placeholder="Car Year" required>
-                <input type="text" name="Car Color" placeholder="Car Color" required>
-                <input type="text" name="License Plate" placeholder="License Plate Number" required>
-                <input type="text" name="Address" id="address" placeholder="Car Address" required>
-                <label for="keys_available">Please confirm the car will be unlocked or the owner will be available to unlock the car upon the driver’s arrival?”</label>
-                <select name="Keys Available" id="keys_available" required>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-                <button type="button" onclick="prevStep()">Back</button>
-                <button type="button" onclick="if(validateStep(stepIndex)) nextStep();">Next</button>
-            </div>
-
-            <div class="step" id="step4">
-                <br>
-                <br>
-              <h3>What type of fuel:</h3>
-              <select name="Gas Type" required>
-                  <option value="Regular 87">Regular 87</option>
-                  <option value="Mid-Grade 89">Mid-Grade 89</option>
-                  <option value="Premium 91">Premium 91 - Coming Soon</option>
-                  <option value="Diesel">Diesel - Coming Soon</option>
-              </select>
-
-                <br> <br> <br>
-                <h3>Optional: Would you like your tire pressure inspected?</h3>
-                <select name="Tire Refill" id="keys_available" required>
-                    <option value="No">No</option>
-                    <option value="Yes">Yes - Additional $5</option>
-                </select>
+    <main class="page-content">
+        <div class="container">
+            <a href="./home.html">
+                <img class="home-logo" src="./images/gasmeupline2.PNG" alt="Gas Me Up logo"style="width: 200px; height: 100px;">
+            </a>
+            <h2>Book Your Gas Refill</h2>
+            <form id="multiStepForm">
+                <div class="step active" id="step1">
+                    <h3>Step 1: Contact Info</h3>
+                    <input type="text" name="Name" placeholder="Full Name" required>
+                    <input type="email" name="Email" placeholder="Email" required>
+                    <input type="text" name="Phone" placeholder="Phone Number" required>
+                    <button type="button" onclick="prevStep()">Back</button>
+                    <button type="button" onclick="if(validateStep(stepIndex)) nextStep();">Next</button>
+                </div>
+                <div class="step" id="step2">
+                    <h3>Step 2: Choose a Time for Refill</h3>
+                    <p> Our drivers will arrive within the 1-hour time slot you’ve selected. 
+                        You’ll receive periodic updates of the drivers status and estimated exact arrival times.</p>
+                    <input type="date" name="Date" required>
+                    <select name="Time" required id="schedule_time"></select>
+                    <p id="time_warning" style="color: red; display: none;">FYI: Our hours are 5PM - 11PM & 5AM - 7AM.</p>
+                    <button type="button" onclick="prevStep()">Back</button>
+                    <button type="button" onclick="if(validateStep(stepIndex)) nextStep();">Next</button>
+                </div>
+                <div class="step" id="step3">
+                    <h3>Step 3: Car Details</h3>
+                    <input type="text" name="Car Make" placeholder="Car Make" required>
+                    <input type="text" name="Car Model" placeholder="Car Model" required>
+                    <input type="text" name="Car Year" placeholder="Car Year" required>
+                    <input type="text" name="Car Color" placeholder="Car Color" required>
+                    <input type="text" name="License Plate" placeholder="License Plate Number" required>
+                    <input type="text" name="Address" id="address" placeholder="Car Address" required>
+                    <label for="keys_available">Please confirm the car will be unlocked or the owner will be available to unlock the car upon the driver’s arrival?”</label>
+                    <select name="Keys Available" id="keys_available" required>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                    <button type="button" onclick="prevStep()">Back</button>
+                    <button type="button" onclick="if(validateStep(stepIndex)) nextStep();">Next</button>
+                </div>
+    
+                <div class="step" id="step4">
                     <br>
-                <button type="button" onclick="prevStep()">Back</button>
-                <button type="submit">Proceed to Checkout</button>
-            </div>
-        </form>
-    </div>
-    <script src="validation.js"></script>
-    <script src="scripts.js"></script>
-
+                    <br>
+                  <h3>What type of fuel:</h3>
+                  <select name="Gas Type" required>
+                      <option value="Regular 87">Regular 87</option>
+                      <option value="Mid-Grade 89">Mid-Grade 89</option>
+                      <option value="Premium 91">Premium 91 - Coming Soon</option>
+                      <option value="Diesel">Diesel - Coming Soon</option>
+                  </select>
+    
+                    <br> <br> <br>
+                    <h3>Optional: Would you like your tire pressure inspected?</h3>
+                    <select name="Tire Refill" id="keys_available" required>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes - Additional $5</option>
+                    </select>
+                        <br>
+                    <button type="button" onclick="prevStep()">Back</button>
+                    <button type="submit">Proceed to Checkout</button>
+                </div>
+            </form>
+        </div>
+        <script src="validation.js"></script>
+        <script src="scripts.js"></script>
+    </main>
 </body>
 </html>
