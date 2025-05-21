@@ -1,14 +1,19 @@
 /* --------------------- Main Body --------------------- */ 
 body {
     font-family: 'Poppins', sans-serif;
-    background: #36454F; /*charcoal*/ 
+    background: #36454F;
     margin: 0;
     padding: 0;
+}
+
+main.page-content {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: calc(100vh - 60px); /* Adjust for nav height */
+    padding: 30px 20px;
 }
+
 
 .step-section {
     margin-bottom: 25px;
