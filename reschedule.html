@@ -120,6 +120,8 @@
             if (result.result === 'success') {
                 alert("Reschedule submitted! ✅");
                 form.parentElement.innerHTML = "<p>Reschedule request received!</p>";
+                window.location.href = "./checkout2.html";
+
             } else {
                 alert("Error: " + (result.message || result.error || "Unknown"));
             }
