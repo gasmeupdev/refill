@@ -1,0 +1,97 @@
+/* ------------------ Navigation Styles ------------------ */
+.main-nav {
+    width: 100%;
+    background: #1f1f1f;
+    color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 1000;
+}
+
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #00ccff;
+}
+
+/* Links + Buttons Layout */
+.nav-links {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.nav-links a {
+    color: #ddd;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #00ccff;
+}
+
+.nav-links button {
+    background: #00ccff;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.nav-links button:hover {
+    background: #5f8035;
+}
+
+.hamburger {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+}
+
+/* ------------------ Mobile Nav ------------------ */
+@media (max-width: 768px) {
+    .logo {
+        margin: 0 auto;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #2a2a2a;
+        padding: 15px;
+        margin-top: 10px;
+        border-radius: 0 0 10px 10px;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .nav-links a,
+    .nav-links button {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+}
