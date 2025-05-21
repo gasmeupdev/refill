@@ -1,4 +1,4 @@
-const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbznRczmRZq9XLm9WT267tkKSCF-itwPGJ8s16MKVbTp3loyXSeit3sPdOXWKfICun4B8g/exec";
+const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycby5JxX9Lle7bY-Nzz2cgl5cO8UJgSJd4ZRs9S0IgTU9IP04532AcNrF7Ay6JvVbO7KY/exec";
 
 // ✅ Multi-Step Navigation
 let stepIndex = 0;
@@ -155,7 +155,6 @@ function updateNeedle(val) {
   valueDisplay.textContent = val;
 }
 
-
 // ✅ Handle Form Submission
 document.getElementById("multiStepForm").addEventListener("submit", async function(event) {
     event.preventDefault();
@@ -179,11 +178,13 @@ document.getElementById("multiStepForm").addEventListener("submit", async functi
         if (response.ok) {
             const result = await response.json();
             console.log("Server response: ", result);
+
             if (result.result === 'success') {
                 alert("Booking successful! 🚀 We will reach out to you soon.");
                 window.location.href = "./checkout2.html";
             } else {
-                alert("Error: " + result.message);
+                const errorMsg = result.error || result.message || "Unknown error occurred.";
+                alert("Error: " + errorMsg);
             }
         } else {
             throw new Error("Submission failed with status " + response.status);
