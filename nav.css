@@ -69,10 +69,21 @@
   padding: 8px;
 }
 
-
 @media (max-width: 768px) {
+  .nav-content {
+    position: relative;
+  }
+
+  .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
   .hamburger {
-    display: block;
+    position: absolute;
+    right: 20px;
+    top: 10px;
   }
 
   .nav-links {
@@ -81,7 +92,7 @@
     width: 100%;
     background: #2a2a2a;
     padding: 15px;
-    margin-top: 10px;
+    margin-top: 50px; /* space below fixed nav items */
     border-radius: 0 0 10px 10px;
   }
 
@@ -94,9 +105,5 @@
     width: 100%;
     text-align: center;
     margin-bottom: 10px;
-  }
-
-  .logo {
-    margin: 0 auto;
   }
 }
