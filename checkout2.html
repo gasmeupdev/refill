@@ -1,20 +1,18 @@
-<!-- CHECKOUT PAGE (checkout.html) -->
+<!-- CHECKOUT PAGE (checkout2.html) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Checkout</title>
-    <link rel="stylesheet" type="text/css" href="styles2.css">
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
     <div class="container">
-        <h2>Complete Your Payment</h2>
+        <h2 class="checkout-title">Complete Your Payment</h2>
 
-        <!-- Stripe.js and Elements integration -->
-        <script src="https://js.stripe.com/v3/"></script>
-
-        <!-- Payment Section (Card input UI) -->
+        <!-- Stripe Payment Section -->
         <div id="payment-section">
             <div id="card-element"></div>
             <div id="card-errors" role="alert"></div>
@@ -22,38 +20,34 @@
         </div>
 
         <div id="error-message"></div>
-
-        <script src="stripe.js"></script>
-        <script>
-            // Initialize Stripe and Elements
-            const stripe = Stripe('pk_test_51R9BywPMg9X62KxRp69187eQPCaiWUVuLyn04BJPf3nNXkul7aznceDJs5Q20CZpbxoxZ0JAzPm6eIoPdhnHsX6J00kAUJ8RP2'); // Your publishable key
-            const elements = stripe.elements();
-            const card = elements.create('card');
-            card.mount('#card-element');
-
-            const payButton = document.getElementById('pay-now');
-            payButton.addEventListener('click', function () {
-                // Call your backend to create a payment intent with $25 hold
-                fetch('/create-payment-intent', { method: 'POST' })
-                    .then(res => res.json())
-                    .then(data => {
-                        stripe.confirmCardPayment(data.clientSecret, {
-                            payment_method: {
-                                card: card,
-                            },
-                        }).then(result => {
-                            if (result.error) {
-                                // Display error to your customer
-                                const displayError = document.getElementById('error-message');
-                                displayError.textContent = result.error.message;
-                            } else if (result.paymentIntent.status === 'requires_capture') {
-                                alert("Payment authorized! We’ll charge the final amount after the gas refill.");
-                                // Optionally, show confirmation or redirect
-                            }
-                        });
-                    });
-            });
-        </script>
     </div>
+
+    <!-- Stripe Logic -->
+    <script src="stripe.js"></script>
+    <script>
+        const stripe = Stripe('pk_test_51R9BywPMg9X62KxRp69187eQPCaiWUVuLyn04BJPf3nNXkul7aznceDJs5Q20CZpbxoxZ0JAzPm6eIoPdhnHsX6J00kAUJ8RP2');
+        const elements = stripe.elements();
+        const card = elements.create('card');
+        card.mount('#card-element');
+
+        const payButton = document.getElementById('pay-now');
+        payButton.addEventListener('click', function () {
+            fetch('/create-payment-intent', { method: 'POST' })
+                .then(res => res.json())
+                .then(data => {
+                    stripe.confirmCardPayment(data.clientSecret, {
+                        payment_method: {
+                            card: card,
+                        },
+                    }).then(result => {
+                        if (result.error) {
+                            document.getElementById('error-message').textContent = result.error.message;
+                        } else if (result.paymentIntent.status === 'requires_capture') {
+                            alert("Payment authorized! We’ll charge the final amount after the gas refill.");
+                        }
+                    });
+                });
+        });
+    </script>
 </body>
 </html>
