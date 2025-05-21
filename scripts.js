@@ -40,8 +40,14 @@ var hoursInDay = 24
 //BEGIN SAME DAY BOOK TIME VALIDATION
 const currentTime = new Date();
 const currentHour = currentTime.getHours();
+
+// FOR TESTING ONLY
+const testHourOverride = 8; // You can change this to simulate different times
+const minTimeCanBook = testHourOverride + 2;
+
+
 const allowedTimes = []
-var minTimeCanBook = Number(currentHour) + 2;
+//TEMPORARY COMMENT OUTvar minTimeCanBook = Number(currentHour) + 2;
 for (var b = minTimeCanBook; b<=23; b++) {
 
     if (b < 11) {
