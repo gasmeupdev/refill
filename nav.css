@@ -59,7 +59,6 @@
 .nav-links button:hover {
     background: #5f8035;
 }
-
 .hamburger {
     display: none;
     font-size: 24px;
@@ -67,12 +66,7 @@
     color: #fff;
 }
 
-/* ------------------ Mobile Nav ------------------ */
 @media (max-width: 768px) {
-    .logo {
-        margin: 0 auto;
-    }
-
     .hamburger {
         display: block;
     }
@@ -96,5 +90,9 @@
         width: 100%;
         text-align: center;
         margin-bottom: 10px;
+    }
+
+    .logo {
+        margin: 0 auto;
     }
 }
