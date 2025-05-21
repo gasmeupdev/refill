@@ -18,8 +18,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* 🔁 Fixes layout issue */
+    width: 100%;
 }
+
 
 .logo {
     font-size: 20px;
@@ -60,44 +62,41 @@
     background: #5f8035;
 }
 .hamburger {
-  display: block !important;
+  display: none;
   font-size: 24px;
   cursor: pointer;
-  color: white;
-  background: red; /* DEBUG: makes it obvious */
+  color: #fff;
   padding: 8px;
-  z-index: 99999;
-  position: relative;
 }
 
 
 @media (max-width: 768px) {
-    .hamburger {
-        display: block !important;
-    }
+  .hamburger {
+    display: block;
+  }
 
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: #2a2a2a;
-        padding: 15px;
-        margin-top: 10px;
-        border-radius: 0 0 10px 10px;
-    }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #2a2a2a;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 0 0 10px 10px;
+  }
 
-    .nav-links.show {
-        display: flex;
-    }
+  .nav-links.show {
+    display: flex;
+  }
 
-    .nav-links a,
-    .nav-links button {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 10px;
-    }
+  .nav-links a,
+  .nav-links button {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
 
-    .logo {
-        margin: 0 auto;
-    }
+  .logo {
+    margin: 0 auto;
+  }
 }
