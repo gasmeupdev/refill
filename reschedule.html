@@ -74,29 +74,27 @@
         });
 
         function reschedule(bookingId) {
-            function reschedule(bookingId) {
-                const formHtml = `
-                    <div id="rescheduleForm-${bookingId}">
-                        <h4>Pick New Details</h4>
-                        <form onsubmit="submitReschedule(event, '${bookingId}')">
-                            <label for="newDate">New Date:</label>
-                            <input type="date" name="Date" required><br>
-            
-                            <label for="newTime">New Time:</label>
-                            <input type="text" name="Time" placeholder="e.g., 08:00 AM - 09:00 AM" required><br>
-            
-                            <label for="tireRefill">Tire Refill?</label>
-                            <select name="Tire Refill">
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option>
-                            </select><br>
-            
-                            <button type="submit">Submit Reschedule</button>
-                        </form>
-                    </div>
-                `;
-                document.getElementById("results").insertAdjacentHTML("beforeend", formHtml);
-            }
+            const formHtml = `
+                <div id="rescheduleForm-${bookingId}">
+                    <h4>Pick New Details</h4>
+                    <form onsubmit="submitReschedule(event, '${bookingId}')">
+                        <label for="newDate">New Date:</label>
+                        <input type="date" name="Date" required><br>
+        
+                        <label for="newTime">New Time:</label>
+                        <input type="text" name="Time" placeholder="e.g., 08:00 AM - 09:00 AM" required><br>
+        
+                        <label for="tireRefill">Tire Refill?</label>
+                        <select name="Tire Refill">
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select><br>
+        
+                        <button type="submit">Submit Reschedule</button>
+                    </form>
+                </div>
+            `;
+            document.getElementById("results").insertAdjacentHTML("beforeend", formHtml);
         }
     </script>
 </body>
