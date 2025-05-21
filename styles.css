@@ -21,7 +21,7 @@ main.page-content {
 }
 
 .step-section h3 {
-    color: #00ccff;
+    color: #36454F;
     font-size: 20px;
     margin-bottom: 8px;
 }
@@ -227,7 +227,7 @@ button:hover {
 .card h2 {
     margin: 0 0 10px;
     font-size: 18px;
-    color: #02c8f7;
+    color: #36454F;
 }
 
 .card p {
