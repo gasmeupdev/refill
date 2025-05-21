@@ -103,7 +103,7 @@
         const formData = new FormData(form);
         formData.append("bookingId", bookingId);
 
-        const GOOGLE_RESCHEDULE_URL = "https://script.google.com/macros/s/YOUR_NEW_RESCHEDULE_SCRIPT_ID/exec";
+        const GOOGLE_RESCHEDULE_URL = "https://script.google.com/macros/s/AKfycbzRdxTDV7EwYoLAqecqds27906cG4QKiJQfNkVwhKvMw5oxbsSShxGEmEhNqFchykb1Yw/exec";
 
         console.log("Submitting reschedule for booking ID:", bookingId);
         for (let pair of formData.entries()) {
