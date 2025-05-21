@@ -62,12 +62,12 @@ console.log("Hour " + timeSlotFirst);
         console.log("time slot final " + timeSlotFinal);
     }
 
-    else if (b = 12) {
+    else if (b === 12) {
 console.log("Hour " + b); 
     var timeSlotFinal = "12:00 PM - 1:00 PM"
     console.log("time slot final " + timeSlotFinal);}
         
-else if (b = 11) {
+else if (b === 11) {
 console.log("Hour " + b); 
     var timeSlotFinal = "11:00 AM - 12:00 PM"
     console.log("time slot final " + timeSlotFinal);}
