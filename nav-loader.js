@@ -6,6 +6,18 @@ fetch('nav.html')
     document.body.insertBefore(navContainer, document.body.firstChild);
   });
 
-function toggleMenu() {
-  document.getElementById("navLinks").classList.toggle("show");
+function toggleMenu(el) {
+  const menu = document.getElementById("navLinks");
+  menu.classList.toggle("show");
+  el.classList.toggle("active");
+
+  // Close menu when link is clicked
+  const closeOnClick = menu.querySelectorAll("a, button");
+  closeOnClick.forEach(item =>
+    item.onclick = () => {
+      menu.classList.remove("show");
+      el.classList.remove("active");
+    }
+  );
 }
+
