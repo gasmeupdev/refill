@@ -34,7 +34,7 @@
 }
 
 .logo img {
-  height: 32px;      /* 👈 adjusts logo image height */
+  height: 50px;      /* 👈 adjusts logo image height */
   width: auto;
   object-fit: contain;
 }
@@ -43,11 +43,11 @@
 /* HAMBURGER (right on mobile only) */
 .hamburger {
   display: none;
-  font-size: 32px;
+  font-size: 35px;
   cursor: pointer;
   color: #fff;
   position: absolute;
-  right: 50px;
+  right: 60px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 1001;
@@ -103,7 +103,7 @@
     transform: translateX(-50%);
   }
   .logo img {
-    height: 28px; /* slightly smaller on mobile */
+    height: 40px; /* slightly smaller on mobile */
   }
 
   .nav-links.show {
