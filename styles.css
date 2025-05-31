@@ -1,6 +1,7 @@
 /* --------------------- Main Body --------------------- */ 
 body {
-    font-family: 'Poppins', sans-serif;
+   /* font-family: 'Poppins', sans-serif;*/
+    font-family: 'Roboto Slab', serif;
     background: #36454F;
     margin: 0;
     padding: 0;
