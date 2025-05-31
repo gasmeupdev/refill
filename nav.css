@@ -35,7 +35,7 @@
 }
 
 .logo img {
-  height: 50px;
+  height: 100px;
   width: auto;
   object-fit: contain;
 }
@@ -126,7 +126,7 @@
   }
 
   .logo img {
-    height: 80px;
+    height: 40px;
   }
 
   .hamburger {
