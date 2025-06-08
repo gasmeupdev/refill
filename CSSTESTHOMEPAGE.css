@@ -1,0 +1,103 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+/* Top Bar */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 5px 20px;
+  font-size: 0.9rem;
+}
+
+.top-links a {
+  color: #ccc;
+  margin-right: 15px;
+  text-decoration: none;
+}
+
+.top-links.right {
+  text-align: right;
+}
+
+/* Nav */
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px 20px;
+}
+
+.main-nav .logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+}
+
+.main-nav .logo span {
+  color: #ff3333;
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.main-nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* Hero */
+.hero {
+  height: 100vh;
+  background: url('https://your-cargo-image-url.jpg') no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  padding: 0 50px;
+}
+
+.hero-text {
+  max-width: 600px;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+
+.buttons .btn {
+  padding: 12px 24px;
+  margin-right: 15px;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.btn.red {
+  background-color: #e60000;
+  color: white;
+}
+
+.btn.white {
+  background-color: white;
+  color: #333;
+}
