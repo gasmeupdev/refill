@@ -37,6 +37,8 @@ main.page-content {
 }
 
 
+
+
 /* ---------------------Main Container --------------------- */
 .container {
     background: #333;
@@ -171,6 +173,9 @@ button:hover {
     background: #5f8035;
 }
 
+.intro-text {
+ font-family: 'Raleway', sans-serif; 
+}
 /* --------------------- MOBILE LAYOUT --------------------- */
 @media screen and (max-width: 768px) {
     .home-container {
