@@ -1,6 +1,7 @@
 /* --------------------- Main Body --------------------- */ 
 body {
-  font-family: 'Raleway', sans-serif;
+  /*font-family: 'Raleway', sans-serif; */
+    font-family: "DM Sans", sans-serif;
     background: #36454F;
     margin: 0;
     padding: 0;
