@@ -174,7 +174,7 @@ button:hover {
 }
 
 .intro-text {
- font-family: 'Raleway', sans-serif; 
+ font-family: "BioRhyme", serif;
 }
 /* --------------------- MOBILE LAYOUT --------------------- */
 @media screen and (max-width: 768px) {
