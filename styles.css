@@ -81,7 +81,7 @@ input:focus, select:focus {
 
 /* --------------------- Buttons  --------------------- */
 button {
-    background: #48A7B7;
+    background: #0099ff;
     color: white;
     border: none;
     padding: 12px;
@@ -154,7 +154,7 @@ button:hover {
 }
 /* CTA Button on Homepage */
 .cta-button {
-    background: #48A7B7;
+    background: #0099ff;
     color: white;
     border: none;
     padding: 15px 25px;
