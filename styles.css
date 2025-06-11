@@ -88,8 +88,8 @@ button {
     font-size: 16px;
     border-radius: 8px;
     cursor: pointer;
-    margin-top: 10px;
-    font-weight: bold;
+margin-right: 10px;
+  font-weight: bold;
     transition: 0.3s ease-in-out;
 }
 
@@ -162,8 +162,8 @@ button:hover {
     font-size: 18px;
     border-radius: 8px;
     cursor: pointer;
-    margin-top: 20px;
-    font-weight: bold;
+margin-right: 10px;
+  font-weight: bold;
    /* display: inline-block;*/
     text-decoration: none;
     transition: 0.3s ease-in-out;
