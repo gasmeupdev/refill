@@ -17,12 +17,17 @@ card.on('change', function(event) {
     displayError.textContent = '';
   }
 });
-
-// Function to create payment intent and confirm card payment
 function handlePaymentIntent() {
+  const name = document.querySelector('input[name="Name"]').value;
+  const email = document.querySelector('input[name="Email"]').value;
+
   fetch('https://refill-l59k.onrender.com/create-payment-intent', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' }
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: name,
+      email: email
+    })
   })
   .then(res => res.json())
   .then(data => {
