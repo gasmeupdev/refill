@@ -20,7 +20,7 @@ def create_paymnt():
             description="Static test customer"
         )
           intent = stripe.PaymentIntent.create(
-          amount=2500,  # $25 in cents
+          amount=4500,  # $25 in cents
           currency='usd',
           capture_method='manual',
           setup_future_usage: 'off_session':,
