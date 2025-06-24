@@ -26,6 +26,7 @@ function handlePaymentIntent() {
   })
   .then(res => res.json())
   .then(data => {
+    console.log("Backend response:", data);
     stripe.confirmCardPayment(data.clientSecret, {
       payment_method: {
         card: card,
