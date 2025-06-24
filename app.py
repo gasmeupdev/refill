@@ -17,17 +17,19 @@ def create_paymnt():
         customer = stripe.Customer.create(
             name="John Doe",
             email="johndoe@example.com",
-            description="Static test customer"
         )
           intent = stripe.PaymentIntent.create(
           amount=4500,  # $25 in cents
           currency='usd',
           capture_method='manual',
-          setup_future_usage: 'off_session':,
-          customer:customerID ,
+          setup_future_usage= 'off_session',
+          customer=customer.id ,
           automatic_payment_methods={'enabled': True}
       )
-          return jsonify({'clientSecret': intent.client_secret})
+          return jsonify({
+              'clientSecret': intent.client_secret, 
+              'customerID':customer.id
+          })
     except Exception as e:
          return jsonify({'error': str(e)}), 400
 
