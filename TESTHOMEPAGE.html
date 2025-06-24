@@ -3,48 +3,76 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Acrozz Logistics</title>
-  <link rel="stylesheet" href="CSSTESTHOMEPAGE.css" />
+  <title>Bottom Nav Bar</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background-color: #6a00ff;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    .bottom-nav a {
+      color: #ddd;
+      text-align: center;
+      text-decoration: none;
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .bottom-nav a.active {
+      color: #fff;
+    }
+
+    .bottom-nav i {
+      font-size: 20px;
+      margin-bottom: 3px;
+    }
+  </style>
+  <!-- Link to Font Awesome for icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <!-- Top Bar -->
-  <div class="top-bar">
-    <div class="top-links">
-      <a href="#">Terms & Conditions</a>
-      <a href="#">Documents</a>
-      <a href="#">Support</a>
-      <a href="#">Track & Trace</a>
-    </div>
-    <div class="top-links right">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Help and FAQs</a>
-      <a href="#">Legal Information</a>
-      <a href="#">Directions</a>
-    </div>
+
+  <!-- Content -->
+  <div style="padding-bottom: 70px;">
+    <h1>Page Content</h1>
   </div>
 
-  <!-- Nav -->
-  <nav class="main-nav">
-    <div class="logo">🚚 <span>Acrozz</span> LOGISTICS COMPANY</div>
-    <ul>
-      <li><a href="#">About us</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Cases</a></li>
-      <li><a href="#">News</a></li>
-      <li><a href="#">Contacts</a></li>
-    </ul>
-  </nav>
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav">
+    <a href="#" class="nav-link">
+      <i class="fas fa-heart"></i>
+      Favorites
+    </a>
+    <a href="#" class="nav-link active">
+      <i class="fas fa-music"></i>
+      Music
+    </a>
+    <a href="#" class="nav-link">
+      <i class="fas fa-map-marker-alt"></i>
+      Places
+    </a>
+    <a href="#" class="nav-link">
+      <i class="fas fa-newspaper"></i>
+      News
+    </a>
+  </div>
 
-  <!-- Hero Section -->
-  <header class="hero">
-    <div class="hero-text">
-      <h1>Fast and Secure Transportation</h1>
-      <p>Acrozz Logistics is a number one global provider of transportation.</p>
-      <div class="buttons">
-        <a href="#" class="btn red">More About Us</a>
-        <a href="#" class="btn white">Our Services</a>
-      </div>
-    </div>
-  </header>
 </body>
 </html>
