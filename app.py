@@ -10,18 +10,15 @@ stripe.api_key = os.environ.get("STRIPE_SECRET_KEY")
 
 @app.route('/create-payment-intent', methods=['POST'])
 
-def create_customer():
-    try:
-          customer = stripe.Customer.create(
-          email='customer@example.com',
-          name='John Doe',
-)
-         return jsonify({'customerID': customer.id})
-except Exception as e:
-         return jsonify({'error': str(e)}), 400
+
 
 def create_paymnt(): 
     try: 
+        customer = stripe.Customer.create(
+            name="John Doe",
+            email="johndoe@example.com",
+            description="Static test customer"
+        )
           intent = stripe.PaymentIntent.create(
           amount=2500,  # $25 in cents
           currency='usd',
