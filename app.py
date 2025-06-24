@@ -14,9 +14,13 @@ stripe.api_key = os.environ.get("STRIPE_SECRET_KEY")
 
 def create_paymnt(): 
     try: 
+        data = request.json
+        name = data.get('name')
+        email = data.get('email')
+
         customer = stripe.Customer.create(
-            name="John Doe",
-            email="johndoe@example.com",
+            name=name,
+            email=email
         )
           intent = stripe.PaymentIntent.create(
           amount=4500,  # $25 in cents
