@@ -317,3 +317,31 @@ margin-right: 10px;
     font-size: 0.95em;
 }
 
+
+
+/* === Friendly Button Enhancements (only overrides button styles) === */
+button,
+.cta-button {
+  background: linear-gradient(135deg, #00b7ff 0%, #008afc 100%);
+  border: none;
+  border-radius: 30px;
+  color: #ffffff;
+  padding: 14px 24px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  transition: all 0.25s ease-in-out;
+}
+
+button:hover,
+.cta-button:hover {
+  background: linear-gradient(135deg, #33c5ff 0%, #1da0ff 100%);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+button:active,
+.cta-button:active {
+  transform: translateY(0) scale(0.97);
+}
