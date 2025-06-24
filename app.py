@@ -22,7 +22,7 @@ def create_paymnt():
             name=name,
             email=email
         )
-          intent = stripe.PaymentIntent.create(
+        intent = stripe.PaymentIntent.create(
           amount=4500,  # $25 in cents
           currency='usd',
           capture_method='manual',
@@ -30,7 +30,7 @@ def create_paymnt():
           customer=customer.id ,
           automatic_payment_methods={'enabled': True}
       )
-          return jsonify({
+        return jsonify({
               'clientSecret': intent.client_secret, 
               'customerID':customer.id
           })
