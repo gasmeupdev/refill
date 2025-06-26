@@ -17,14 +17,14 @@ main.page-content {
 
 
 .step-section {
-    margin-bottom: 25px;
+    margin-bottom: 2px;
     text-align: left;
 }
 
 .step-section h3 {
     color: #36454F;
     font-size: 20px;
-    margin-bottom: 8px;
+    margin-bottom: 2px;
 }
 
 .step-section ul {
@@ -33,7 +33,7 @@ main.page-content {
 }
 
 .step-section ul li {
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 }
 
 
@@ -185,7 +185,7 @@ margin-right: 10px;
     .home-about, .home-how-it-works {
         width: 100%;
         text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 2px;
     }
 }
 
@@ -271,7 +271,7 @@ margin-right: 10px;
 .checkout-title {
     color: #00ccff;
     font-size: 24px;
-    margin-bottom: 20px;
+    margin-bottom: 2px;
 }
 
 #payment-section {
@@ -284,7 +284,7 @@ margin-right: 10px;
     background: #2f2f2f;
     border: 2px solid #4a6333; /* Army green for consistency */
     border-radius: 8px;
-    margin-bottom: 16px;
+    margin-bottom: 2px;
 }
 
 #card-errors {
@@ -352,7 +352,7 @@ button:active,
 button,
 .cta-button {
   width: 100px;
-  height: 100px;
+  height: 90px;
   border-radius: 20px;
   padding: 0;
   display: flex;
@@ -370,8 +370,8 @@ button,
 button img,
 .cta-button img {
   width: 60px;
-  height: 60px;
+  height: 90px;
   object-fit: contain;
-  margin-bottom: 6px; /* space between icon and label */
+  margin-bottom: 2px; /* space between icon and label */
   pointer-events: none; /* ensures icon itself isn't clickable separately */
 }
