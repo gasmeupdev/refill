@@ -170,6 +170,12 @@ document.getElementById("multiStepForm").addEventListener("submit", async functi
     for (let pair of formData.entries()) {
         console.log(`${pair[0]}: ${pair[1]}`);
     }
+  
+    //  Store name and email in sessionStorage
+    const name = formData.get("Name");
+    const email = formData.get("Email");
+    sessionStorage.setItem("userName", name);
+    sessionStorage.setItem("userEmail", email);
 
     try {
         const response = await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
