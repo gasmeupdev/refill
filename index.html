@@ -21,7 +21,14 @@
         font-family: 'Nunito', 'Inter', sans-serif !important;
         -webkit-font-smoothing: antialiased;
       }
-    </style>
+    
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 20px;
+}
+</style>
 
 </head>
 <body>
@@ -38,8 +45,10 @@
                     <input type="text" name="Name" placeholder="Full Name" required>
                     <input type="email" name="Email" placeholder="Email" required>
                     <input type="text" name="Phone" placeholder="Phone Number" required>
-                    <button type="button" onclick="prevStep()">Back</button>
-                    <button type="button" onclick="if(validateStep(stepIndex)) nextStep();">Next</button>
+                    <div class="button-row">
+  <button type="button" onclick="prevStep()">Back</button>
+  <button type="button" onclick="if(validateStep(stepIndex)) nextStep();">Next</button>
+</div>
                 </div>
                 <div class="step" id="step2">
                     <h3>Step 2: Choose a Time for Refill</h3>
@@ -48,8 +57,10 @@
                     <input type="date" name="Date" required>
                     <select name="Time" required id="schedule_time"></select>
                     <p id="time_warning" style="color: red; display: none;">FYI: Our hours are 5PM - 11PM & 5AM - 7AM.</p>
-                    <button type="button" onclick="prevStep()">Back</button>
-                    <button type="button" onclick="if(validateStep(stepIndex)) nextStep();">Next</button>
+                    <div class="button-row">
+  <button type="button" onclick="prevStep()">Back</button>
+  <button type="button" onclick="if(validateStep(stepIndex)) nextStep();">Next</button>
+</div>
                 </div>
                 <div class="step" id="step3">
                     <h3>Step 3: Car Details</h3>
@@ -64,8 +75,10 @@
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                     </select>
-                    <button type="button" onclick="prevStep()">Back</button>
-                    <button type="button" onclick="if(validateStep(stepIndex)) nextStep();">Next</button>
+                    <div class="button-row">
+  <button type="button" onclick="prevStep()">Back</button>
+  <button type="button" onclick="if(validateStep(stepIndex)) nextStep();">Next</button>
+</div>
                 </div>
     
                 <div class="step" id="step4">
@@ -87,8 +100,10 @@
                         <option value="Yes">Yes </option>
                     </select>
                         <br>
-                    <button type="button" onclick="prevStep()">Back</button>
-                    <button type="submit">Proceed to Checkout</button>
+                    <div class="button-row">
+  <button type="button" onclick="prevStep()">Back</button>
+  <button type="submit">Proceed to Checkout</button>
+</div>
                 </div>
             </form>
         </div>
