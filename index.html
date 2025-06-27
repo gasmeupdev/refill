@@ -1,22 +1,21 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Book your gas refill now! We come straight to you. Fill your car up without lifting a finger.">
-    <title>Gas Refill Booking</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <link rel="stylesheet" href="nav.css">
-    <script src="nav-loader.js" defer></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh5XxodKgwBLU3RipuMvQr-WwsqVN12w8&libraries=places"></script>
-    <script src="https://js.stripe.com/v3/"></script>
-
-
-    <!-- Fonts from TESTHOMEPAGE -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Book your gas refill now! We come straight to you. Fill your car up without lifting a finger." name="description"/>
+<title>Gas Refill Booking</title>
+<link href="styles.css" rel="stylesheet" type="text/css"/>
+<link href="nav.css" rel="stylesheet"/>
+<script defer="" src="nav-loader.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh5XxodKgwBLU3RipuMvQr-WwsqVN12w8&amp;libraries=places"></script>
+<script src="https://js.stripe.com/v3/"></script>
+<!-- Fonts from TESTHOMEPAGE -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Poppins:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
       body, h1, h2, h3, h4, h5, h6, p, a, li, span, input, button {
         font-family: 'Nunito', 'Inter', sans-serif !important;
         -webkit-font-smoothing: antialiased;
@@ -29,91 +28,86 @@
   margin-top: 20px;
 }
 </style>
-
 </head>
 <body>
-
-    <main class="page-content">
-        <div class="container">
-            <a href="./home.html">
+<main class="page-content">
+<div class="container">
+<a href="./home.html">
 <!--                 <img class="home-logo" src="./images/newgmumed2.PNG" alt="Gas Me Up logo"style="width: 200px; height: 100px;"> -->
-            </a>
-            <h2>book your gas refill</h2>
-            <form id="multiStepForm">
-                <div class="step active" id="step1">
-                    <h3>contact informantion</h3>
-                    <input type="text" name="Name" placeholder="full name" required>
-                    <input type="email" name="Email" placeholder="email" required>
-                    <input type="text" name="Phone" placeholder="phone number" required>
-                    <div class="button-row">
-  <button type="button" onclick="prevStep()">back</button>
-  <button type="button" onclick="if(validateStep(stepIndex)) nextStep();">next</button>
+</a>
+<h2>book your gas refill</h2>
+<form id="multiStepForm">
+<div class="step active" id="step1">
+<h3>contact informantion</h3>
+<input name="Name" placeholder="full name" required="" type="text"/>
+<input name="Email" placeholder="email" required="" type="email"/>
+<input name="Phone" placeholder="phone number" required="" type="text"/>
+<div class="button-row">
+<button onclick="prevStep()" type="button">back</button>
+<button onclick="if(validateStep(stepIndex)) nextStep();" type="button">next</button>
 </div>
-                </div>
-                <div class="step" id="step2">
-                    <h3> choose your refill time</h3>
-                    <p> our drivers will arrive within the 1-hour time slot you’ve selected. 
+</div>
+<div class="step" id="step2">
+<h3> choose your refill time</h3>
+<p> our drivers will arrive within the 1-hour time slot you’ve selected. 
                         you'll receive periodic updates of the drivers status and estimated exact arrival times.</p>
-                    <input type="date" name="Date" required>
-                    <select name="Time" required id="schedule_time"></select>
-                    <p id="time_warning" style="color: red; display: none;">FYI: Our hours are 5PM - 11PM & 5AM - 7AM.</p>
-                    <div class="button-row">
-  <button type="button" onclick="prevStep()">Back</button>
-  <button type="button" onclick="if(validateStep(stepIndex)) nextStep();">Next</button>
+<input name="Date" required="" type="date"/>
+<select id="schedule_time" name="Time" required=""></select>
+<p id="time_warning" style="color: red; display: none;">FYI: Our hours are 5PM - 11PM &amp; 5AM - 7AM.</p>
+<div class="button-row">
+<button onclick="prevStep()" type="button">Back</button>
+<button onclick="if(validateStep(stepIndex)) nextStep();" type="button">Next</button>
 </div>
-                </div>
-                <div class="step" id="step3">
-                    <h3>vehicle information</h3>
-                    <input type="text" name="Car Make" placeholder="Car Make" required>
-                    <input type="text" name="Car Model" placeholder="Car Model" required>
-                    <input type="text" name="Car Year" placeholder="Car Year" required>
-                    <input type="text" name="Car Color" placeholder="Car Color" required>
-                    <input type="text" name="License Plate" placeholder="License Plate Number" required>
-                    <input type="text" name="Address" id="address" placeholder="Car Address" required>
-                    <label for="keys_available">Please confirm the car will be unlocked or the owner will be available to unlock the car upon the driver’s arrival?”</label>
-                    <select name="Keys Available" id="keys_available" required>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                    </select>
-                    <div class="button-row">
-  <button type="button" onclick="prevStep()">Back</button>
-  <button type="button" onclick="if(validateStep(stepIndex)) nextStep();">Next</button>
 </div>
-                </div>
-    
-                <div class="step" id="step4">
-                    <br>
-                    <br>
-                  <h3>fuel type:</h3>
-                  <select name="Gas Type" required>
-                      <option value="Regular 87">Regular 87</option>
-                      <option value="Mid-Grade 89">Mid-Grade 89</option>
-                      <option value="Premium 91">Premium 91 - Coming Soon</option>
-                      <option value="Diesel">Diesel - Coming Soon</option>
-                  </select>
-    
-                    <br> <br> <br>
-                    <h3>Optional: Would you like to become a monthly subscriber?</h3>
-                    <p>  Note: By checking selecting <strong> Yes </strong> you agree to renewal billing and the subscriber terms and conditions. See our <a href="pricing.html">pricing page</a> for more information. </p>
-                    <select name="Become Subscriber" id="keys_available" required>
-                        <option value="No">No</option>
-                        <option value="Yes">Yes </option>
-                    </select>
-                        <br>
-                    <div class="button-row">
-  <button type="button" onclick="prevStep()">Back</button>
-  <button type="submit">Proceed to Checkout</button>
+<div class="step" id="step3">
+<h3>vehicle information</h3>
+<input name="Car Make" placeholder="Car Make" required="" type="text"/>
+<input name="Car Model" placeholder="Car Model" required="" type="text"/>
+<input name="Car Year" placeholder="Car Year" required="" type="text"/>
+<input name="Car Color" placeholder="Car Color" required="" type="text"/>
+<input name="License Plate" placeholder="License Plate Number" required="" type="text"/>
+<input id="address" name="Address" placeholder="Car Address" required="" type="text"/>
+<label for="keys_available">Please confirm the car will be unlocked or the owner will be available to unlock the car upon the driver’s arrival?”</label>
+<select id="keys_available" name="Keys Available" required="">
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+<div class="button-row">
+<button onclick="prevStep()" type="button">Back</button>
+<button onclick="if(validateStep(stepIndex)) nextStep();" type="button">Next</button>
 </div>
-                </div>
-            </form>
-        </div>
-        <script src="validation.js"></script>
-        <script src="scripts.js"></script>
-    </main>
-
-    <!-- Bottom Navigation from TESTHOMEPAGE -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
+</div>
+<div class="step" id="step4">
+<br/>
+<br/>
+<h3>fuel type:</h3>
+<select name="Gas Type" required="">
+<option value="Regular 87">Regular 87</option>
+<option value="Mid-Grade 89">Mid-Grade 89</option>
+<option value="Premium 91">Premium 91 - Coming Soon</option>
+<option value="Diesel">Diesel - Coming Soon</option>
+</select>
+<br/> <br/> <br/>
+<h3>Optional: Would you like to become a monthly subscriber?</h3>
+<p>  Note: By checking selecting <strong> Yes </strong> you agree to renewal billing and the subscriber terms and conditions. See our <a href="pricing.html">pricing page</a> for more information. </p>
+<select id="keys_available" name="Become Subscriber" required="">
+<option value="No">No</option>
+<option value="Yes">Yes </option>
+</select>
+<br/>
+<div class="button-row">
+<button onclick="prevStep()" type="button">Back</button>
+<button type="submit">Proceed to Checkout</button>
+</div>
+</div>
+</form>
+</div>
+<script src="validation.js"></script>
+<script src="scripts.js"></script>
+</main>
+<!-- Bottom Navigation from TESTHOMEPAGE -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
       .bottom-nav {
         position: fixed;
         bottom: 0;
@@ -144,24 +138,29 @@
         padding-bottom: 80px; /* Ensure content is not hidden behind nav */
       }
     </style>
-    <div class="bottom-nav">
-      <a href="home.html" class="nav-link">
-        <i class="fas fa-home"></i>
-        Home
-      </a>
-      <a href="index.html" class="nav-link">
-        <i class="fas fa-gas-pump"></i>
-        Refill
-      </a>
-      <a href="about.html" class="nav-link">
-        <i class="fas fa-info-circle"></i>
-        About
-      </a>
-      <a href="contact.html" class="nav-link">
-        <i class="fas fa-envelope"></i>
-        Contact
-      </a>
-    </div>
+
+<div class="bottom-nav">
+<a class="nav-link" href="TESTHOMEPAGE.HTML">
+<i class="fas fa-home"></i>
+    Home
+  </a>
+<a class="nav-link" href="index.html">
+<i class="fas fa-gas-pump"></i>
+    Refill
+  </a>
+<a class="nav-link" href="pricing.html">
+<i class="fas fa-dollar-sign"></i>
+    Pricing
+  </a>
+<a class="nav-link" href="about.html">
+<i class="fas fa-info-circle"></i>
+    About
+  </a>
+<a class="nav-link" href="contact.html">
+<i class="fas fa-envelope"></i>
+    Contact
+  </a>
+</div>
 
 </body>
 </html>
