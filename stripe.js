@@ -18,10 +18,8 @@ card.on('change', function(event) {
   }
 });
 function handlePaymentIntent() {
-  const name = 'John'; 
-  //document.querySelector('input[name="Name"]').value;
-  const email = 'johnsemail@hotmail.com';
-  //document.querySelector('input[name="Email"]').value;
+  const name = sessionStorage.getItem("userName");
+  const email = sessionStorage.getItem("userEmail");
 
   fetch('https://refill-l59k.onrender.com/create-payment-intent', {
     method: 'POST',
