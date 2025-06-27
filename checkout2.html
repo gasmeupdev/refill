@@ -35,6 +35,9 @@
     
             const payButton = document.getElementById('pay-now');
             payButton.addEventListener('click', function () {
+                //grab the session storage values 
+                const name = sessionStorage.getItem('userName');
+                const email = sessionStorage.getItem('userEmail');
                 fetch('/create-payment-intent', { method: 'POST' })
                     .then(res => res.json())
                     .then(data => {
