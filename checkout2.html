@@ -1,33 +1,31 @@
 <!-- CHECKOUT PAGE (checkout2.html) -->
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Checkout</title>
-    <link rel="stylesheet" type="text/css" href="styles.css" />
-    <link rel="stylesheet" href="nav.css">
-    <script src="nav-loader.js" defer></script>
-    <script src="https://js.stripe.com/v3/"></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout</title>
+<link href="styles.css" rel="stylesheet" type="text/css"/>
+<link href="nav.css" rel="stylesheet"/>
+<script defer="" src="nav-loader.js"></script>
+<script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
-    <main class="page-content">
-        <div class="container">
-            <h2 class="checkout-title">Complete Your Payment</h2>
-    
-            <!-- Stripe Payment Section -->
-            <div id="payment-section">
-                <div id="card-element"></div>
-                <div id="card-errors" role="alert"></div>
-                <button id="pay-now" type="button">Submit $25 Hold</button>
-            </div>
-    
-            <div id="error-message"></div>
-        </div>
-    
-        <!-- Stripe Logic -->
-        <script src="stripe.js"></script>
-        <script>
+<main class="page-content">
+<div class="container">
+<h2 class="checkout-title">Complete Your Payment</h2>
+<!-- Stripe Payment Section -->
+<div id="payment-section">
+<div id="card-element"></div>
+<div id="card-errors" role="alert"></div>
+<button id="pay-now" type="button">Submit $25 Hold</button>
+</div>
+<div id="error-message"></div>
+</div>
+<!-- Stripe Logic -->
+<script src="stripe.js"></script>
+<script>
             const stripe = Stripe('pk_test_51R9BywPMg9X62KxRp69187eQPCaiWUVuLyn04BJPf3nNXkul7aznceDJs5Q20CZpbxoxZ0JAzPm6eIoPdhnHsX6J00kAUJ8RP2');
             const elements = stripe.elements();
             const card = elements.create('card');
@@ -55,6 +53,29 @@
                     });
             });
         </script>
-    </main>
+</main>
+
+<div class="bottom-nav">
+<a class="nav-link" href="TESTHOMEPAGE.HTML">
+<i class="fas fa-home"></i>
+    Home
+  </a>
+<a class="nav-link" href="index.html">
+<i class="fas fa-gas-pump"></i>
+    Refill
+  </a>
+<a class="nav-link" href="pricing.html">
+<i class="fas fa-dollar-sign"></i>
+    Pricing
+  </a>
+<a class="nav-link" href="about.html">
+<i class="fas fa-info-circle"></i>
+    About
+  </a>
+<a class="nav-link" href="contact.html">
+<i class="fas fa-envelope"></i>
+    Contact
+  </a>
+</div>
 </body>
 </html>
