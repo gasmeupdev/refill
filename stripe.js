@@ -20,6 +20,10 @@ card.on('change', function(event) {
 function handlePaymentIntent() {
   const name = sessionStorage.getItem("userName");
   const email = sessionStorage.getItem("userEmail");
+  
+  console.log('email ' + email);
+  console.log('name ' + name);
+
 
   fetch('https://refill-l59k.onrender.com/create-payment-intent', {
     method: 'POST',
