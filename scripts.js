@@ -196,8 +196,15 @@ document.getElementById("multiStepForm").addEventListener("submit", async functi
             console.log("Server response: ", result);
 
             if (result.result === 'success') {
-                alert("Booking successful! 🚀 We will reach out to you soon.");
-                window.location.href = "./checkout2.html";
+                alert("SUCCESS");
+
+
+    if (becomeSubscriber == 'Yes')
+    {                 window.location.href = "./checkoutSubscriberFirst.html";
+}
+
+              else {                window.location.href = "./checkout2.html";
+ }
             } else {
                 const errorMsg = result.error || result.message || "Unknown error occurred.";
                 alert("Error: " + errorMsg);
