@@ -20,6 +20,7 @@ card.on('change', function(event) {
 function handlePaymentIntent() {
   const name = sessionStorage.getItem("userName");
   const email = sessionStorage.getItem("userEmail");
+  const becomeSubscriber = sessionStorage.getItem("becomeSubscriber");
 
   fetch('https://refill-l59k.onrender.com/create-payment-intent', {
     method: 'POST',
@@ -41,9 +42,21 @@ function handlePaymentIntent() {
         alert("Payment failed: " + result.error.message);
       } else if (result.paymentIntent.status === "requires_capture") {
       
-        alert("Payment successfully authorized.")
-                                                             window.location.href = "./confirmationnonsubscriber.html";
 
+        if (becomeSubscriber == 'Yes') {
+           console.log('Subscriber Found')
+                  alert("Payment successfully processed.")
+                                                             window.location.href = "./confirmationsubcriber1sttime.html
+
+
+         
+        }
+          else {
+                    alert("Payment successfully authorized.")
+           console.log('Non - Subscriber Found')
+
+                                                             window.location.href = "./confirmationnonsubscriber.html";
+          }
       }
     });
   });
