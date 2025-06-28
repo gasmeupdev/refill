@@ -46,6 +46,10 @@ function handlePaymentIntent() {
       if (result.error) {
         alert("Payment failed: " + result.error.message);
       } else if (result.paymentIntent.status === "requires_capture") {
+
+        if (subscriber == 'Yes') {
+console.log('SUBSCRIBER FOUND')
+        }
       
         alert("Payment successfully authorized.")
                                                              window.location.href = "./confirmationnonsubscriber.html";
