@@ -41,7 +41,7 @@ function handlePaymentIntent() {
         alert("Payment failed: " + result.error.message);
       } else if (result.paymentIntent.status === "requires_capture") {
       
-        alert("payment successfully authorized")
+        alert("Payment successfully authorized.")
                                                              window.location.href = "./pricing.html";
 
       }
