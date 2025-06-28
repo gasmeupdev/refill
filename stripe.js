@@ -51,11 +51,14 @@ function handlePaymentIntent() {
 console.log('SUBSCRIBER FOUND')
                   alert("Payment successfully processed.")
 
-               window.location.href = "./confirmationsubscriber1sttime.html";
+               window.location.href = "./confirmationsubcriber1sttime.html";
         }
+
+        else {
       
-        // alert("Payment successfully authorized.")
-                                                             // window.location.href = "./confirmationnonsubscriber.html";
+         alert("Payment successfully authorized.")
+                                                            window.location.href = "./confirmationnonsubscriber.html";
+        }
 
       }
     });
