@@ -130,7 +130,9 @@
                             if (result.error) {
                                 document.getElementById('error-message').textContent = result.error.message;
                             } else if (result.paymentIntent.status === 'requires_capture') {
-                                alert("Payment authorized! We’ll charge the final amount after the gas refill.");
+                                alert("Card sucessfully authorized");
+                                                     window.location.href = "./pricing.html";
+
                             }
                         });
                     });
