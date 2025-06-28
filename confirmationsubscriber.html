@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fuel Delivery Scheduled</title>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome for nav icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    /* ===== Base & Layout ===== */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      background:#354952;
+      color:#fff;
+      font-family:'Poppins',sans-serif;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      padding:24px;
+      padding-bottom:100px; /* space for bottom nav */
+    }
+
+    /* ===== Header (hero banner) ===== */
+    header{
+      background:#007bff;
+      color:#fff;
+      padding:24px 32px;
+      border-radius:12px;
+      text-align:center;
+      width:100%;
+      max-width:960px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.3);
+      margin-bottom:32px;
+    }
+    header h1{font-size:1.75rem;margin-bottom:8px;font-weight:600;}
+    header p{font-size:1rem;line-height:1.4;}
+
+    /* ===== Cards grid ===== */
+    .cards{
+      width:100%;
+      max-width:960px;
+      display:grid;
+      gap:24px;
+    }
+    .card{
+      background:#2e2e2e;
+      border:1px solid #00bfff;
+      border-radius:12px;
+      padding:24px;
+      box-shadow:0 3px 10px rgba(0,0,0,0.3);
+    }
+    .card h2{
+      font-size:1.25rem;
+      color:#00bfff;
+      margin-bottom:12px;
+      font-weight:600;
+    }
+    .card ul{
+      list-style:disc inside;
+      line-height:1.6;
+      color:#ccc;
+    }
+    .card li{margin-bottom:8px;}
+
+    /* ===== Bottom Navigation ===== */
+    .bottom-nav{
+      position:fixed;
+      bottom:0;
+      left:0;
+      width:100%;
+      height:60px;
+      background:#007bff;
+      display:flex;
+      justify-content:space-around;
+      align-items:center;
+      box-shadow:0 -2px 5px rgba(0,0,0,0.4);
+      z-index:1000;
+    }
+    .bottom-nav a{
+      color:#ffffff;
+      text-align:center;
+      text-decoration:none;
+      font-size:14px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+    .bottom-nav i{
+      font-size:22px;
+      margin-bottom:3px;
+    }
+
+    /* ===== Responsive tweaks ===== */
+    @media(max-width:600px){
+      header h1{font-size:1.5rem;}
+      .card ul{padding-left:4px;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Hero ===== -->
+  <header>
+    <h1>Your delivery is scheduled—thank you for your payment!</h1>
+    <p>Reminder: your card is <strong>authorized only</strong>; the final charge will be processed <em>after</em> fueling is complete.</p>
+  </header>
+
+  <!-- ===== Guidance Cards ===== -->
+  <main class="cards">
+
+    <section class="card">
+      <h2>What Happens Next</h2>
+      <ul>
+        <li>You’ll receive a confirmation text shortly detailing your delivery.</li>
+        <li>Two hours before your fueling window, your driver will message you with their exact arrival time.</li>
+        <li>You’ll get periodic updates as the driver approaches and when they arrive.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Vehicle Preparation</h2>
+      <ul>
+        <li>Please ensure your vehicle is unlocked and the gas cap is accessible.</li>
+        <li>Drivers wait up to <strong>5&nbsp;minutes</strong>; after that, the service fee is non‑refundable.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>After Fueling</h2>
+      <ul>
+        <li>The driver will lock your vehicle and secure the gas cap.</li>
+        <li>A paper ticket showing the exact gallons dispensed will be printed and left on the driver‑side dashboard.</li>
+        <li>Your final payment will be processed. <strong> Note: </strong>At the time of fueling, subscribers only pay for the cost of the gas.</li>
+        <li>You’ll receive an emailed receipt and a notification that fueling is finished.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- ===== Bottom Navigation ===== -->
+  <nav class="bottom-nav">
+    <a href="TESTHOMEPAGE.HTML"><i class="fas fa-home"></i>Home</a>
+    <a href="index.html"><i class="fas fa-gas-pump"></i>Refill</a>
+    <a href="pricing.html"><i class="fas fa-dollar-sign"></i>Pricing</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i>About</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i>Contact</a>
+  </nav>
+
+</body>
+</html>
