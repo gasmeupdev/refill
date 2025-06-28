@@ -1,131 +1,60 @@
+<!-- CHECKOUT PAGE (checkout2.html) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Checkout</title>
-  <link rel="stylesheet" href="styles_buttons_updated.css"/>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <style>
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 60px;
-      background-color: #007bff;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
-      z-index: 1000;
-    }
-    .bottom-nav a {
-      color: #ffffff;
-      text-align: center;
-      text-decoration: none;
-      font-size: 14px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .bottom-nav i {
-      font-size: 22px;
-      margin-bottom: 3px;
-    }
-    body {
-      background: #354952;
-      color: white;
-      font-family: 'Poppins', sans-serif;
-      padding-bottom: 100px;
-      margin: 0;
-    }
-    .container {
-      max-width: 400px;
-      margin: 100px auto;
-      background: #2e2e2e;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.3);
-    }
-    h2 {
-      text-align: center;
-      color: #00bfff;
-      margin-bottom: 20px;
-    }
-    p {
-      font-size: 0.95em;
-      color: #ccc;
-      text-align: center;
-    }
-    button {
-      background-color: #00bfff;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      padding: 10px 15px;
-      font-size: 16px;
-      width: 100%;
-      margin-top: 20px;
-      cursor: pointer;
-    }
-    #card-element {
-      background-color: white;
-      padding: 10px;
-      border-radius: 6px;
-      margin-top: 10px;
-    }
-    .stripe-disclaimer {
-      font-size: 0.85em;
-      color: #999;
-      text-align: center;
-      margin-top: 15px;
-    }
-  </style>
-  <script src="https://js.stripe.com/v3/"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" href="nav.css">
+    <script src="nav-loader.js" defer></script>
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
-  <div class="container">
-    <h2>Complete Your Payment</h2>
-    <p>We use Stripe, a globally trusted and secure third-party payment processor, to handle all transactions.</p>
-    <label for="card-element">Credit or Debit Card</label>
-    <div id="card-element"></div>
-    <div id="card-errors" role="alert"></div>
-    <button id="pay-now" type="button">Submit $25 Hold</button>
-    <div class="stripe-disclaimer">
-      Your card will not be charged now. A temporary hold will be placed and captured only after your gas refill is completed.
-    </div>
-  </div>
-
-  <div class="bottom-nav">
-    <a class="nav-link" href="TESTHOMEPAGE.html"><i class="fas fa-home"></i>Home</a>
-    <a class="nav-link" href="index.html"><i class="fas fa-gas-pump"></i>Refill</a>
-    <a class="nav-link" href="pricing.html"><i class="fas fa-dollar-sign"></i>Pricing</a>
-    <a class="nav-link" href="about.html"><i class="fas fa-info-circle"></i>About</a>
-    <a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i>Contact</a>
-  </div>
-
-  <script>
-    const stripe = Stripe('pk_test_51R9BywPMg9X62KxRp69187eQPCaiWUVuLyn04BJPf3nNXkul7aznceDJs5Q20CZpbxoxZ0JAzPm6eIoPdhnHsX6J00kAUJ8RP2');
-    const elements = stripe.elements();
-    const card = elements.create('card');
-    card.mount('#card-element');
-
-    document.getElementById('pay-now').addEventListener('click', () => {
-      fetch('/create-payment-intent', { method: 'POST' })
-        .then(res => res.json())
-        .then(data => {
-          stripe.confirmCardPayment(data.clientSecret, {
-            payment_method: { card: card },
-          }).then(result => {
-            if (result.error) {
-              document.getElementById('card-errors').textContent = result.error.message;
-            } else if (result.paymentIntent.status === 'requires_capture') {
-              alert("Payment authorized. We’ll charge the final amount after the gas refill.");
-            }
-          });
-        });
-    });
-  </script>
+    <main class="page-content">
+        <div class="container">
+            <h2 class="checkout-title">Complete Your Payment</h2>
+    
+            <!-- Stripe Payment Section -->
+            <div id="payment-section">
+                <div id="card-element"></div>
+                <div id="card-errors" role="alert"></div>
+                <button id="pay-now" type="button">Submit $25 Hold</button>
+            </div>
+    
+            <div id="error-message"></div>
+        </div>
+    
+        <!-- Stripe Logic -->
+        <script src="stripe.js"></script>
+        <script>
+            const stripe = Stripe('pk_test_51R9BywPMg9X62KxRp69187eQPCaiWUVuLyn04BJPf3nNXkul7aznceDJs5Q20CZpbxoxZ0JAzPm6eIoPdhnHsX6J00kAUJ8RP2');
+            const elements = stripe.elements();
+            const card = elements.create('card');
+            card.mount('#card-element');
+    
+            const payButton = document.getElementById('pay-now');
+            payButton.addEventListener('click', function () {
+                //grab the session storage values 
+                const name = sessionStorage.getItem('userName');
+                const email = sessionStorage.getItem('userEmail');
+                fetch('/create-payment-intent', { method: 'POST' })
+                    .then(res => res.json())
+                    .then(data => {
+                        stripe.confirmCardPayment(data.clientSecret, {
+                            payment_method: {
+                                card: card,
+                            },
+                        }).then(result => {
+                            if (result.error) {
+                                document.getElementById('error-message').textContent = result.error.message;
+                            } else if (result.paymentIntent.status === 'requires_capture') {
+                                alert("Payment authorized! We’ll charge the final amount after the gas refill.");
+                            }
+                        });
+                    });
+            });
+        </script>
+    </main>
 </body>
 </html>
