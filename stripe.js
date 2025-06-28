@@ -40,7 +40,7 @@ function handlePaymentIntent() {
       if (result.error) {
         alert("Payment failed: " + result.error.message);
       } else if (result.paymentIntent.status === "requires_capture") {
-        alert("Card authorized! We'll charge the final amount after the gas refill.");
+        alert("payment successfully authorized")
       }
     });
   });
