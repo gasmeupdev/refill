@@ -174,6 +174,9 @@ document.getElementById("multiStepForm").addEventListener("submit", async functi
     //  Store name and email in sessionStorage
     const name = formData.get("Name");
     const email = formData.get("Email");
+    const becomeSubscriber = formData.get("Become Subscriber");
+  console.log('Become Subscriber? ' + becomeSubscriber);
+
     sessionStorage.setItem("userName", name);
     sessionStorage.setItem("userEmail", email);
 
