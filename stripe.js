@@ -42,7 +42,7 @@ function handlePaymentIntent() {
       } else if (result.paymentIntent.status === "requires_capture") {
       
         alert("Payment successfully authorized.")
-                                                             window.location.href = "./confirmationnonsubcriber.html";
+                                                             window.location.href = "./confirmationnonsubscriber.html";
 
       }
     });
