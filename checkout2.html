@@ -94,11 +94,15 @@
 <main class="page-content">
 <div class="container">
 <h2 class="checkout-title">Complete Your Payment</h2>
+   <p>We use Stripe, a globally trusted and secure third-party payment processor, to handle all transactions.</p>
 <!-- Stripe Payment Section -->
 <div id="payment-section">
 <div id="card-element"></div>
 <div id="card-errors" role="alert"></div>
 <button id="pay-now" type="button">Submit $25 Hold</button>
+   <div class="stripe-disclaimer">
+      Your card will not be charged now. A temporary hold will be placed and captured only after your gas refill is completed.
+    </div>
 </div>
 <div id="error-message"></div>
 </div>
