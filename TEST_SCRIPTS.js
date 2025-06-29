@@ -1,4 +1,4 @@
-const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyF5mwzQBp_Kq6ZfknzWyL6ptJnWVA_F1TpXTOt_NQuqZrDVCQxov-5eSs4g40pMxUU/exec";
+const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzLuKLi5OlROu5fkqmrNCbxArsGYQ3kBbAAaKz9lflvU3qg1HY5Hcob46YrMVeB6C6b/exec";
 
 // ✅ Multi-Step Navigation
 let stepIndex = 0;
