@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reschedule Lookup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="nav.css">
+    <script src="nav-loader.js" defer></script>
+    <style>
+        .lookup-container {
+            max-width: 500px;
+            margin: 60px auto;
+            padding: 30px;
+            background: #333;
+            color: #D3D3D3;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #00ccff;
+            margin-bottom: 20px;
+        }
+
+        .match-card {
+            background: #2a2a2a;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            border: 1px solid #4a6333;
+        }
+
+        .match-card p {
+            margin: 5px 0;
+        }
+
+        .reschedule-form {
+            margin-top: 20px;
+            padding: 20px;
+            background: #1e1e1e;
+            border-radius: 10px;
+            border: 1px solid #4a6333;
+            animation: slideFadeIn 0.4s ease forwards;
+        }
+
+        @keyframes slideFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="page-content">
+        <div class="lookup-container">
+            <h2>Reschedule Your Booking</h2>
+            <form id="rescheduleForm">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="Email" placeholder="Enter your email" required><br>
+    
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="Phone" placeholder="Enter your phone number" required><br>
+    
+                <button type="submit">Look Me Up</button>
+            </form>
+    
+            <div id="results"></div>
+        </div>
+    
+        <script>
+            document.getElementById("rescheduleForm").addEventListener("submit", async function(event) {
+                event.preventDefault();
+    
+                const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyLNoIEAHr0RRqCkVAe4WxLIf9KA8UWyHHoV_-5pslmn9JZUtNvTXq5S5ISya82f1j5uw/exec";
+                const formData = new FormData(this);
+                const resultsContainer = document.getElementById("results");
+                resultsContainer.innerHTML = '';
+    
+                try {
+                    const response = await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
+                        method: "POST",
+                        body: formData
+                    });
+    
+                    const data = await response.json();
+    
+                    if (data.success) {
+                        data.matches.forEach((match, index) => {
+                            const card = document.createElement('div');
+                            card.className = 'match-card';
+                            card.innerHTML = `
+                                <p><strong>Name:</strong> ${match.name}</p>
+                                <p><strong>Address:</strong> ${match.address}</p>
+                                <p><strong>Date:</strong> ${match.date}</p>
+                                <p><strong>Time:</strong> ${match.time}</p>
+                                <p><strong>Car Make:</strong> ${match.carMake}</p>
+                                <p><strong>Car Model:</strong> ${match.carModel}</p>
+                                <p><strong>Car Year:</strong> ${match.carYear}</p>
+                                <p><strong>License Plate:</strong> ${match.licensePlate}</p>
+                                <p><strong>Gas Type:</strong> ${match.gasType}</p>
+                                <p><strong>Fuel Needed:</strong> ${match.fuelNeeded}</p>
+                                <p><strong>Tire Refill:</strong> ${match.tireRefill}</p>
+                                <button onclick="reschedule('${match.bookingId}', this)">Reschedule</button>
+                            `;
+                            resultsContainer.appendChild(card);
+                        });
+                    } else {
+                        resultsContainer.innerHTML = '<p>No matching bookings found.</p>';
+                    }
+                } catch (error) {
+                    console.error("Lookup failed:", error);
+                    alert("Error: " + error.message);
+                }
+            });
+    
+            function reschedule(bookingId, btn) {
+                // Hide all other match cards
+                const allCards = document.querySelectorAll('.match-card');
+                allCards.forEach(card => {
+                    if (!card.contains(btn)) card.style.display = 'none';
+                });
+    
+                const rescheduleForm = document.createElement('div');
+                rescheduleForm.className = 'reschedule-form';
+                rescheduleForm.innerHTML = `
+                    <h4>Pick New Details</h4>
+                    <form onsubmit="submitReschedule(event, '${bookingId}')">
+                        <label for="newDate">New Date:</label>
+                        <input type="date" name="Date" required><br>
+    
+                        <label for="newTime">New Time:</label>
+                        <input type="text" name="Time" placeholder="e.g., 08:00 AM - 09:00 AM" required><br>
+
+                           <label for="newAddress">New Address:</label>
+                        <input type="text" name="address" placeholder="1817 Sarah Street" required><br>
+    
+                        <label for="tireRefill">Tire Refill?</label>
+                        <select name="Tire Refill">
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select><br>
+    
+                        <button type="submit">Submit Reschedule</button>
+                    </form>
+                `;
+    
+                btn.parentElement.appendChild(rescheduleForm);
+    
+                // Scroll to form
+                setTimeout(() => {
+                    rescheduleForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 150);
+            }
+    
+            async function submitReschedule(event, bookingId) {
+                event.preventDefault();
+                const form = event.target;
+                const formData = new FormData(form);
+                formData.append("bookingId", bookingId);
+    
+                const GOOGLE_RESCHEDULE_URL = "https://script.google.com/macros/s/AKfycbzRdxTDV7EwYoLAqecqds27906cG4QKiJQfNkVwhKvMw5oxbsSShxGEmEhNqFchykb1Yw/exec";
+    
+                try {
+                    const response = await fetch(GOOGLE_RESCHEDULE_URL, {
+                        method: "POST",
+                        body: formData
+                    });
+    
+                    const result = await response.json();
+                    if (result.result === 'success') {
+                        alert("Refueling Scheduled");
+                        form.parentElement.innerHTML = "<p>Reschedule request received!</p>";
+                        window.location.href = "./confirmationsubcriber.html";
+                    } else {
+                        alert("Error: " + (result.message || result.error || "Unknown"));
+                    }
+                } catch (error) {
+                    alert("Failed to submit reschedule: " + error.message);
+                    console.error(error);
+                }
+            }
+        </script>
+    </main>
+</body>
+</html>
