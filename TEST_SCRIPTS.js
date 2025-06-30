@@ -184,7 +184,7 @@ document.getElementById("multiStepForm").addEventListener("submit", async functi
     try {
  if (becomeSubscriber == 'Yes') {
 
-   const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwE-SSN-HKgchXl1-7aXBuuu5b2kdCKRaFhkojeCqFLCbZTvUYUB9XZxRNPFgUhMXJn/exec"
+   const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxZlUDPWnI0AWG3DRHg2v41e7dkhYsejxhJL0yLz9eA1AYCCP0Pi_xCRHVNhUGPKA/exec"
  }
 
       else {const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbx1AGoCM2ssoBsYVAmv52ENvajwaCJ38ycVwTf3w5TqpFgbeRmE9sFVCDCoj8D9i01M/exec";
