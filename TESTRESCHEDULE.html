@@ -164,6 +164,8 @@
     
                 const GOOGLE_SHEET_WEBHOOK_URL2 = "https://script.google.com/macros/s/AKfycbzuyPkZmg78HqOhyvMMpV2y78vMStOvA3zKgW19vkgKEbe6r31DL9xtC4ncafF1NZewgg/exec"
                 try {
+
+                    console.log('form data ' +  formData)
                    var response = await fetch(GOOGLE_SHEET_WEBHOOK_URL2, {
             method: "POST",
             body: formData,
