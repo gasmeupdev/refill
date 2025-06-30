@@ -184,16 +184,16 @@ document.getElementById("multiStepForm").addEventListener("submit", async functi
     try {
  if (becomeSubscriber == 'Yes') {
 
-   const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzuJvGkUZJ-KBy7cKm9Dbz57rZHispgy1DltRCGZmNueJHvuWA64TXpYJG8dbFvjp4V/exec"
+   const GOOGLE_SHEET_WEBHOOK_URL2 = "https://script.google.com/macros/s/AKfycbzuJvGkUZJ-KBy7cKm9Dbz57rZHispgy1DltRCGZmNueJHvuWA64TXpYJG8dbFvjp4V/exec"
  }
 
-      else {const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbx9S-vZIIC9xIHNdnBLMnjBUT0sC6tnC3cbXJfo0ZBCuaJk045cgfZUadcVaRapb0oW/exec";
+      else {const GOOGLE_SHEET_WEBHOOK_URL2 = "https://script.google.com/macros/s/AKfycbx9S-vZIIC9xIHNdnBLMnjBUT0sC6tnC3cbXJfo0ZBCuaJk045cgfZUadcVaRapb0oW/exec";
  }
 
-      console.log('WEB HOOK USED ' +  GOOGLE_SHEET_WEBHOOK_URL)
+      console.log('WEB HOOK USED ' +  GOOGLE_SHEET_WEBHOOK_URL2)
       
       
-        const response = await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
+        const response = await fetch(GOOGLE_SHEET_WEBHOOK_URL2, {
             method: "POST",
             body: formData,
             redirect: "follow"  // Allows handling of redirects
