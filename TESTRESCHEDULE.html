@@ -92,8 +92,8 @@
                     const data = await response.json();
     
                     if (data.success) {
-                        data.matches.forEach((match, index) => {
-                            const card = document.createElement('div');
+data.matches.slice(0, 3).forEach((match, index) => {
+    const card = document.createElement('div');
                             card.className = 'match-card';
                             card.innerHTML = `
                               <p data-key="name"><strong>Name:</strong> ${match.name}</p>
