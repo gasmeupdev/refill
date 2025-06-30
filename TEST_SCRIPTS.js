@@ -184,7 +184,7 @@ document.getElementById("multiStepForm").addEventListener("submit", async functi
 
     try {
  if (becomeSubscriber == 'Yes') {
-     const response = await fetch(GOOGLE_SHEET_WEBHOOK_URL2, {
+     var response = await fetch(GOOGLE_SHEET_WEBHOOK_URL2, {
             method: "POST",
             body: formData,
             redirect: "follow"  // Allows handling of redirects
@@ -195,7 +195,7 @@ document.getElementById("multiStepForm").addEventListener("submit", async functi
 
       else {
 
-          const response = await fetch(GOOGLE_SHEET_WEBHOOK_URL1, {
+          var response = await fetch(GOOGLE_SHEET_WEBHOOK_URL1, {
             method: "POST",
             body: formData,
             redirect: "follow"  // Allows handling of redirects
