@@ -184,10 +184,10 @@ document.getElementById("multiStepForm").addEventListener("submit", async functi
     try {
  if (becomeSubscriber == 'Yes') {
 
-   const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxZlUDPWnI0AWG3DRHg2v41e7dkhYsejxhJL0yLz9eA1AYCCP0Pi_xCRHVNhUGPKA/exec"
+   const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzuJvGkUZJ-KBy7cKm9Dbz57rZHispgy1DltRCGZmNueJHvuWA64TXpYJG8dbFvjp4V/exec"
  }
 
-      else {const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbx1AGoCM2ssoBsYVAmv52ENvajwaCJ38ycVwTf3w5TqpFgbeRmE9sFVCDCoj8D9i01M/exec";
+      else {const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbx9S-vZIIC9xIHNdnBLMnjBUT0sC6tnC3cbXJfo0ZBCuaJk045cgfZUadcVaRapb0oW/exec";
  }
       
       
