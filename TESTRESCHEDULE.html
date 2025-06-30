@@ -78,13 +78,13 @@
             document.getElementById("rescheduleForm").addEventListener("submit", async function(event) {
                 event.preventDefault();
     
-                const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyLNoIEAHr0RRqCkVAe4WxLIf9KA8UWyHHoV_-5pslmn9JZUtNvTXq5S5ISya82f1j5uw/exec";
+                const GOOGLE_SHEET_SUBSCRIBER_URL = "https://script.google.com/macros/s/AKfycbzj3pPG59hVODfoCRWEUXC8ilu4R8Fpv0_z7taqLqpzrMZrBlJpzQxT_aFpZaZb970tag/exec";
                 const formData = new FormData(this);
                 const resultsContainer = document.getElementById("results");
                 resultsContainer.innerHTML = '';
     
                 try {
-                    const response = await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
+                    const response = await fetch(GOOGLE_SHEET_SUBSCRIBER_URL, {
                         method: "POST",
                         body: formData
                     });
