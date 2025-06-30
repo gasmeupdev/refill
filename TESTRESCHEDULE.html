@@ -87,13 +87,7 @@
                 <button type="submit">Look Me Up</button>
             </form>
     
-            
-<div class="info-box">
-  To add, update, or remove a vehicle, please email 
-  <a href="mailto:gasmeupservices@gmail.com">gasmeupservices@gmail.com</a>
-</div>
-
-<div id="results"></div>
+            <div id="results"></div>
         </div>
     
         <script>
@@ -127,8 +121,24 @@ data.matches.slice(0, 3).forEach((match, index) => {
     <button onclick="reschedule('${match.bookingId}', this)">Reschedule</button>
                             `;
                             resultsContainer.appendChild(card);
+// Add vehicle update notice
+const updateNotice = document.createElement('div');
+updateNotice.className = 'info-box';
+updateNotice.innerHTML = `
+  To add, update, or remove a vehicle, please email 
+  <a href="mailto:gasmeupservices@gmail.com">gasmeupservices@gmail.com</a>
+`;
+resultsContainer.appendChild(updateNotice);
                         });
-                        
+                        // Add vehicle update notice
+                        const updateNotice = document.createElement('div');
+                        updateNotice.className = 'info-box';
+                        updateNotice.innerHTML = `
+                          To add, update, or remove a vehicle, please email 
+                          <a href="mailto:gasmeupservices@gmail.com">gasmeupservices@gmail.com</a>
+                        `;
+                        resultsContainer.appendChild(updateNotice);
+
                     } else {
                         resultsContainer.innerHTML = '<p>No matching bookings found.</p>';
                     }
