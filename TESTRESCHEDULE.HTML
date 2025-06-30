@@ -165,13 +165,13 @@
                 const formData = new FormData(form);
                 formData.append("bookingId", bookingId);
     
-                const GOOGLE_RESCHEDULE_URL = "https://script.google.com/macros/s/AKfycbzRdxTDV7EwYoLAqecqds27906cG4QKiJQfNkVwhKvMw5oxbsSShxGEmEhNqFchykb1Yw/exec";
-    
+                const GOOGLE_SHEET_WEBHOOK_URL2 = "https://script.google.com/macros/s/AKfycbzuyPkZmg78HqOhyvMMpV2y78vMStOvA3zKgW19vkgKEbe6r31DL9xtC4ncafF1NZewgg/exec"
                 try {
-                    const response = await fetch(GOOGLE_RESCHEDULE_URL, {
-                        method: "POST",
-                        body: formData
-                    });
+                   var response = await fetch(GOOGLE_SHEET_WEBHOOK_URL2, {
+            method: "POST",
+            body: formData,
+            redirect: "follow"  // Allows handling of redirects
+        });
     
                     const result = await response.json();
                     if (result.result === 'success') {
