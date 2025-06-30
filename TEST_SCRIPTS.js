@@ -1,4 +1,4 @@
-const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbx1AGoCM2ssoBsYVAmv52ENvajwaCJ38ycVwTf3w5TqpFgbeRmE9sFVCDCoj8D9i01M/exec";
+//const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbx1AGoCM2ssoBsYVAmv52ENvajwaCJ38ycVwTf3w5TqpFgbeRmE9sFVCDCoj8D9i01M/exec";
 
 // ✅ Multi-Step Navigation
 let stepIndex = 0;
@@ -189,6 +189,8 @@ document.getElementById("multiStepForm").addEventListener("submit", async functi
 
       else {const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbx9S-vZIIC9xIHNdnBLMnjBUT0sC6tnC3cbXJfo0ZBCuaJk045cgfZUadcVaRapb0oW/exec";
  }
+
+      console.log('WEB HOOK USED ' +  GOOGLE_SHEET_WEBHOOK_URL)
       
       
         const response = await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
