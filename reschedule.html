@@ -269,7 +269,7 @@ data.matches.slice(0, 3).forEach((match, index) => {
             if (result.result === 'success') {
                 alert("Refueling Scheduled");
                 form.parentElement.innerHTML = "<p>Reschedule request received!</p>";
-                window.location.href = "./confirmationsubcriber.html";
+                window.location.href = "./confirmationsubscriber.html";
             } else {
                 alert("Error: " + (result.message || result.error || "Unknown"));
             }
