@@ -1,5 +1,6 @@
-const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzaYD4NbH0OzrIRxvfxwgjyU1e5rNZULTLs0n_7vd-z0YcwlbqE8a0HozlaEvlsqo1zBA/exec";
-
+//const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbx1AGoCM2ssoBsYVAmv52ENvajwaCJ38ycVwTf3w5TqpFgbeRmE9sFVCDCoj8D9i01M/exec";
+const GOOGLE_SHEET_WEBHOOK_URL1 = "https://script.google.com/macros/s/AKfycbx9S-vZIIC9xIHNdnBLMnjBUT0sC6tnC3cbXJfo0ZBCuaJk045cgfZUadcVaRapb0oW/exec";
+   const GOOGLE_SHEET_WEBHOOK_URL2 = "https://script.google.com/macros/s/AKfycbzuJvGkUZJ-KBy7cKm9Dbz57rZHispgy1DltRCGZmNueJHvuWA64TXpYJG8dbFvjp4V/exec"
 // ✅ Multi-Step Navigation
 let stepIndex = 0;
 const steps = document.querySelectorAll(".step");
@@ -182,11 +183,33 @@ document.getElementById("multiStepForm").addEventListener("submit", async functi
     sessionStorage.setItem("becomeSubscriber", becomeSubscriber);
 
     try {
-        const response = await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
+ if (becomeSubscriber == 'Yes') {
+     var response = await fetch(GOOGLE_SHEET_WEBHOOK_URL2, {
             method: "POST",
             body: formData,
             redirect: "follow"  // Allows handling of redirects
         });
+
+  
+ }
+
+      else {
+
+          var response = await fetch(GOOGLE_SHEET_WEBHOOK_URL1, {
+            method: "POST",
+            body: formData,
+            redirect: "follow"  // Allows handling of redirects
+        });
+ }
+
+     
+      
+      
+        // const response = await fetch(GOOGLE_SHEET_WEBHOOK_URL2, {
+        //     method: "POST",
+        //     body: formData,
+        //     redirect: "follow"  // Allows handling of redirects
+        // });
 
         console.log("Response Status: " + response.status);  // Log status
         console.log("Response URL: " + response.url);  // Log final URL
