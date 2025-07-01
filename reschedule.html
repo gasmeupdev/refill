@@ -98,14 +98,21 @@
                 const formData = new FormData(this);
                 const resultsContainer = document.getElementById("results");
                 resultsContainer.innerHTML = '';
+
+                 const url  = "https://script.google.com/macros/s/AKfycbxSnXhSDvbVRl_G_jFBuVK1l2tYMRakcJs9NageDOi8CzsIlYbluQm87s9aK31kdEkb/exec";
+
+  // grab the two inputs
+  const email = document.getElementById("email").value.trim();
+  const phone = document.getElementById("phone").value.trim();
     
                 try {
-                    const response = await fetch(GOOGLE_SHEET_SUBSCRIBER_URL, {
-                        method: "POST",
-                        body: formData
-                    });
-    
-                    const data = await response.json();
+                     const res  = await fetch(url, {
+      method : "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body   : body.toString()
+    });
+
+    const data = await res.json();
     
                     if (data.success) {
 data.matches.slice(0, 3).forEach((match, index) => {
