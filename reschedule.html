@@ -104,7 +104,8 @@
   // grab the two inputs
   const email = document.getElementById("email").value.trim();
   const phone = document.getElementById("phone").value.trim();
-    
+      const body = new URLSearchParams({ Email: email, Phone: phone });
+
                 try {
                      const res  = await fetch(url, {
       method : "POST",
