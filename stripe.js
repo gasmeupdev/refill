@@ -2,8 +2,8 @@
 
 // Replace with your real publishable key
 // Test KEY
-const stripe = Stripe('pk_test_51R9BywPMg9X62KxRp69187eQPCaiWUVuLyn04BJPf3nNXkul7aznceDJs5Q20CZpbxoxZ0JAzPm6eIoPdhnHsX6J00kAUJ8RP2');
-//live key const stripe = Stripe('pk_live_51R9ByqAYPE5r9t2NSXQPY5gL6M5s6VeGyOgqtLtQz8r038OWygnun1XVAw1o3VEWj14Dw07FI9b7KY2wj4LUgm9z00WeEFHQtU');
+//const stripe = Stripe('pk_test_51R9BywPMg9X62KxRp69187eQPCaiWUVuLyn04BJPf3nNXkul7aznceDJs5Q20CZpbxoxZ0JAzPm6eIoPdhnHsX6J00kAUJ8RP2');
+const stripe = Stripe('pk_live_51R9ByqAYPE5r9t2NSXQPY5gL6M5s6VeGyOgqtLtQz8r038OWygnun1XVAw1o3VEWj14Dw07FI9b7KY2wj4LUgm9z00WeEFHQtU');
 const elements = stripe.elements();
 const card = elements.create('card');
 card.mount('#card-element');
