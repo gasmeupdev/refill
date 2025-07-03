@@ -1,4 +1,4 @@
-fetch('nav.html')
+fetch('navHome.html')
   .then(res => res.text())
   .then(html => {
     const navContainer = document.createElement('div');
