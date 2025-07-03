@@ -138,7 +138,7 @@ input:focus, select:focus {
 }
 /* CTA Button on Homepage */
 .cta-button {
-    background: #0099ff;
+    background: #38b6ff;
     color: white;
     border: none;
     padding: 15px 25px;
@@ -154,7 +154,7 @@ margin-right: 10px;
 }
 
 .cta-button:hover {
-    background: #5f8035;
+    background: #38b6ff;
 }
 
 .intro-text {
@@ -266,7 +266,7 @@ margin-right: 10px;
 #card-element {
     padding: 12px;
     background: #2f2f2f;
-    border: 2px solid #4a6333; /* Army green for consistency */
+    border: 2px solid #38b6ff; /* Army green for consistency */
     border-radius: 8px;
     margin-bottom: 2px;
 }
@@ -278,7 +278,7 @@ margin-right: 10px;
 }
 
 #pay-now {
-    background: #00ccff;
+    background: #38b6ff;
     color: white;
     border: none;
     padding: 12px;
@@ -291,7 +291,7 @@ margin-right: 10px;
 }
 
 #pay-now:hover {
-    background: #5f8035;
+    background: #38b6ff;
 }
 
 #error-message {
