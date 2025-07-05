@@ -3,147 +3,115 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Transparent pricing for on‑demand mobile fueling in Pittsburgh." />
   <title>Gas Me Up – Pricing</title>
 
-  <!-- Typography -->
-  <link href="https://fonts.googleapis.com" rel="preconnect"/>
-  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
-  <link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@200..800&family=Maiden+Orange&display=swap" rel="stylesheet"/>
-
-  <!-- Main Styles -->
-  <link href="styles.css" rel="stylesheet" type="text/css" />
-  <link href="nav.css" rel="stylesheet" />
-  <script defer src="nav-loader.js"></script>
-
-  <!-- Font Awesome for icons -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* Quick card + layout styles to mirror subscriber‑terms page */
+    :root {
+      --primary: #0077ff; /* Button/brand blue */
+      --bg-light: #f8fafc;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      --text-dark: #1e293b;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
-      font-family: "BioRhyme", serif;
       margin: 0;
-      padding-bottom: 80px; /* space for bottom nav */
-      background-color: #f7f9fc;
-      color: #111;
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-dark);
+      background: var(--bg-light);
+      line-height: 1.6;
     }
 
-    h1 {
-      text-align: center;
-      margin: 1.5rem 0 2rem;
-      font-size: 2.5rem;
-    }
-
-    .home-container {
-      max-width: 960px;
+    main {
+      max-width: 900px;
       margin: 0 auto;
-      padding: 0 1rem 4rem;
+      padding: 2rem 1rem 4rem;
     }
 
-    .info-cards {
+    h1, h2 { font-weight: 600; margin: 0 0 1rem; }
+
+    .cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
+      gap: 1.25rem;
+    }
+
+    @media (min-width: 640px) {
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     .card {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      padding: 1.75rem 1.5rem;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, .03);
     }
 
-    .card h2 {
-      margin-top: 0;
-      font-size: 1.35rem;
-    }
+    .card h2 { font-size: 1.125rem; margin-bottom: 0.75rem; }
 
-    .card p {
-      margin: 0.75rem 0 0;
-      line-height: 1.45;
-    }
+    .card ul { padding-left: 1.25rem; margin: 0; }
 
-    /* Bottom nav matches rest of site */
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 60px;
-      background-color: #38b6ff;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
-      z-index: 1000;
-    }
-
-    .bottom-nav a {
-      color: #ffffff;
-      text-align: center;
+    .card a {
+      color: var(--primary);
       text-decoration: none;
-      font-size: 14px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
+    .card a:hover { text-decoration: underline; }
 
-    .bottom-nav i {
-      font-size: 22px;
-      margin-bottom: 3px;
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.875rem;
+      color: #64748b;
     }
   </style>
 </head>
 <body>
-  <div class="home-container">
+  <main>
     <h1>Pricing</h1>
 
-    <div class="info-cards">
-      <!-- Non‑subscriber pricing -->
-      <div class="card animated">
-        <h2>Non‑Subscriber Checkout</h2>
-        <p>A <strong>$25 temporary</strong> hold is placed on your card at checkout to verify funds. After fueling, you’ll be charged a <strong>$15 service fee</strong> plus the <strong>cost of gasoline.</strong></p>
+    <div class="cards-grid">
+      <!-- Fuel Price Card -->
+      <div class="card">
+        <h2>Fuel Price</h2>
+        <p>Your per‑gallon rate floats with the <strong>Pennsylvania state average</strong> pulled daily from <a href="https://gasprices.aaa.com" target="_blank" rel="noopener">AAA Gas Prices</a>. No hidden mark‑ups—ever.</p>
       </div>
 
-      <!-- Subscriber plan -->
-      <div class="card animated">
-        <h2>Subscribers</h2>
-        <p>Subscribers pay a <strong>$25 recurring monthly fee</strong> and enjoy fuel delivery with <strong>no service fee.</strong> You’re only charged for the <strong>actual cost of the gasoline</strong> at each fill‑up.</p>
+      <!-- Service Fee Card -->
+      <div class="card">
+        <h2>Service Fee</h2>
+        <ul>
+          <li><strong>On‑Demand (one‑time):</strong> $7.99 per visit</li>
+          <li><strong>Subscribers:</strong> <em>$0 service fee</em></li>
+        </ul>
       </div>
 
-      <!-- Becoming a subscriber -->
-      <div class="card animated">
-        <h2>Become a Subscriber</h2>
-        <p>Signing up is easy. At your <strong>first fuel order</strong> simply select <strong>“Yes”</strong> when prompted to subscribe at checkout. Your <strong>$25 subscription</strong> begins with that order and renews every 30 days.</p>
+      <!-- Payment & Refunds Card -->
+      <div class="card">
+        <h2>Payment &amp; Refunds</h2>
+        <p>We place a small authorization hold when you book. Your card is charged for the actual gallons dispensed once fueling is complete. All payments are <strong>non‑refundable</strong>; this keeps pricing simple and lets us reinvest in the safe, reliable service you count on.</p>
       </div>
 
-      <!-- Secure processing -->
-      <div class="card animated">
-        <h2>Secure Payment Processing</h2>
-        <p>All payments are securely managed by <strong>Stripe, Inc.</strong>, a trusted third‑party payment processor. Stripe handles <strong>authorization, authentication, and payment execution</strong>, keeping your data safe.</p>
-      </div>
-
-      <!-- ⭐ NEW: Subscriber Benefits box (hyperlinked) -->
-      <div class="card animated">
+      <!-- Subscriber Benefits Card -->
+      <div class="card">
         <h2>Subscriber Benefits</h2>
-        <p>See all perks—priority scheduling, no service fee, fair AAA‑based pricing, and more.</p>
-        <p><a href="subscriber-terms.html" style="font-weight:600; color:#38b6ff; text-decoration:underline;">View Subscriber Benefits&nbsp;&raquo;</a></p>
+        <ul>
+          <li>No service fees—save on every fill‑up</li>
+          <li>Priority scheduling during peak hours</li>
+          <li>Lock‑in AAA‑indexed pricing</li>
+          <li>Early access to new services</li>
+        </ul>
+        <p><a href="subscriber-terms.html">View complete subscriber terms&nbsp;&rarr;</a></p>
       </div>
     </div>
-  </div>
 
-  <!-- bottom nav shared across site -->
-  <div class="bottom-nav">
-    <a class="nav-link" href="home.html"><i class="fas fa-home"></i>Home</a>
-    <a class="nav-link" href="index.html"><i class="fas fa-gas-pump"></i>Refill</a>
-    <a class="nav-link" href="pricing.html"><i class="fas fa-dollar-sign"></i>Pricing</a>
-    <a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i>Contact</a>
-  </div>
+    <footer>&copy; 2025 Gas Me Up Services LLC</footer>
+  </main>
 </body>
 </html>
