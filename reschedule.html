@@ -105,7 +105,9 @@
     <main class="page-content">
         <div class="lookup-container">
             <h2>Schedule Your Fueling </h2>
-            <p><a href="account"> Click here </a> to manage/update your subsctiption.</p>
+            <p><a href="https://billing.stripe.com/p/login/6oUdR8adT5O36LzewY6Zy00" style="color: #38b6ff;"> Click here </a> to update your billing information or cancel your subsctiption through our secure billing portal.</p>
+            <p>To add, update, or remove a vehicle, please email 
+                           <a href="mailto:gasmeup.acctmgmt@gmail.com" style="color: #38b6ff;">gasmeup.acctmgmt@gmail.com</a></p>
             <form id="rescheduleForm">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="Email" placeholder="Enter your email" required><br>
@@ -160,13 +162,13 @@ data.matches.slice(0, 3).forEach((match, index) => {
                             resultsContainer.appendChild(card);
                         });
                         // Add vehicle update notice
-                        const updateNotice = document.createElement('div');
-                        updateNotice.className = 'info-box';
-                        updateNotice.innerHTML = `
-                          To add, update, or remove a vehicle, please email 
-                          <a href="mailto:gasmeup.acctmgmt@gmail.com">gasmeup.acctmgmt@gmail.com</a>
-                        `;
-                        resultsContainer.appendChild(updateNotice);
+                        // const updateNotice = document.createElement('div');
+                        // updateNotice.className = 'info-box';
+                        // updateNotice.innerHTML = `
+                        //   To add, update, or remove a vehicle, please email 
+                        //   <a href="mailto:gasmeup.acctmgmt@gmail.com">gasmeup.acctmgmt@gmail.com</a>
+                        // `;
+                        // resultsContainer.appendChild(updateNotice);
 
                     } else {
                         resultsContainer.innerHTML = '<p>No matching bookings found.</p>';
