@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>How It Works</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #354952;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px;
+      padding-bottom: 100px;
+    }
+    header {
+      background: #38b6ff;
+      color: #fff;
+      padding: 24px 32px;
+      border-radius: 12px;
+      text-align: center;
+      width: 100%;
+      max-width: 960px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      margin-bottom: 32px;
+    }
+    header h1 {
+      font-size: 1.75rem;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .cards {
+      width: 100%;
+      max-width: 960px;
+      display: grid;
+      gap: 24px;
+    }
+    .card {
+      background: #2e2e2e;
+      border: 1px solid #38b6ff;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    }
+    .card h2 {
+      font-size: 1.25rem;
+      color: #38b6ff;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    .card ul {
+      list-style: disc inside;
+      line-height: 1.6;
+      color: #ccc;
+    }
+    .card li {
+      margin-bottom: 8px;
+    }
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: #38b6ff;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.4);
+      z-index: 1000;
+    }
+    .bottom-nav a {
+      color: #ffffff;
+      text-align: center;
+      text-decoration: none;
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .bottom-nav i {
+      font-size: 22px;
+      margin-bottom: 3px;
+    }
+    @media(max-width:600px) {
+      header h1 { font-size: 1.5rem; }
+      .card ul { padding-left: 4px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>How It Works</h1>
+    <p>Simple, safe, and affordable fueling — delivered right to your vehicle.</p>
+  </header>
+  <main class="cards">
+    <section class="card">
+      <h2>Step-by-Step</h2>
+      <ul>
+        <li>Choose your fill-up option: <strong>Refill now</strong> (one-time request or to start a subscription) or <strong>Subscriber refill</strong> (for active subscriptions).</li><li>Enter your contact, car, and location information.</li><li>Select the time and date you’d like your car fueled.</li><li>Ensure your gas cap door is unlocked, open, or left ajar. If inaccessible, the driver will wait 5 minutes before the service is forfeited.</li><li>We bring gas to you. You'll receive updates on your driver’s estimated arrival and refill progress.</li><li>Your payment is processed securely via Stripe. One-time fill-ups incur a $15 fee plus gas; subscribers pay only for gas (monthly $25 fee billed separately). Receipts are provided both digitally and physically.</li>
+      </ul>
+    </section>
+    <section class="card">
+      <h2>Additional Notes</h2>
+      <ul>
+        <li>If your vehicle is inaccessible due to traffic, parking, or other barriers, our driver will text you with options to reschedule or cancel at no charge.</li><li>Gas prices adjust daily based on local station rates. You'll be charged based on gallons dispensed multiplied by the day’s price (e.g., 10 gal x $3.50 = $35).</li>
+      </ul>
+    </section>
+  </main>
+  <nav class="bottom-nav">
+        <a href="home"><i class="fas fa-home"></i>Home</a>
+    <a href="steps"><i class="fas fa-question-circle"></i>How It Works</a>
+<!--     <a href="index"><i class="fas fa-gas-pump"></i>Refill</a> -->
+    <a href="pricing"><i class="fas fa-dollar-sign"></i>Pricing</a>
+    <a href="contact"><i class="fas fa-envelope"></i>Contact</a>
+  </nav>
+</body>
+</html>
