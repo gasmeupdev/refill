@@ -1,15 +1,15 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Reschedule Lookup</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="nav.css">
-    <script src="nav-loader.js" defer></script>
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-
-    <style>
+<meta charset="utf-8"/>
+<title>Reschedule Lookup</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link href="styles.css" rel="stylesheet"/>
+<link href="nav.css" rel="stylesheet"/>
+<script defer="" src="nav-loader.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
         .lookup-container {
             max-width: 500px;
             margin: 60px auto;
@@ -100,28 +100,24 @@
     }
 
 </style>
-</head>
+</meta></head>
 <body>
-    <main class="page-content">
-        <div class="lookup-container">
-            <h2>Schedule Your Fueling </h2>
-            <p><a href="https://billing.stripe.com/p/login/6oUdR8adT5O36LzewY6Zy00" style="color: #38b6ff;"> Click here </a> to update your billing information or cancel your subsctiption through our secure billing portal.</p>
-            <p>To add, update, or remove a vehicle, please email 
+<main class="page-content">
+<div class="lookup-container">
+<h2>Schedule Your Fueling </h2>
+
+
+<form id="rescheduleForm">
+<label for="email">Email:</label>
+<input id="email" name="Email" placeholder="Enter your email" required="" type="email"/><br/>
+<label for="phone">Phone Number:</label>
+<input id="phone" name="Phone" placeholder="Enter your phone number" required="" type="text"/><br/>
+<button type="submit">Look Me Up</button>
+</form><p><a href="https://billing.stripe.com/p/login/6oUdR8adT5O36LzewY6Zy00" style="color: #38b6ff;"> Click here </a> to update your billing information or cancel your subsctiption through our secure billing portal.</p><p>To add, update, or remove a vehicle, please email 
                            <a href="mailto:gasmeup.acctmgmt@gmail.com" style="color: #38b6ff;">gasmeup.acctmgmt@gmail.com</a></p>
-            <form id="rescheduleForm">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="Email" placeholder="Enter your email" required><br>
-    
-                <label for="phone">Phone Number:</label>
-                <input type="text" id="phone" name="Phone" placeholder="Enter your phone number" required><br>
-    
-                <button type="submit">Look Me Up</button>
-            </form>
-    
-            <div id="results"></div>
-        </div>
-    
-        <script>
+<div id="results"></div>
+</div>
+<script>
             document.getElementById("rescheduleForm").addEventListener("submit", async function(event) {
                 event.preventDefault();
     
@@ -311,9 +307,8 @@ data.matches.slice(0, 3).forEach((match, index) => {
     };
             }
         </script>
-    </main>
+</main>
 
-</div>
 <div class="bottom-nav">
 <a class="nav-link" href="home">
 <i class="fas fa-home"></i>
@@ -327,7 +322,6 @@ data.matches.slice(0, 3).forEach((match, index) => {
 <i class="fas fa-dollar-sign"></i>
     Pricing
   </a>
-
 <a class="nav-link" href="contact">
 <i class="fas fa-envelope"></i>
     Contact
