@@ -44,14 +44,14 @@
     }
     .card {
       background: #2e2e2e;
-      border: 1px solid #00bfff;
+      border: 1px solid #38b6ff;
       border-radius: 12px;
       padding: 24px;
       box-shadow: 0 3px 10px rgba(0,0,0,0.3);
     }
     .card h2 {
       font-size: 1.25rem;
-      color: #00bfff;
+      color: #38b6ff;
       margin-bottom: 12px;
       font-weight: 600;
     }
@@ -60,7 +60,9 @@
       line-height: 1.6;
       color: #ccc;
     }
-    .card li { margin-bottom: 8px; }
+    .card li {
+      margin-bottom: 8px;
+    }
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -96,16 +98,19 @@
 <body>
   <header>
     <h1>How It Works</h1>
-    <p>Quick, easy, and convenient mobile fueling — here's what to expect:</p>
+    <p>Simple, safe, and affordable fueling — delivered right to your vehicle.</p>
   </header>
   <main class="cards">
     <section class="card">
-      <h2>Step-by-Step Process</h2>
+      <h2>Step-by-Step</h2>
       <ul>
-        <li>Enter your contact, vehicle, and location information.</li>
-        <li>Select your preferred date and time for fueling.</li>
-        <li>Leave your gas cap door slightly ajar for easy access.</li>
-        <li>Relax and enjoy your gassed-up vehicle without the hassle!</li>
+        <li>Choose your fill-up option: <strong>Refill now</strong> (one-time request or to start a subscription) or <strong>Subscriber refill</strong> (for active subscriptions).</li><li>Enter your contact, car, and location information.</li><li>Select the time and date you’d like your car fueled.</li><li>Ensure your gas cap door is unlocked, open, or left ajar. If inaccessible, the driver will wait 5 minutes before the service is forfeited.</li><li>We bring gas to you. You'll receive updates on your driver’s estimated arrival and refill progress.</li><li>Your payment is processed securely via Stripe. One-time fill-ups incur a $15 fee plus gas; subscribers pay only for gas (monthly $25 fee billed separately). Receipts are provided both digitally and physically.</li>
+      </ul>
+    </section>
+    <section class="card">
+      <h2>Additional Notes</h2>
+      <ul>
+        <li>If your vehicle is inaccessible due to traffic, parking, or other barriers, our driver will text you with options to reschedule or cancel at no charge.</li><li>Gas prices adjust daily based on local station rates. You'll be charged based on gallons dispensed multiplied by the day’s price (e.g., 10 gal x $3.50 = $35).</li>
       </ul>
     </section>
   </main>
