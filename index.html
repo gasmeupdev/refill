@@ -195,5 +195,17 @@
     Contact
   </a>
 </div>
+
+<script>
+  function initAutocomplete() {
+    const input = document.getElementById('address');
+    if (input) {
+      const autocomplete = new google.maps.places.Autocomplete(input);
+      autocomplete.setFields(['formatted_address', 'geometry']);
+    }
+  }
+  google.maps.event.addDomListener(window, 'load', initAutocomplete);
+</script>
+
 </body>
 </html>
