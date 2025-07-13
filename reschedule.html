@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <title>Reschedule Lookup</title>
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="styles.css" rel="stylesheet"/>
 <link href="nav.css" rel="stylesheet"/>
 <script defer="" src="nav-loader.js"></script>
@@ -100,13 +100,28 @@
     }
 
 </style>
-</meta></head>
+
+<script>
+  function initAutocomplete() {
+    const observer = new MutationObserver(() => {
+      const addressInputs = document.querySelectorAll('input[name="address"]');
+      addressInputs.forEach(input => {
+        if (!input.classList.contains("autocomplete-bound")) {
+          new google.maps.places.Autocomplete(input);
+          input.classList.add("autocomplete-bound");
+        }
+      });
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+</script>
+<script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh5XxodKgwBLU3RipuMvQr-WwsqVN12w8&amp;libraries=places&amp;callback=initAutocomplete"></script>
+</head>
 <body>
 <main class="page-content">
 <div class="lookup-container">
 <h2>Schedule Your Fueling </h2>
-
-
 <form id="rescheduleForm">
 <label for="email">Email:</label>
 <input id="email" name="Email" placeholder="Enter your email" required="" type="email"/><br/>
@@ -308,7 +323,6 @@ data.matches.slice(0, 3).forEach((match, index) => {
             }
         </script>
 </main>
-
 <div class="bottom-nav">
 <a class="nav-link" href="home">
 <i class="fas fa-home"></i>
