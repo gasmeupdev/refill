@@ -10,7 +10,7 @@
 <link href="nav.css" rel="stylesheet"/>
 <script defer="" src="nav-loader.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh5XxodKgwBLU3RipuMvQr-WwsqVN12w8&amp;libraries=places"></script>
+<script async="True" defer="True" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh5XxodKgwBLU3RipuMvQr-WwsqVN12w8&amp;libraries=places&amp;callback=initAutocomplete"></script>
 <script src="https://js.stripe.com/v3/"></script>
 <!-- Fonts from TESTHOMEPAGE -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Poppins:wght@500;700&amp;display=swap" rel="stylesheet"/>
@@ -28,9 +28,7 @@
   margin-top: 20px;
 }
 </style>
-
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-
 <style>
   .bottom-nav {
     position: fixed;
@@ -62,6 +60,16 @@
     padding-bottom: 80px;
   }
 </style>
+
+<script>
+  function initAutocomplete() {
+    const input = document.getElementById('address');
+    if (input) {
+      const autocomplete = new google.maps.places.Autocomplete(input);
+      autocomplete.setFields(['formatted_address', 'geometry']);
+    }
+  }
+</script>
 </head>
 <body>
 <main class="page-content">
@@ -177,7 +185,7 @@
 <i class="fas fa-home"></i>
     Home
   </a>
-      <a class="nav-link" href="steps">
+<a class="nav-link" href="steps">
 <i class="fas fa-question-circle"></i>
     How it Works
   </a>
@@ -189,23 +197,10 @@
 <i class="fas fa-dollar-sign"></i>
     Pricing
   </a>
-
 <a class="nav-link" href="contact">
 <i class="fas fa-envelope"></i>
     Contact
   </a>
 </div>
-
-<script>
-  function initAutocomplete() {
-    const input = document.getElementById('address');
-    if (input) {
-      const autocomplete = new google.maps.places.Autocomplete(input);
-      autocomplete.setFields(['formatted_address', 'geometry']);
-    }
-  }
-  google.maps.event.addDomListener(window, 'load', initAutocomplete);
-</script>
-
 </body>
 </html>
