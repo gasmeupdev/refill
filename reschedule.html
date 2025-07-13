@@ -100,23 +100,6 @@
     }
 
 </style>
-
-<script>
-  function initAutocomplete() {
-    const observer = new MutationObserver(() => {
-      const addressInputs = document.querySelectorAll('input[name="address"]');
-      addressInputs.forEach(input => {
-        if (!input.classList.contains("autocomplete-bound")) {
-          new google.maps.places.Autocomplete(input);
-          input.classList.add("autocomplete-bound");
-        }
-      });
-    });
-
-    observer.observe(document.body, { childList: true, subtree: true });
-  }
-</script>
-<script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh5XxodKgwBLU3RipuMvQr-WwsqVN12w8&amp;libraries=places&amp;callback=initAutocomplete"></script>
 </head>
 <body>
 <main class="page-content">
@@ -239,7 +222,13 @@ data.matches.slice(0, 3).forEach((match, index) => {
         </form>
     `;
 
-    // Append form below the reschedule button
+    
+    const addressInput = rescheduleForm.querySelector('input[name="address"]');
+    if (addressInput && window.google && google.maps.places) {
+        new google.maps.places.Autocomplete(addressInput);
+    }
+        
+// Append form below the reschedule button
     btn.insertAdjacentElement("afterend", rescheduleForm);
 
     // Scroll to the form
