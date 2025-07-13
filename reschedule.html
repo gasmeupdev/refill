@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <title>Reschedule Lookup</title>
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="styles.css" rel="stylesheet"/>
 <link href="nav.css" rel="stylesheet"/>
 <script defer="" src="nav-loader.js"></script>
@@ -100,13 +100,11 @@
     }
 
 </style>
-</meta></head>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh5XxodKgwBLU3RipuMvQr-WwsqVN12w8&amp;libraries=places"></script></head>
 <body>
 <main class="page-content">
 <div class="lookup-container">
 <h2>Schedule Your Fueling </h2>
-
-
 <form id="rescheduleForm">
 <label for="email">Email:</label>
 <input id="email" name="Email" placeholder="Enter your email" required="" type="email"/><br/>
@@ -224,7 +222,13 @@ data.matches.slice(0, 3).forEach((match, index) => {
         </form>
     `;
 
-    // Append form below the reschedule button
+    
+    const addressInput = rescheduleForm.querySelector('input[name="address"]');
+    if (addressInput && window.google && google.maps.places) {
+        new google.maps.places.Autocomplete(addressInput);
+    }
+
+// Append form below the reschedule button
     btn.insertAdjacentElement("afterend", rescheduleForm);
 
     // Scroll to the form
@@ -308,7 +312,6 @@ data.matches.slice(0, 3).forEach((match, index) => {
             }
         </script>
 </main>
-
 <div class="bottom-nav">
 <a class="nav-link" href="home">
 <i class="fas fa-home"></i>
