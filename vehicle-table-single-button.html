@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vehicle Table</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    body {
+      margin: 0;
+      background-color: #1e1e1e;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #d3d3d3;
+      padding: 20px;
+    }
+    .lookup-container {
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 30px;
+      background: #333;
+      color: #D3D3D3;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+    h2 {
+      text-align: center;
+      color: #00ccff;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      background-color: #2a2a2a;
+      border: 1px solid #4a6333;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #4a6333;
+    }
+    th {
+      background-color: #01426a;
+      color: white;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      background-color: #1e1e1e;
+      color: #d3d3d3;
+      border: 1px solid #4a6333;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #00ccff;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0099cc;
+    }
+  </style>
+</head>
+<body>
+
+<div class="lookup-container">
+  <h2>Vehicle Entry Table - <span id="currentDate">2025-07-26</span></h2>
+
+  <table id="dynamicTable">
+    <thead>
+      <tr>
+        <th>Car Make</th>
+        <th>Car Model</th>
+        <th>Car Year</th>
+        <th>License Plate</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="text" placeholder="Make" /></td>
+        <td><input type="text" placeholder="Model" /></td>
+        <td><input type="text" placeholder="Year" /></td>
+        <td><input type="text" placeholder="Plate" /></td>
+        <td><button onclick="removeRow(this)">Remove</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button onclick="addRow()">Add Row</button>
+
+    <div style="text-align: right; margin-top: 20px;">
+      <button onclick="saveAndSubmit()">Save & Submit</button>
+    </div>
+  </div>
+
+
+<script>
+  function addRow() {
+    const table = document.getElementById('dynamicTable').getElementsByTagName('tbody')[0];
+    const newRow = table.insertRow();
+    newRow.innerHTML = `
+      <td><input type="text" placeholder="Make" /></td>
+      <td><input type="text" placeholder="Model" /></td>
+      <td><input type="text" placeholder="Year" /></td>
+      <td><input type="text" placeholder="Plate" /></td>
+      <td><button onclick="removeRow(this)">Remove</button></td>
+    `;
+  }
+
+  function removeRow(button) {
+    const row = button.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+  }
+
+  function saveAndSubmit() {
+    const rows = document.querySelectorAll("#dynamicTable tbody tr");
+    const data = Array.from(rows).map(row => {
+      const inputs = row.querySelectorAll("input");
+      return {
+        make: inputs[0].value,
+        model: inputs[1].value,
+        year: inputs[2].value,
+        plate: inputs[3].value
+      };
+    });
+    console.log("Data submitted:", data);
+    alert("Data has been saved and submitted (check the console).");
+  }
+</script>
+
+
+</body>
+</html>
