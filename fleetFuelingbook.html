@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Reschedule Lookup</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="styles.css" rel="stylesheet"/>
+<link href="nav.css" rel="stylesheet"/>
+<script defer="" src="nav-loader.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        .lookup-container {
+            max-width: 500px;
+            margin: 60px auto;
+            padding: 30px;
+            background: #333;
+            color: #D3D3D3;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #00ccff;
+            margin-bottom: 20px;
+        }
+
+        .match-card {
+            background: #2a2a2a;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            border: 1px solid #4a6333;
+        }
+
+        .match-card p {
+            margin: 5px 0;
+        }
+
+        .reschedule-form {
+            margin-top: 20px;
+            padding: 20px;
+            background: #1e1e1e;
+            border-radius: 10px;
+            border: 1px solid #4a6333;
+            animation: slideFadeIn 0.4s ease forwards;
+        }
+
+        @keyframes slideFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    
+.info-box {
+    background-color: #1e1e1e;
+    color: #d3d3d3;
+    border-left: 5px solid #00ccff;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+.info-box a {
+    color: #00ccff;
+    text-decoration: underline;
+}
+.bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: #38b6ff;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.4);
+      z-index: 1000;
+    }
+    .bottom-nav a {
+      color: #ffffff;
+      text-align: center;
+      text-decoration: none;
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .bottom-nav i {
+      font-size: 22px;
+      margin-bottom: 3px;
+    }
+
+</style>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh5XxodKgwBLU3RipuMvQr-WwsqVN12w8&amp;libraries=places"></script></head>
+<body>
+<main class="page-content">
+<div class="lookup-container">
+<h2>Schedule Your Fueling </h2>
+<form id="rescheduleForm">
+<label for="email">Email:</label>
+<input id="email" name="Email" placeholder="Enter your email" required="" type="email"/><br/>
+<label for="phone">Phone Number:</label>
+<input id="phone" name="Phone" placeholder="Enter your phone number" required="" type="text"/><br/>
+<button type="submit">Look Me Up</button>
+</form><p><a href="https://billing.stripe.com/p/login/6oUdR8adT5O36LzewY6Zy00" style="color: #38b6ff;"> Click here </a> to update your billing information or cancel your subsctiption through our secure billing portal.</p><p>To add, update, or remove a vehicle, please email 
+                           <a href="mailto:gasmeup.acctmgmt@gmail.com" style="color: #38b6ff;">gasmeup.acctmgmt@gmail.com</a></p>
+<div id="results"></div>
+</div>
+<script>
+            document.getElementById("rescheduleForm").addEventListener("submit", async function(event) {
+                event.preventDefault();
+    
+                const GOOGLE_SHEET_SUBSCRIBER_URL = "https://script.google.com/macros/s/AKfycbxSnXhSDvbVRl_G_jFBuVK1l2tYMRakcJs9NageDOi8CzsIlYbluQm87s9aK31kdEkb/exec";
+                const formData = new FormData(this);
+                const resultsContainer = document.getElementById("results");
+                resultsContainer.innerHTML = '';
+
+                 const url  = "https://script.google.com/macros/s/AKfycbz4ZimSXKSM4rTY1q0P3hrc1NRJhdseskMxyAeIVTBDHcCADVQoxe1PWa9lAvHzCM9BSA/exec"
+
+  // grab the two inputs
+  const email = document.getElementById("email").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+      const body = new URLSearchParams({ Email: email, Phone: phone });
+
+                try {
+                     const res  = await fetch(url, {
+      method : "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body   : body.toString()
+    });
+
+    const data = await res.json();
+    
+                    if (data.success) {
+data.matches.slice(0, 3).forEach((match, index) => {
+    const card = document.createElement('div');
+                            card.className = 'match-card';
+                            card.innerHTML = `
+                              <p data-key="name"><strong>Name:</strong> ${match.name}</p>
+    <p data-key="carMake"><strong>Car Make:</strong> ${match.carMake}</p>
+    <p data-key="carModel"><strong>Car Model:</strong> ${match.carModel}</p>
+    <p data-key="carYear"><strong>Car Year:</strong> ${match.carYear}</p>
+    <p data-key="licensePlate"><strong>License Plate:</strong> ${match.licensePlate}</p>
+    <p data-key="gasType"><strong>Gas Type:</strong> ${match.gasType}</p>
+    <button onclick="reschedule('${match.bookingId}', this)">Reschedule</button>
+                            `;
+                            resultsContainer.appendChild(card);
+                        });
+                        // Add vehicle update notice
+                        // const updateNotice = document.createElement('div');
+                        // updateNotice.className = 'info-box';
+                        // updateNotice.innerHTML = `
+                        //   To add, update, or remove a vehicle, please email 
+                        //   <a href="mailto:gasmeup.acctmgmt@gmail.com">gasmeup.acctmgmt@gmail.com</a>
+                        // `;
+                        // resultsContainer.appendChild(updateNotice);
+
+                    } else {
+                        resultsContainer.innerHTML = '<p>No matching bookings found.</p>';
+                    }
+                } catch (error) {
+                    console.error("Lookup failed:", error);
+                    alert("Error: " + error.message);
+                }
+            });
+    
+            function reschedule(bookingId, btn) {
+                // Hide all other match cards
+                 // Hide all other match cards
+    const allCards = document.querySelectorAll('.match-card');
+    allCards.forEach(card => {
+        if (!card.contains(btn)) card.style.display = 'none';
+    });
+
+    // Get parent card and extract text
+    const card = btn.closest('.match-card');
+    const getValue = (key) => {
+        const el = card.querySelector(`[data-key="${key}"]`);
+        return el ? el.innerText.split(':')[1].trim() : '';
+    };
+
+    // Build the form
+    const rescheduleForm = document.createElement('div');
+    rescheduleForm.className = 'reschedule-form';
+    rescheduleForm.innerHTML = `
+        <h4>Pick New Details</h4>
+        <form onsubmit="submitReschedule(event, '${bookingId}')">
+            <!-- Hidden fields for match data -->
+            <input type="hidden" name="Name" value="${getValue('name')}">
+            <input type="hidden" name="Car Make" value="${getValue('carMake')}">
+            <input type="hidden" name="Car Model" value="${getValue('carModel')}">
+            <input type="hidden" name="Car Year" value="${getValue('carYear')}">
+            <input type="hidden" name="License Plate" value="${getValue('licensePlate')}">
+            <input type="hidden" name="Gas Type" value="${getValue('gasType')}">
+
+            <!-- Editable fields -->
+            <label for="newDate">New Date:</label>
+            <input type="date" name="Date" required><br>
+
+            <label for="newTime">New Time:</label>
+            <input type="text" name="Time" placeholder="e.g., 08:00 AM - 09:00 AM" required><br>
+
+            <label for="newAddress">New Address:</label>
+            <input type="text" name="address" placeholder="1817 Sarah Street" required><br>
+
+            <label for="tireRefill">Tire Refill?</label>
+            <select name="Tire Refill">
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+            </select><br>
+
+            <button type="submit">Submit Reschedule</button>
+        </form>
+    `;
+
+    
+    const addressInput = rescheduleForm.querySelector('input[name="address"]');
+    if (addressInput && window.google && google.maps.places) {
+        new google.maps.places.Autocomplete(addressInput);
+    }
+
+// Append form below the reschedule button
+    btn.insertAdjacentElement("afterend", rescheduleForm);
+
+    // Scroll to the form
+    setTimeout(() => {
+        rescheduleForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+            }
+    
+            async function submitReschedule(event, bookingId) {
+                 event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+
+    // Append booking ID
+    formData.append("bookingId", bookingId);
+
+    // Convert formData to plain object for preview
+    const previewData = Object.fromEntries(formData.entries());
+
+    // Create confirmation modal
+    const confirmBox = document.createElement("div");
+    confirmBox.style.position = "fixed";
+    confirmBox.style.top = "0";
+    confirmBox.style.left = "0";
+    confirmBox.style.width = "100vw";
+    confirmBox.style.height = "100vh";
+    confirmBox.style.backgroundColor = "rgba(0,0,0,0.6)";
+    confirmBox.style.display = "flex";
+    confirmBox.style.alignItems = "center";
+    confirmBox.style.justifyContent = "center";
+    confirmBox.style.zIndex = "1000";
+
+    const content = document.createElement("div");
+    content.style.backgroundColor = "#fff";
+    content.style.padding = "30px";
+    content.style.borderRadius = "10px";
+    content.style.maxWidth = "400px";
+    content.style.color = "#000";
+
+    const fieldList = Object.entries(previewData).map(([key, val]) => {
+        return `<p><strong>${key}:</strong> ${val}</p>`;
+    }).join("");
+
+    content.innerHTML = `
+        <h3>Confirm Your Reschedule</h3>
+        ${fieldList}
+        <button id="confirmSubmit">Confirm</button>
+        <button id="cancelSubmit" style="margin-left: 10px;">Cancel</button>
+    `;
+
+    confirmBox.appendChild(content);
+    document.body.appendChild(confirmBox);
+
+    // Event listeners for confirm/cancel
+    document.getElementById("cancelSubmit").onclick = () => {
+        document.body.removeChild(confirmBox);
+    };
+
+    document.getElementById("confirmSubmit").onclick = async () => {
+        try {
+            document.body.removeChild(confirmBox);
+            const response = await fetch("https://script.google.com/macros/s/AKfycbzuyPkZmg78HqOhyvMMpV2y78vMStOvA3zKgW19vkgKEbe6r31DL9xtC4ncafF1NZewgg/exec", {
+                method: "POST",
+                body: formData,
+                redirect: "follow"
+            });
+
+            const result = await response.json();
+            if (result.result === 'success') {
+                alert("Refueling Scheduled");
+                form.parentElement.innerHTML = "<p>Reschedule request received!</p>";
+                window.location.href = "./confirmationsubscriber.html";
+            } else {
+                alert("Error: " + (result.message || result.error || "Unknown"));
+            }
+        } catch (error) {
+            alert("Failed to submit reschedule: " + error.message);
+            console.error(error);
+        }
+    };
+            }
+        </script>
+</main>
+<div class="bottom-nav">
+<a class="nav-link" href="home">
+<i class="fas fa-home"></i>
+    Home
+  </a>
+<a class="nav-link" href="steps">
+<i class="fas fa-gas-pump"></i>
+    How It Works
+  </a>
+<a class="nav-link" href="pricing">
+<i class="fas fa-dollar-sign"></i>
+    Pricing
+  </a>
+<a class="nav-link" href="contact">
+<i class="fas fa-envelope"></i>
+    Contact
+  </a>
+</div>
+</body>
+</html>
