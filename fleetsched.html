@@ -18,6 +18,8 @@
     input[type=text] { width: 100%; padding: 8px; background-color: #1e1e1e; color: #d3d3d3; border: 1px solid #4a6333; border-radius: 5px; }
     button { background-color: #00ccff; color: white; border: none; padding: 8px 14px; border-radius: 6px; cursor: pointer; }
     button:hover { background-color: #0099cc; }
+    .confirmation-container { display: none; text-align: center; margin-top: 20px; color: #00ccff; }
+    .confirmation-container h2 { margin-bottom: 10px; }
   </style>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh5XxodKgwBLU3RipuMvQr-WwsqVN12w8&libraries=places"></script>
 </head>
@@ -65,16 +67,23 @@
 
       <p><a href="https://billing.stripe.com/p/login/6oUdR8adT5O36LzewY6Zy00" style="color: #38b6ff;">Update billing or cancel</a></p>
       <p>To add, update, or remove a vehicle, please email <a href="mailto:gasmeup.acctmgmt@gmail.com" style="color: #38b6ff;">gasmeup.acctmgmt@gmail.com</a></p>
+
+      <!-- Step 3: Confirmation Message -->
+      <div id="confirmationContainer" class="confirmation-container">
+        <h2>Success! Your mobile fueling is scheduled.</h2>
+        <p>We’ll be at your lot on <span id="confirmDate"></span> between 4:00 PM and 6:00 PM.<br/>Expect a text update 30 minutes before we arrive. Need to reschedule? Email us at <a href="mailto:support@gasmeupservices.com" style="color: #38b6ff;">support@gasmeupservices.com</a>.</p>
+      </div>
     </div>
 
     <script>
-      // Set today's date in table header
-      document.getElementById('currentDate').innerText = new Date().toISOString().split('T')[0];
+      // Set today's date in table header and confirmation
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('currentDate').innerText = today;
+      document.getElementById('confirmDate').innerText = today;
 
       // Step 1 submit handler
       document.getElementById('rescheduleForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        // Hide lookup form and show fleet table
         this.style.display = 'none';
         document.getElementById('fleetTableContainer').style.display = 'block';
       });
@@ -94,19 +103,20 @@
       }
 
       function removeRow(btn) {
-        const row = btn.closest('tr');
-        row.remove();
+        btn.closest('tr').remove();
       }
 
       function saveAndSubmit() {
+        if (!confirm('Are you sure you want to submit?')) return;
         const rows = document.querySelectorAll('#dynamicTable tbody tr');
         const data = Array.from(rows).map(r => {
           const inputs = r.querySelectorAll('input');
           return { make: inputs[0].value, model: inputs[1].value, year: inputs[2].value, plate: inputs[3].value };
         });
         console.log('Fleet data submitted:', data);
-        alert('Your fleet schedule has been submitted!');
-        // TODO: POST data to server
+        alert('Thank you for scheduling your fueling');
+        document.getElementById('fleetTableContainer').style.display = 'none';
+        document.getElementById('confirmationContainer').style.display = 'block';
       }
     </script>
   </main>
