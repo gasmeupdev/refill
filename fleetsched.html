@@ -4,14 +4,25 @@
   <meta charset="utf-8"/>
   <title>Schedule Your Fleet Refueling</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Font setup to match fleet-commercial -->
+  <script src="https://c.webfontfree.com/c.js?f=ArchitypeTschicholdW90" type="text/javascript"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Maiden+Orange&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"/>
   <link href="styles.css" rel="stylesheet"/>
   <link href="nav.css" rel="stylesheet"/>
   <script defer src="nav-loader.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
   <style>
+    /* Global font styling */
+    body, h1, h2, h3, h4, h5, h6, p, a, li, span, input, button {
+      font-family: 'Nunito', 'Inter', sans-serif !important;
+      -webkit-font-smoothing: antialiased;
+    }
     .lookup-container { max-width: 800px; margin: 60px auto; padding: 30px; background: #333; color: #D3D3D3; border-radius: 15px; box-shadow: 0 0 15px rgba(0,0,0,0.2); }
     h2 { text-align: center; color: #00ccff; margin-bottom: 20px; }
-    /* Fleet table styles */
     table { width: 100%; border-collapse: collapse; margin-bottom: 20px; background-color: #2a2a2a; border: 1px solid #4a6333; border-radius: 10px; overflow: hidden; }
     th, td { padding: 12px; text-align: left; border-bottom: 1px solid #4a6333; }
     th { background-color: #01426a; color: white; }
@@ -28,7 +39,6 @@
   <main class="page-content">
     <div class="lookup-container">
       <h2>Schedule Your Fleet Refueling</h2>
-      <!-- Step 1: Subscriber Lookup -->
       <form id="rescheduleForm">
         <label for="email">Email:</label>
         <input id="email" name="Email" type="email" placeholder="Enter your email" required/><br/>
@@ -36,20 +46,10 @@
         <input id="pin" name="Pin" type="text" placeholder="Enter your 6-digit PIN" maxlength="6" pattern="\d{6}" required/><br/>
         <button type="submit">Next</button>
       </form>
-
-      <!-- Step 2: Fleet Table (hidden until after submit) -->
       <div id="fleetTableContainer" style="display:none;">
         <h2>Vehicle Refueling Table - <span id="currentDate"></span></h2>
         <table id="dynamicTable">
-          <thead>
-            <tr>
-              <th>Car Make</th>
-              <th>Car Model</th>
-              <th>Car Year</th>
-              <th>License Plate</th>
-              <th>Action</th>
-            </tr>
-          </thead>
+          <thead><tr><th>Car Make</th><th>Car Model</th><th>Car Year</th><th>License Plate</th><th>Action</th></tr></thead>
           <tbody>
             <tr>
               <td><input type="text" placeholder="Make"/></td>
@@ -61,61 +61,36 @@
           </tbody>
         </table>
         <button onclick="addRow()">Add Row</button>
-        <div style="text-align: right; margin-top: 20px;">
-          <button onclick="saveAndSubmit()">Save & Submit</button>
-        </div>
+        <div style="text-align: right; margin-top: 20px;"><button onclick="saveAndSubmit()">Save & Submit</button></div>
       </div>
-
-      <!-- Step 3: Confirmation Message -->
       <div id="confirmationContainer" class="confirmation-container">
         <h2>Success! Your mobile fueling is scheduled.</h2>
         <p>We’ll be at your lot on <span id="confirmDate"></span> between 4:00 PM and 6:00 PM.<br/>Expect a text update 30 minutes before we arrive. Need to reschedule? Email us at <a href="mailto:support@gasmeupservices.com" style="color: #38b6ff;">support@gasmeupservices.com</a>.</p>
       </div>
     </div>
-
     <script>
-      // Set today's date in table header and confirmation
       const today = new Date().toISOString().split('T')[0];
       document.getElementById('currentDate').innerText = today;
       document.getElementById('confirmDate').innerText = today;
-
-      // Step 1 submit handler
       document.getElementById('rescheduleForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        this.style.display = 'none';
-        document.getElementById('fleetTableContainer').style.display = 'block';
+        this.style.display='none';
+        document.getElementById('fleetTableContainer').style.display='block';
       });
-
-      // Fleet table functions
       function addRow() {
         const tbody = document.querySelector('#dynamicTable tbody');
         const row = document.createElement('tr');
-        row.innerHTML = `
-          <td><input type="text" placeholder="Make"/></td>
-          <td><input type="text" placeholder="Model"/></td>
-          <td><input type="text" placeholder="Year"/></td>
-          <td><input type="text" placeholder="Plate"/></td>
-          <td><button onclick="removeRow(this)">Remove</button></td>
-        `;
+        row.innerHTML = `<td><input type="text" placeholder="Make"/></td><td><input type="text" placeholder="Model"/></td><td><input type="text" placeholder="Year"/></td><td><input type="text" placeholder="Plate"/></td><td><button onclick="removeRow(this)">Remove</button></td>`;
         tbody.appendChild(row);
       }
-
-      function removeRow(btn) {
-        btn.closest('tr').remove();
-      }
-
+      function removeRow(btn) { btn.closest('tr').remove(); }
       function saveAndSubmit() {
         if (!confirm('Are you sure you want to submit?')) return;
-        // Hide all but confirmation
-        const container = document.querySelector('.lookup-container');
-        Array.from(container.children).forEach(child => {
-          if (child.id !== 'confirmationContainer') child.style.display = 'none';
-        });
-        document.getElementById('confirmationContainer').style.display = 'block';
+        document.querySelectorAll('.lookup-container > *:not(#confirmationContainer)').forEach(el=>el.style.display='none');
+        document.getElementById('confirmationContainer').style.display='block';
       }
     </script>
   </main>
-
   <div class="bottom-nav">
     <a class="nav-link" href="home"><i class="fas fa-home"></i>Home</a>
     <a class="nav-link" href="steps"><i class="fas fa-gas-pump"></i>How It Works</a>
