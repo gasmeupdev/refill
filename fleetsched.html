@@ -62,7 +62,6 @@
         </table>
         <button onclick="addRow()">Add Row</button>
         <div style="text-align: right; margin-top: 20px;"><button onclick="saveAndSubmit()">Save & Submit</button></div>
-        <div id="status" style="text-align:right;margin-top:8px;font-size:14px;"></div>
       </div>
       <div id="confirmationContainer" class="confirmation-container">
         <h2>Success! Your mobile fueling is scheduled.</h2>
@@ -86,16 +85,14 @@
       }
       function removeRow(btn) { btn.closest('tr').remove(); }
       function saveAndSubmit() {
-  const GAS_URL = 'https://script.google.com/macros/s/AKfycbyjRAXo_XRqy2NBu4UIw0ByibO33TpfTOn5tkAXjCjnjDgtVxpnGGCYXXtAm0nIItB2nQ/exec'; // <-- replace with your Web App URL
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbyjRAXo_XRqy2NBu4UIw0ByibO33TpfTOn5tkAXjCjnjDgtVxpnGGCYXXtAm0nIItB2nQ/exec'
   const submitBtn = Array.from(document.querySelectorAll('button')).find(b => /Save\s*&\s*Submit/i.test(b.textContent));
   const statusEl = document.getElementById('status');
-
   function setStatus(msg) { if (statusEl) statusEl.textContent = msg; }
 
   const email = (document.getElementById('email')?.value || '').trim();
   const pin = (document.getElementById('pin')?.value || '').trim();
   const serviceDate = (document.getElementById('currentDate')?.innerText || '').trim();
-
   if (!email) { alert('Email is required.'); return; }
   if (!/^\d{6}$/.test(pin)) { alert('PIN must be exactly 6 digits.'); return; }
 
@@ -109,45 +106,37 @@
       plate: (inputs[3]?.value || '').trim()
     };
   }).filter(r => r.make || r.model || r.year || r.plate);
-
-  if (!data.length) {
-    alert('Please add at least one vehicle row before submitting.');
-    return;
-  }
-
+  if (!data.length) { alert('Please add at least one vehicle row before submitting.'); return; }
   const badYear = data.find(d => d.year && !/^\d{4}$/.test(d.year));
-  if (badYear) {
-    alert('Year must be 4 digits (e.g., 2022). Please fix and try again.');
-    return;
-  }
-
+  if (badYear) { alert('Year must be 4 digits (e.g., 2022).'); return; }
   if (!confirm('Are you sure you want to submit?')) return;
 
   if (submitBtn) submitBtn.disabled = true;
   setStatus('Submitting to Google Sheets...');
 
   const payload = { email, pin, serviceDate, rows: data };
+  // Fire-and-forget to avoid CORS: we cannot read the response, but the request will be sent.
   fetch(GAS_URL, {
     method: 'POST',
+    mode: 'no-cors',
     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
     body: JSON.stringify(payload)
   })
   .then(() => {
-    setStatus('Submitted! Your rows will appear in the sheet shortly.');
+    // We won't know success/failure; assume success for UX.
+    setStatus('Submitted (sent without reading response).');
     document.querySelectorAll('.lookup-container > *:not(#confirmationContainer)').forEach(el => el.style.display = 'none');
     document.getElementById('confirmationContainer').style.display = 'block';
     const confirmDateEl = document.getElementById('confirmDate');
     if (confirmDateEl && serviceDate) confirmDateEl.innerText = serviceDate;
-    alert('Success! Your refueling list was sent.');
+    alert('Submitted! Your refueling list was sent.');
   })
   .catch(err => {
     console.error(err);
-    setStatus('There was an error submitting the data. See console for details.');
-    alert('Error: could not submit. Check console.');
+    setStatus('There was an error initiating the request. See console for details.');
+    alert('Error: request could not be initiated.');
   })
-  .finally(() => {
-    if (submitBtn) submitBtn.disabled = false;
-  });
+  .finally(() => { if (submitBtn) submitBtn.disabled = false; });
 }
     </script>
   </main>
