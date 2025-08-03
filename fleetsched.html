@@ -85,7 +85,7 @@
       }
       function removeRow(btn) { btn.closest('tr').remove(); }
       function saveAndSubmit() {
-  const GAS_URL = 'https://script.google.com/macros/s/AKfycbyjRAXo_XRqy2NBu4UIw0ByibO33TpfTOn5tkAXjCjnjDgtVxpnGGCYXXtAm0nIItB2nQ/exec'
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbzH3VkNS1tuD5LLGs5RZ51ZzQIwF8No5iueuBkaQrlr1SdNSWxc49sTUH0VNDyg5RJJ2Q/exec'
   const submitBtn = Array.from(document.querySelectorAll('button')).find(b => /Save\s*&\s*Submit/i.test(b.textContent));
   const statusEl = document.getElementById('status');
   function setStatus(msg) { if (statusEl) statusEl.textContent = msg; }
