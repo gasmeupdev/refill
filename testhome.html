@@ -8,22 +8,25 @@
     .hero {
       position: relative;
       min-height: 100vh;
-      background: <img src="./images/Finallogocircle3.png" alt="Gas Me Up Banner"
-       style="max-width: 100%; height: auto; width: 300px; margin-bottom: 20px;" />
-
+      /* ✅ Use CSS background image */
+      background: url("./images/Finallogocircle3.png") center / cover no-repeat;
       color: #fff;
     }
+    /* dark overlay for readability */
     .hero::before {
       content: "";
       position: absolute; inset: 0;
       background: rgba(0,0,0,.35);
+      z-index: 0;                 /* keep overlay behind content */
     }
     .hero-inner {
       position: relative;
+      z-index: 1;                 /* keep text above overlay */
       display: grid;
       place-items: center;
       min-height: inherit;
       text-align: center;
+      padding: 2rem;
     }
   </style>
 </head>
