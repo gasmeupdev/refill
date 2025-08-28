@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Hero Section Background (smaller image)</title>
+  <title>Hero Section Background (bigger image)</title>
   <style>
-    /* Tweak this to change how big the background image appears */
-    :root { --hero-bg-size: clamp(280px, 40vw, 700px); }
+    /* Bigger background image */
+    :root { --hero-bg-size: clamp(520px, 65vw, 1400px); }
 
     .hero {
       position: relative;
@@ -14,11 +14,10 @@
       background-image: url("./images/Finallogocircle3.png");
       background-repeat: no-repeat;
       background-position: center;
-      background-size: var(--hero-bg-size) auto;  /* ⬅️ smaller than 'cover' */
-      background-color: #000;                     /* fill around the image */
+      background-size: var(--hero-bg-size) auto;  /* bigger than before */
+      background-color: #000;
       color: #fff;
     }
-    /* dark overlay for readability */
     .hero::before {
       content: "";
       position: absolute; inset: 0;
@@ -35,9 +34,9 @@
       padding: 2rem;
     }
 
-    /* Optional: make it a bit smaller on very small screens */
+    /* Still reasonable on very small screens */
     @media (max-width: 480px) {
-      :root { --hero-bg-size: 70vw; }
+      :root { --hero-bg-size: 85vw; }
     }
   </style>
 </head>
