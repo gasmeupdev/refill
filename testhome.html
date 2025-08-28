@@ -3,13 +3,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Hero Section Background</title>
+  <title>Hero Section Background (smaller image)</title>
   <style>
+    /* Tweak this to change how big the background image appears */
+    :root { --hero-bg-size: clamp(280px, 40vw, 700px); }
+
     .hero {
       position: relative;
       min-height: 100vh;
-      /* ✅ Use CSS background image */
-      background: url("./images/Finallogocircle3.png") center / cover no-repeat;
+      background-image: url("./images/Finallogocircle3.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: var(--hero-bg-size) auto;  /* ⬅️ smaller than 'cover' */
+      background-color: #000;                     /* fill around the image */
       color: #fff;
     }
     /* dark overlay for readability */
@@ -17,16 +23,21 @@
       content: "";
       position: absolute; inset: 0;
       background: rgba(0,0,0,.35);
-      z-index: 0;                 /* keep overlay behind content */
+      z-index: 0;
     }
     .hero-inner {
       position: relative;
-      z-index: 1;                 /* keep text above overlay */
+      z-index: 1;
       display: grid;
       place-items: center;
       min-height: inherit;
       text-align: center;
       padding: 2rem;
+    }
+
+    /* Optional: make it a bit smaller on very small screens */
+    @media (max-width: 480px) {
+      :root { --hero-bg-size: 70vw; }
     }
   </style>
 </head>
