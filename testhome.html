@@ -16,7 +16,7 @@
   .cta-button {
     font-size: 16px;
     padding: 12px 20px;
-    margin: 16px 8px;
+    margin: 0 12px; /* Equal horizontal spacing */
   }
 
   .bottom-nav a {
@@ -27,28 +27,28 @@
     font-size: 22px;
   }
 
-  /* === Local Gas Prices (Subtle Card Variant) === */
+  /* === Local Gas Prices (Subtle Blended Card) === */
   :root {
     --brand: #38b6ff;
     --ink:   #0b1323;
     --muted: #6b7280;
-    --card:  #f9fafb; /* lighter background to blend */
-    --ring:  #e5e7eb;
+    --card:  #ffffff; /* Same as page background */
+    --ring:  #f0f0f0; /* very light border */
     --bg:    #ffffff;
   }
   .price-widget {
-    max-width: 400px; /* smaller width */
-    margin: 24px auto;
+    max-width: 360px;
+    margin: 20px auto;
     background: var(--card);
     border: 1px solid var(--ring);
-    border-radius: 12px;
-    box-shadow: none; /* remove strong shadow */
-    padding: 12px;
+    border-radius: 10px;
+    box-shadow: none;
+    padding: 10px;
   }
   .pw-header { display: grid; gap: 2px; text-align: center; }
   .pw-header h3 {
     margin: 0;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.2;
     font-weight: 600;
     color: var(--ink);
@@ -57,21 +57,21 @@
   .pw-prices {
     display: flex;
     justify-content: center;
-    margin-top: 8px;
+    margin-top: 6px;
   }
   .pw-item {
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
-    gap: 4px 8px;
-    padding: 10px 12px;
-    border-radius: 8px;
+    gap: 4px 6px;
+    padding: 8px 10px;
+    border-radius: 6px;
     border: 1px solid var(--ring);
-    background: #fdfdfd;
-    min-width: 140px; /* smaller size */
+    background: #fafafa; /* very light gray to blend */
+    min-width: 120px;
   }
   .pw-grade { font-size: 11px; color: var(--muted); }
-  .pw-value { font-size: 16px; font-weight: 600; letter-spacing: .2px; }
+  .pw-value { font-size: 15px; font-weight: 600; letter-spacing: .2px; }
 </style>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -104,12 +104,10 @@
   <p class="intro-text">
 <strong>Safe, affordable, and time-saving on-demand mobile fueling.</strong> Skip the gas station, avoid the hassle, and enjoy contactless fueling delivered straight to your car. <br/> <strong>Pittsburgh Built. Pittsburgh Based. </strong> </p>
 
-  <div style="margin-top: 30px; display: flex; flex-direction: column; align-items: center;">
-    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-      <a class="cta-button" href="index.html"><strong>refill now</strong></a>
-      <a class="cta-button" href="reschedule.html"><strong>subscriber refill</strong></a>
-    </div>
-    <a class="cta-button" href="fleet-commercial.html" style="margin-top: 24px;"><strong>fleet fueling</strong></a>
+  <div style="margin-top: 30px; display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
+    <a class="cta-button" href="index.html"><strong>refill now</strong></a>
+    <a class="cta-button" href="reschedule.html"><strong>subscriber refill</strong></a>
+    <a class="cta-button" href="fleet-commercial.html"><strong>fleet fueling</strong></a>
   </div>
 
   <!-- Gas Prices Card Section placed directly under the buttons -->
