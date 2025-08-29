@@ -11,6 +11,7 @@
       background: linear-gradient(135deg, #f9f9f9, #f1f1f1);
       color: #333;
       text-align: center;
+      overflow-x: hidden;
     }
     header {
       background: #3bb8ff;
@@ -19,6 +20,8 @@
       font-size: 2em;
       font-weight: bold;
       letter-spacing: 2px;
+      position: relative;
+      z-index: 10;
     }
     .hero {
       display: flex;
@@ -26,20 +29,48 @@
       align-items: center;
       justify-content: center;
       min-height: 80vh;
-      background: url('Welcome To Jurassic Park (1).png') no-repeat center center;
-      background-size: cover;
       position: relative;
+      overflow: hidden;
     }
-    .hero::before {
-      content: "";
+    .shape {
       position: absolute;
-      inset: 0;
-      background: rgba(255, 255, 255, 0.6);
+      background: rgba(59, 184, 255, 0.2);
+      border: 2px solid #3bb8ff;
+      border-radius: 10px;
+      z-index: 0;
+      animation: float 6s ease-in-out infinite;
+    }
+    .shape.square {
+      width: 100px;
+      height: 100px;
+    }
+    .shape.small {
+      width: 50px;
+      height: 50px;
+    }
+    .shape.large {
+      width: 150px;
+      height: 150px;
+    }
+    .shape.circle {
+      border-radius: 50%;
+    }
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
     }
     .hero-content {
       position: relative;
-      z-index: 1;
+      z-index: 5;
       text-align: center;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     .hero-content h1 {
       font-size: 3em;
@@ -81,12 +112,21 @@
       color: white;
       padding: 15px 0;
       font-size: 0.9em;
+      position: relative;
+      z-index: 10;
     }
   </style>
 </head>
 <body>
   <header>Gas Me Up</header>
   <section class="hero">
+    <!-- Decorative Shapes -->
+    <div class="shape square" style="top: 10%; left: 5%;"></div>
+    <div class="shape small circle" style="top: 20%; right: 10%;"></div>
+    <div class="shape large square" style="bottom: 15%; left: 15%;"></div>
+    <div class="shape small square" style="bottom: 10%; right: 20%;"></div>
+    <div class="shape circle" style="top: 40%; left: 80%; width:80px; height:80px;"></div>
+
     <div class="hero-content">
       <h1>Welcome to Gas Me Up</h1>
       <p>Your trusted mobile fueling service.</p>
