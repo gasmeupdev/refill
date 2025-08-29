@@ -27,57 +27,51 @@
     font-size: 22px;
   }
 
-  /* === Local Gas Prices (Card Variant) === */
+  /* === Local Gas Prices (Subtle Card Variant) === */
   :root {
     --brand: #38b6ff;
     --ink:   #0b1323;
     --muted: #6b7280;
-    --card:  #ffffff;
-    --ring:  #dbeafe;
-    --bg:    #f8fafc;
+    --card:  #f9fafb; /* lighter background to blend */
+    --ring:  #e5e7eb;
+    --bg:    #ffffff;
   }
   .price-widget {
-    max-width: 720px;
-    margin: 32px auto;
+    max-width: 400px; /* smaller width */
+    margin: 24px auto;
     background: var(--card);
-    border: 1px solid #e5e7eb;
-    border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0,0,0,.06);
-    padding: 16px;
+    border: 1px solid var(--ring);
+    border-radius: 12px;
+    box-shadow: none; /* remove strong shadow */
+    padding: 12px;
   }
   .pw-header { display: grid; gap: 2px; text-align: center; }
   .pw-header h3 {
     margin: 0;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.2;
-    letter-spacing: .2px;
+    font-weight: 600;
+    color: var(--ink);
   }
-  .pw-sub { font-size: 12px; color: var(--muted); }
+  .pw-sub { font-size: 11px; color: var(--muted); }
   .pw-prices {
     display: flex;
-    gap: 12px;
-    margin-top: 12px;
-    flex-wrap: wrap;
     justify-content: center;
+    margin-top: 8px;
   }
   .pw-item {
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
-    gap: 6px 12px;
-    padding: 14px 16px;
-    border-radius: 14px;
+    gap: 4px 8px;
+    padding: 10px 12px;
+    border-radius: 8px;
     border: 1px solid var(--ring);
-    background: #fff;
-    box-shadow: 0 6px 16px rgba(56,182,255,.10);
-    min-width: 180px;
+    background: #fdfdfd;
+    min-width: 140px; /* smaller size */
   }
-  .pw-grade { font-size: 12px; color: var(--muted); }
-  .pw-value { font-size: 18px; font-weight: 700; letter-spacing: .2px; }
-  @media (max-width: 480px) {
-    .pw-item { min-width: 140px; }
-    .pw-value { font-size: 17px; }
-  }
+  .pw-grade { font-size: 11px; color: var(--muted); }
+  .pw-value { font-size: 16px; font-weight: 600; letter-spacing: .2px; }
 </style>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -129,14 +123,6 @@
       <div class="pw-item">
         <span class="pw-grade">Regular</span>
         <span class="pw-value">$3.145</span>
-      </div>
-      <div class="pw-item">
-        <span class="pw-grade">Mid-Grade</span>
-        <span class="pw-value">$3.625</span>
-      </div>
-      <div class="pw-item">
-        <span class="pw-grade">Premium</span>
-        <span class="pw-value">$3.984</span>
       </div>
     </div>
   </section>
