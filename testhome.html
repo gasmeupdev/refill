@@ -3,12 +3,16 @@
 <html lang="en">
 <head>
 <style>
+  
   body {
-    font-family: 'Nunito', 'Inter', sans-serif, sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    padding-bottom: 80px;
+    margin: 0;
+    font-family: Arial, sans-serif !important;
+    background: linear-gradient(135deg, #f9f9f9, #f1f1f1) !important;
+    color: #333 !important;
+    text-align: center;
+    overflow-x: hidden;
   }
+
 
   h1, h2, h3, .cta-button, .bottom-nav a {
     font-family: 'Poppins', sans-serif;
@@ -70,6 +74,60 @@
     }
   }
 
+
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #f9f9f9, #f1f1f1);
+    color: #333;
+    text-align: center;
+    overflow-x: hidden;
+  }
+  .home-about {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 5;
+  }
+  .cta-button {
+    padding: 12px 25px;
+    margin: 10px;
+    border-radius: 25px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+  .cta-button.primary {
+    background: #3bb8ff;
+    color: white;
+    border: none;
+  }
+  .cta-button.primary:hover {
+    background: #339dd9;
+  }
+  .cta-button.secondary {
+    background: #fff;
+    border: 2px solid #3bb8ff;
+    color: #3bb8ff;
+  }
+  .cta-button.secondary:hover {
+    background: #3bb8ff;
+    color: #fff;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #3bb8ff !important;
+  }
+  p, li, span {
+    color: #000 !important;
+  }
+
 </style>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -111,10 +169,10 @@
 
   <div style="margin-top: 30px; display: flex; flex-direction: column; align-items: center;">
     <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-      <a class="cta-button" href="index.html"><strong>refill now</strong></a>
-      <a class="cta-button" href="reschedule.html"><strong>subscriber refill</strong></a>
+      <a class="cta-button primary" href="index.html">Refill Now</a>
+      <a class="cta-button primary" href="reschedule.html">Subscriber Refill</a>
     </div>
-    <a class="cta-button" href="fleet-commercial.html" style="margin-top: 24px;"><strong>fleet fueling</strong></a>
+    <a class="cta-button secondary" href="fleet-commercial.html" style="margin-top: 24px;">Fleet Fueling</a>
   </div>
 </div>
 </div>
