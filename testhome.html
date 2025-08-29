@@ -1,195 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<style>
-  body {
-    font-family: 'Nunito', 'Inter', sans-serif, sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    padding-bottom: 80px;
-  }
-
-  h1, h2, h3, .cta-button, .bottom-nav a {
-    font-family: 'Poppins', sans-serif;
-  }
-
-  .cta-button {
-    font-size: 16px;
-    padding: 12px 20px;
-    margin: 0 12px; /* Equal spacing */
-  }
-
-  .bottom-nav a {
-    font-size: 14px;
-  }
-
-  .bottom-nav i {
-    font-size: 22px;
-  }
-
-  /* === Local Gas Prices (Blended Card with Strong Font) === */
-  :root {
-    --brand: #38b6ff;
-    --ink:   #0b1323;
-    --muted: #6b7280;
-    --card:  #f9fafb; /* softer card background to blend */
-    --ring:  #e5e7eb;
-    --bg:    #ffffff;
-  }
-  .price-widget {
-    max-width: 360px;
-    margin: 20px auto;
-    background: var(--card);
-    border: 1px solid var(--ring);
-    border-radius: 10px;
-    box-shadow: none;
-    padding: 12px;
-  }
-  .pw-header { display: grid; gap: 2px; text-align: center; }
-  .pw-header h3 {
-    margin: 0;
-    font-size: 16px;
-    line-height: 1.2;
-    font-weight: 700;
-    color: var(--ink); /* stand out */
-  }
-  .pw-sub { font-size: 12px; color: var(--ink); font-weight: 600; }
-  .pw-prices {
-    display: flex;
-    justify-content: center;
-    margin-top: 8px;
-  }
-  .pw-item {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    gap: 4px 6px;
-    padding: 10px 12px;
-    border-radius: 8px;
-    border: 1px solid var(--ring);
-    background: var(--card);
-    min-width: 140px;
-  }
-  .pw-grade {
-    font-size: 12px;
-    font-weight: 700; /* stronger font */
-    color: var(--ink);
-  }
-  .pw-value {
-    font-size: 17px;
-    font-weight: 700;
-    letter-spacing: .2px;
-    color: var(--ink);
-  }
-</style>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="on demand gas delivery in Pittsburgh. No more gas stations - just fuel to your car!" name="description"/>
-<title>Gas Me Up - Home</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Poppins:wght@500;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="styles.css" rel="stylesheet" type="text/css"/>
-<link href="nav.css" rel="stylesheet"/>
-<script defer="" src="navHome-loader.js"></script>
-<!-- Override to ensure friendly font applies site-wide -->
-<style>
-  body, h1, h2, h3, h4, h5, h6, p, a, li, span, input, button {
-    font-family: 'Nunito', 'Inter', sans-serif !important;
-    -webkit-font-smoothing: antialiased;
-  }
-</style>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gas Me Up - Home</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #f9f9f9, #f1f1f1);
+      color: #333;
+      text-align: center;
+    }
+    header {
+      background: #3bb8ff;
+      color: white;
+      padding: 20px 0;
+      font-size: 2em;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+      background: url('Welcome To Jurassic Park (1).png') no-repeat center center;
+      background-size: cover;
+      position: relative;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.6);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .hero-content h1 {
+      font-size: 3em;
+      color: #3bb8ff;
+      margin-bottom: 20px;
+    }
+    .hero-content p {
+      font-size: 1.2em;
+      color: #444;
+      margin-bottom: 30px;
+    }
+    .btn {
+      padding: 12px 25px;
+      margin: 10px;
+      border: none;
+      border-radius: 25px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-primary {
+      background: #3bb8ff;
+      color: white;
+    }
+    .btn-primary:hover {
+      background: #339dd9;
+    }
+    .btn-secondary {
+      background: #fff;
+      border: 2px solid #3bb8ff;
+      color: #3bb8ff;
+    }
+    .btn-secondary:hover {
+      background: #3bb8ff;
+      color: #fff;
+    }
+    footer {
+      background: #3bb8ff;
+      color: white;
+      padding: 15px 0;
+      font-size: 0.9em;
+    }
+  </style>
 </head>
 <body>
-<main class="page-content">
-<div class="home-container">
-
-<div class="home-about" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-  <!-- Centered Logo Image -->
-  <img src="./images/Finallogocircle3.png" alt="Gas Me Up Banner"
-       style="max-width: 100%; height: auto; width: 300px; margin-bottom: 20px;" />
-
-  <h1>welcome to gas me up</h1>
-  <p class="intro-text">
-<strong>Safe, affordable, and time-saving on-demand mobile fueling.</strong> Skip the gas station, avoid the hassle, and enjoy contactless fueling delivered straight to your car. <br/> <strong>Pittsburgh Built. Pittsburgh Based. </strong> </p>
-
-  <div style="margin-top: 30px; display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
-    <a class="cta-button" href="index.html"><strong>refill now</strong></a>
-    <a class="cta-button" href="reschedule.html"><strong>subscriber refill</strong></a>
-    <a class="cta-button" href="fleet-commercial.html"><strong>fleet fueling</strong></a>
-  </div>
-
-  <!-- Gas Prices Card Section placed directly under the buttons -->
-  <section class="price-widget" aria-label="Local Gas Prices">
-    <header class="pw-header">
-      <h3>Local Gas Prices</h3>
-      <div class="pw-sub"><span>Pittsburgh, PA</span> • <span>as of Aug 28, 2025, 4:00 PM ET</span></div>
-    </header>
-
-    <div class="pw-prices">
-      <div class="pw-item">
-        <span class="pw-grade">Regular</span>
-        <span class="pw-value">$3.145</span>
-      </div>
+  <header>Gas Me Up</header>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to Gas Me Up</h1>
+      <p>Your trusted mobile fueling service.</p>
+      <button class="btn btn-primary">Get Started</button>
+      <button class="btn btn-secondary">Learn More</button>
     </div>
   </section>
-</div>
-
-</div>
-</main>
-<!-- Bottom Navigation -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<style>
-  .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    background-color: #38b6ff; /* Matched blue */
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-  }
-
-  .bottom-nav a {
-    color: #ffffff;
-    text-align: center;
-    text-decoration: none;
-    font-size: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .bottom-nav i {
-    font-size: 20px;
-    margin-bottom: 3px;
-  }
-
-  body {
-    padding-bottom: 80px; /* Ensure content is not hidden behind nav */
-  }
-</style>
-<div class="bottom-nav">
-<a class="nav-link" href="home">
-<i class="fas fa-home"></i>
-    Home
-  </a>
-<a class="nav-link" href="steps">
-<i class="fas fa-gas-pump"></i>
-    How it Works
-  </a>
-<a class="nav-link" href="pricing">
-<i class="fas fa-dollar-sign"></i>
-    Pricing
-  </a>
-<a class="nav-link" href="contact">
-<i class="fas fa-envelope"></i>
-    Contact
-  </a>
-</div>
+  <footer>
+    &copy; 2025 Gas Me Up. All rights reserved.
+  </footer>
 </body>
 </html>
