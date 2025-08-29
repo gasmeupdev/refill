@@ -16,7 +16,7 @@
   .cta-button {
     font-size: 16px;
     padding: 12px 20px;
-    margin: 0 12px; /* Equal horizontal spacing */
+    margin: 0 12px; /* Equal spacing */
   }
 
   .bottom-nav a {
@@ -27,13 +27,13 @@
     font-size: 22px;
   }
 
-  /* === Local Gas Prices (Subtle Blended Card) === */
+  /* === Local Gas Prices (Blended Card with Strong Font) === */
   :root {
     --brand: #38b6ff;
     --ink:   #0b1323;
     --muted: #6b7280;
-    --card:  #ffffff; /* Same as page background */
-    --ring:  #f0f0f0; /* very light border */
+    --card:  #f9fafb; /* softer card background to blend */
+    --ring:  #e5e7eb;
     --bg:    #ffffff;
   }
   .price-widget {
@@ -43,35 +43,44 @@
     border: 1px solid var(--ring);
     border-radius: 10px;
     box-shadow: none;
-    padding: 10px;
+    padding: 12px;
   }
   .pw-header { display: grid; gap: 2px; text-align: center; }
   .pw-header h3 {
     margin: 0;
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.2;
-    font-weight: 600;
-    color: var(--ink);
+    font-weight: 700;
+    color: var(--ink); /* stand out */
   }
-  .pw-sub { font-size: 11px; color: var(--muted); }
+  .pw-sub { font-size: 12px; color: var(--ink); font-weight: 600; }
   .pw-prices {
     display: flex;
     justify-content: center;
-    margin-top: 6px;
+    margin-top: 8px;
   }
   .pw-item {
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
     gap: 4px 6px;
-    padding: 8px 10px;
-    border-radius: 6px;
+    padding: 10px 12px;
+    border-radius: 8px;
     border: 1px solid var(--ring);
-    background: #fafafa; /* very light gray to blend */
-    min-width: 120px;
+    background: var(--card);
+    min-width: 140px;
   }
-  .pw-grade { font-size: 11px; color: var(--muted); }
-  .pw-value { font-size: 15px; font-weight: 600; letter-spacing: .2px; }
+  .pw-grade {
+    font-size: 12px;
+    font-weight: 700; /* stronger font */
+    color: var(--ink);
+  }
+  .pw-value {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: .2px;
+    color: var(--ink);
+  }
 </style>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
