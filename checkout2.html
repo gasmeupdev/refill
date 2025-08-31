@@ -14,17 +14,96 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 
  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif !important;
+      background: linear-gradient(135deg, #f9f9f9, #f1f1f1);
+      color: #333;
+      padding-bottom: 100px;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    h2 {
+      text-align: center;
+      color: #3bb8ff;
+      margin-bottom: 20px;
+    }
+    p, .stripe-disclaimer {
+      font-size: 0.95em;
+      color: #000;
+      text-align: center;
+    }
+    .container {
+      max-width: 400px;
+      margin: 100px auto;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid #3bb8ff;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    button {
+      padding: 12px 25px;
+      margin: 10px 0;
+      border-radius: 25px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+      width: 100%;
+      border: none;
+      background: #3bb8ff;
+      color: #fff;
+    }
+    button:hover {
+      background: #339dd9;
+    }
+    #card-element {
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      margin-top: 10px;
+      border: 1px solid #ddd;
+    }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+      width: 100%;
+    }
+    .shape {
+      position: absolute;
+      background: rgba(59, 184, 255, 0.15);
+      border: 1px solid rgba(59, 184, 255, 0.4);
+      border-radius: 10px;
+      z-index: 0;
+      animation: float 6s ease-in-out infinite;
+    }
+    .shape.square { width: 60px; height: 60px; }
+    .shape.small { width: 30px; height: 30px; }
+    .shape.large { width: 100px; height: 100px; }
+    .shape.circle { border-radius: 50%; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
     .bottom-nav {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
       height: 60px;
-      background-color: #007bff;
+      background: #38b6ff;
       display: flex;
       justify-content: space-around;
       align-items: center;
-      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
       z-index: 1000;
     }
     .bottom-nav a {
@@ -40,57 +119,16 @@
       font-size: 22px;
       margin-bottom: 3px;
     }
-    body {
-      background: #354952;
-      color: white;
-      font-family: 'Poppins', sans-serif;
-      padding-bottom: 100px;
-      margin: 0;
-    }
-    .container {
-      max-width: 400px;
-      margin: 100px auto;
-      background: #2e2e2e;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.3);
-    }
-    h2 {
-      text-align: center;
-      color: #00bfff;
-      margin-bottom: 20px;
-    }
-    p {
-      font-size: 0.95em;
-      color: #ccc;
-      text-align: center;
-    }
-    button {
-      background-color: #00bfff;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      padding: 10px 15px;
-      font-size: 16px;
-      width: 100%;
-      margin-top: 20px;
-      cursor: pointer;
-    }
-    #card-element {
-      background-color: white;
-      padding: 10px;
-      border-radius: 6px;
-      margin-top: 10px;
-    }
-    .stripe-disclaimer {
-      font-size: 0.85em;
-      color: #999;
-      text-align: center;
-      margin-top: 15px;
-    }
-  </style>
+</style>
 </head>
 <body>
+  <div class="hero">
+    <!-- Decorative Shapes -->
+    <div class="shape square" style="top: 10%; left: 5%;"></div>
+    <div class="shape small circle" style="top: 20%; right: 10%;"></div>
+    <div class="shape small square" style="bottom: 10%; right: 20%;"></div>
+    <div class="shape circle" style="top: 40%; left: 80%; width:80px; height:80px;"></div>
+
 <main class="page-content">
 <div class="container">
 <h2 class="checkout-title">Complete Your Payment</h2>
@@ -138,7 +176,8 @@
             });
         </script>
 </main>
-<div class="bottom-nav">
+</div>
+  <div class="bottom-nav">
 <a class="nav-link" href="home">
 <i class="fas fa-home"></i>
     Home
