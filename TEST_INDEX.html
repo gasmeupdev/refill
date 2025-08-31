@@ -16,54 +16,149 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Poppins:wght@500;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
 <style>
-      body, h1, h2, h3, h4, h5, h6, p, a, li, span, input, button {
-        font-family: 'Nunito', 'Inter', sans-serif !important;
-        -webkit-font-smoothing: antialiased;
-      }
-    
-.button-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  margin-top: 20px;
-}
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f9f9f9, #f1f1f1) !important;
+      color: #333 !important;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      overflow-x: hidden;
+      padding-bottom: 100px;
+    }
+    h2, h3 { color: #3bb8ff; }
+    p, label, input, select { color: #000; }
+    .container, .step {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid #3bb8ff;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+      width: 100%;
+    }
+    .shape {
+      position: absolute;
+      background: rgba(59, 184, 255, 0.2);
+      border: 2px solid #3bb8ff;
+      border-radius: 10px;
+      z-index: 0;
+      animation: float 6s ease-in-out infinite;
+    }
+    .shape.square { width: 100px; height: 100px; }
+    .shape.small { width: 50px; height: 50px; }
+    .shape.large { width: 150px; height: 150px; }
+    .shape.circle { border-radius: 50%; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .btn {
+      padding: 12px 25px;
+      margin: 10px 5px;
+      border-radius: 25px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    .btn-primary {
+      background: #3bb8ff;
+      color: white;
+      border: none;
+    }
+    .btn-primary:hover {
+      background: #339dd9;
+    }
+    .btn-secondary {
+      background: #fff;
+      border: 2px solid #3bb8ff;
+      color: #3bb8ff;
+    }
+    .btn-secondary:hover {
+      background: #3bb8ff;
+      color: #fff;
+    }
+
 </style>
-
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-
 <style>
-  .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    background-color: #007bff;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-  }
-  .bottom-nav a {
-    color: #ffffff;
-    text-align: center;
-    text-decoration: none;
-    font-size: 14px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .bottom-nav i {
-    font-size: 22px;
-    margin-bottom: 3px;
-  }
-  body {
-    padding-bottom: 80px;
-  }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f9f9f9, #f1f1f1) !important;
+      color: #333 !important;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      overflow-x: hidden;
+      padding-bottom: 100px;
+    }
+    h2, h3 { color: #3bb8ff; }
+    p, label, input, select { color: #000; }
+    .container, .step {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid #3bb8ff;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+      width: 100%;
+    }
+    .shape {
+      position: absolute;
+      background: rgba(59, 184, 255, 0.2);
+      border: 2px solid #3bb8ff;
+      border-radius: 10px;
+      z-index: 0;
+      animation: float 6s ease-in-out infinite;
+    }
+    .shape.square { width: 100px; height: 100px; }
+    .shape.small { width: 50px; height: 50px; }
+    .shape.large { width: 150px; height: 150px; }
+    .shape.circle { border-radius: 50%; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
 </style>
 </head>
 <body>
+  <div class="hero">
+    <!-- Decorative Shapes -->
+    <div class="shape square" style="top: 10%; left: 5%;"></div>
+    <div class="shape small circle" style="top: 20%; right: 10%;"></div>
+    <div class="shape small square" style="bottom: 10%; right: 20%;"></div>
+    <div class="shape circle" style="top: 40%; left: 80%; width:80px; height:80px;"></div>
+
 <main class="page-content">
 <div class="container">
 <a href="./home.html">
@@ -83,14 +178,14 @@
 </div>
 <div class="step" id="step2">
 <h3> choose your refill time</h3>
-<p> our drivers will arrive within the 1-hour time slot you’ve selected. 
-                        you'll receive periodic updates of the drivers status and estimated exact arrival times.</p>
+<p> Drivers will arrive within the 1-hour time slot you’ve selected. 
+                        you'll receive periodic updates of the drivers status and estimated arrival times.</p>
 <input name="Date" required="" type="date"/>
 <select id="schedule_time" name="Time" required=""></select>
 <p id="time_warning" style="color: red; display: none;">FYI: Our hours are 5PM - 11PM &amp; 5AM - 7AM.</p>
-<div class="button-row">
-<button onclick="prevStep()" type="button">Back</button>
-<button onclick="if(validateStep(stepIndex)) nextStep();" type="button">Next</button>
+<p style="color: #38b6ff; font-size: 14px; margin-top: 10px;">Our hours are 5PM - 1AM Monday through Friday and 7AM - 1AM Saturday and Sunday.</p><div class="button-row">
+<button onclick="prevStep()" type="button" class="btn btn-secondary">Back</button>
+<button onclick="if(validateStep(stepIndex)) nextStep();" type="button" class="btn btn-primary">Next</button>
 </div>
 </div>
 <div class="step" id="step3">
@@ -100,15 +195,15 @@
 <input name="Car Year" placeholder="car year" required="" type="text"/>
 <input name="Car Color" placeholder="car color" required="" type="text"/>
 <input name="License Plate" placeholder="license plate number" required="" type="text"/>
-<input id="address" name="Address" placeholder="car address" required="" type="text"/>
+<input id="address" name="Address" placeholder="car location" required="" type="text"/>
 <label for="keys_available">Please confirm the car will be unlocked or the owner will be available to unlock the car upon the driver’s arrival?”</label>
 <select id="keys_available" name="Keys Available" required="">
 <option value="Yes">Yes</option>
 <option value="No">No</option>
 </select>
 <div class="button-row">
-<button onclick="prevStep()" type="button">Back</button>
-<button onclick="if(validateStep(stepIndex)) nextStep();" type="button">Next</button>
+<button onclick="prevStep()" type="button" class="btn btn-secondary">Back</button>
+<button onclick="if(validateStep(stepIndex)) nextStep();" type="button" class="btn btn-primary">Next</button>
 </div>
 </div>
 <div class="step" id="step4">
@@ -130,66 +225,88 @@
 </select>
 <br/>
 <div class="button-row">
-<button onclick="prevStep()" type="button">Back</button>
-<button type="submit">Proceed to Checkout</button>
+<button onclick="prevStep()" type="button" class="btn btn-secondary">Back</button>
+<button type="submit" class="btn btn-primary">Proceed to Checkout</button>
 </div>
 </div>
 </form>
 </div>
 <script src="validation.js"></script>
-<script src="TEST_SCRIPTS.js"></script>
+<script src="scripts.js"></script>
 </main>
 <!-- Bottom Navigation from TESTHOMEPAGE -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 <style>
-      .bottom-nav {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 60px;
-        background-color: #007bff;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
-        z-index: 1000;
-      }
-      .bottom-nav a {
-        color: #ffffff;
-        text-align: center;
-        text-decoration: none;
-        font-size: 14px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      .bottom-nav i {
-        font-size: 22px;
-        margin-bottom: 3px;
-      }
-      body {
-        padding-bottom: 80px; /* Ensure content is not hidden behind nav */
-      }
-    </style>
-<div class="bottom-nav">
-<a class="nav-link" href="TESTHOMEPAGE.html">
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f9f9f9, #f1f1f1) !important;
+      color: #333 !important;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      overflow-x: hidden;
+      padding-bottom: 100px;
+    }
+    h2, h3 { color: #3bb8ff; }
+    p, label, input, select { color: #000; }
+    .container, .step {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid #3bb8ff;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+      width: 100%;
+    }
+    .shape {
+      position: absolute;
+      background: rgba(59, 184, 255, 0.2);
+      border: 2px solid #3bb8ff;
+      border-radius: 10px;
+      z-index: 0;
+      animation: float 6s ease-in-out infinite;
+    }
+    .shape.square { width: 100px; height: 100px; }
+    .shape.small { width: 50px; height: 50px; }
+    .shape.large { width: 150px; height: 150px; }
+    .shape.circle { border-radius: 50%; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+</style>
+</div>
+  <div class="bottom-nav">
+<a class="nav-link" href="home">
 <i class="fas fa-home"></i>
     Home
   </a>
-<a class="nav-link" href="index.html">
+<a class="nav-link" href="steps">
+<i class="fas fa-question-circle"></i>
+    How it Works
+  </a>
+<!-- <a class="nav-link" href="index">
 <i class="fas fa-gas-pump"></i>
     Refill
-  </a>
-<a class="nav-link" href="pricing.html">
+  </a> -->
+<a class="nav-link" href="pricing">
 <i class="fas fa-dollar-sign"></i>
     Pricing
   </a>
-<a class="nav-link" href="about.html">
-<i class="fas fa-info-circle"></i>
-    About
-  </a>
-<a class="nav-link" href="contact.html">
+<a class="nav-link" href="contact">
 <i class="fas fa-envelope"></i>
     Contact
   </a>
