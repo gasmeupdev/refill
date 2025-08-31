@@ -345,5 +345,15 @@
     Contact
   </a>
 </div>
+
+<script>
+  window.addEventListener("load", function() {
+    const addressInput = document.getElementById("address");
+    if (addressInput && window.google && google.maps.places) {
+      new google.maps.places.Autocomplete(addressInput);
+    }
+  });
+</script>
+
 </body>
 </html>
