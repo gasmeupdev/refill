@@ -10,69 +10,85 @@
 <script defer="" src="nav-loader.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 <style>
-        .lookup-container {
-            max-width: 500px;
-            margin: 60px auto;
-            padding: 30px;
-            background: #333;
-            color: #D3D3D3;
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
-        }
-
-        h2 {
-            text-align: center;
-            color: #00ccff;
-            margin-bottom: 20px;
-        }
-
-        .match-card {
-            background: #2a2a2a;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 20px 0;
-            border: 1px solid #4a6333;
-        }
-
-        .match-card p {
-            margin: 5px 0;
-        }
-
-        .reschedule-form {
-            margin-top: 20px;
-            padding: 20px;
-            background: #1e1e1e;
-            border-radius: 10px;
-            border: 1px solid #4a6333;
-            animation: slideFadeIn 0.4s ease forwards;
-        }
-
-        @keyframes slideFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    
-.info-box {
-    background-color: #1e1e1e;
-    color: #d3d3d3;
-    border-left: 5px solid #00ccff;
-    padding: 15px;
-    margin-top: 20px;
-    border-radius: 10px;
-    font-size: 14px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
-.info-box a {
-    color: #00ccff;
-    text-decoration: underline;
-}
-.bottom-nav {
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif !important;
+      background: linear-gradient(135deg, #f9f9f9, #f1f1f1);
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      overflow-x: hidden;
+      padding-bottom: 100px;
+    }
+    h2, h3, h4 { color: #3bb8ff; }
+    p, label, input, select { color: #000; }
+    .lookup-container, .match-card, .reschedule-form, .info-box {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid #3bb8ff;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    button {
+      padding: 12px 25px;
+      margin: 10px 5px;
+      border-radius: 25px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+      border: none;
+    }
+    button.btn-primary, .match-card button, .reschedule-form button[type="submit"], #confirmSubmit {
+      background: #3bb8ff;
+      color: #fff;
+    }
+    button.btn-primary:hover, .match-card button:hover, .reschedule-form button[type="submit"]:hover, #confirmSubmit:hover {
+      background: #339dd9;
+    }
+    button.btn-secondary, #cancelSubmit {
+      background: #fff;
+      border: 2px solid #3bb8ff;
+      color: #3bb8ff;
+    }
+    button.btn-secondary:hover, #cancelSubmit:hover {
+      background: #3bb8ff;
+      color: #fff;
+    }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+      width: 100%;
+    }
+    .shape {
+      position: absolute;
+      background: rgba(59, 184, 255, 0.15);
+      border: 1px solid rgba(59, 184, 255, 0.4);
+      border-radius: 10px;
+      z-index: 0;
+      animation: float 6s ease-in-out infinite;
+    }
+    .shape.square { width: 60px; height: 60px; }
+    .shape.small { width: 30px; height: 30px; }
+    .shape.large { width: 100px; height: 100px; }
+    .shape.circle { border-radius: 50%; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    .bottom-nav {
       position: fixed;
       bottom: 0;
       left: 0;
@@ -82,7 +98,7 @@
       display: flex;
       justify-content: space-around;
       align-items: center;
-      box-shadow: 0 -2px 5px rgba(0,0,0,0.4);
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
       z-index: 1000;
     }
     .bottom-nav a {
@@ -98,10 +114,16 @@
       font-size: 22px;
       margin-bottom: 3px;
     }
-
 </style>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh5XxodKgwBLU3RipuMvQr-WwsqVN12w8&amp;libraries=places"></script></head>
 <body>
+  <div class="hero">
+    <!-- Decorative Shapes -->
+    <div class="shape square" style="top: 10%; left: 5%;"></div>
+    <div class="shape small circle" style="top: 20%; right: 10%;"></div>
+    <div class="shape small square" style="bottom: 10%; right: 20%;"></div>
+    <div class="shape circle" style="top: 40%; left: 80%; width:80px; height:80px;"></div>
+
 <main class="page-content">
 <div class="lookup-container">
 <h2>Schedule Your Fueling </h2>
@@ -312,7 +334,8 @@ data.matches.slice(0, 3).forEach((match, index) => {
             }
         </script>
 </main>
-<div class="bottom-nav">
+</div>
+  <div class="bottom-nav">
 <a class="nav-link" href="home">
 <i class="fas fa-home"></i>
     Home
