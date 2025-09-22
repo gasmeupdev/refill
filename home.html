@@ -283,9 +283,10 @@
   </a>
 </div>
 
+
 <script>
   async function loadGasPrice() {
-    const sheetID = "1s-JLbBmyclhTqBO3zk1LkftbdCVdsvL8uCIvdvJR9EY"; // <-- replace with your published sheet ID
+    const sheetID = "1s-JLbBmyclhTqBO3zk1LkftbdCVdsvL8uCIvdvJR9EY"; // your published sheet ID
     const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json`;
 
     try {
@@ -294,16 +295,34 @@
       const json = JSON.parse(text.substr(47).slice(0, -2));
       const rows = json.table.rows;
 
-      const price = rows[0].c[1].v; // B1
-      document.getElementById("gas-price").textContent = `$${price} / gallon`;
-      document.getElementById("price-date").textContent = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+      let price = null;
+      if (rows[0] && rows[0].c) {
+        // prefer column 1 (B1), otherwise column 0 (A1)
+        if (rows[0].c[1] && rows[0].c[1].v !== null) {
+          price = rows[0].c[1].v;
+        } else if (rows[0].c[0] && rows[0].c[0].v !== null) {
+          price = rows[0].c[0].v;
+        }
+      }
+
+      if (price) {
+        document.getElementById("gas-price").textContent = `$${price} / gallon`;
+      } else {
+        document.getElementById("gas-price").textContent = "Price not found";
+      }
+
+      document.getElementById("price-date").textContent =
+        new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
     } catch (err) {
       document.getElementById("gas-price").textContent = "Error loading price";
-      document.getElementById("price-date").textContent = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+      document.getElementById("price-date").textContent =
+        new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+      console.error("Gas price fetch failed:", err);
     }
   }
   loadGasPrice();
 </script>
+
 
 </body>
 </html>
