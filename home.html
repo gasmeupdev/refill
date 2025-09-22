@@ -1,254 +1,92 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7KV1XDEBW2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-7KV1XDEBW2');
-</script>
-
-
-  
 <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Gas Me Up - Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link href="styles.css" rel="stylesheet" type="text/css"/>
+  <link href="nav.css" rel="stylesheet"/>
+  <script defer src="navHome-loader.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 
-
-  
-<style>
-  
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif !important;
-    background: linear-gradient(135deg, #f9f9f9, #f1f1f1) !important;
-    color: #333 !important;
-    text-align: center;
-    overflow-x: hidden;
-  }
-
-
-  h1, h2, h3, .cta-button, .bottom-nav a {
-    font-family: 'Poppins', sans-serif;
-  }
-
-  .cta-button {
-    font-size: 16px;
-    padding: 12px 20px;
-  
-  margin: 16px 8px;
-}
-
-  .bottom-nav a {
-    font-size: 14px;
-  }
-
-  .bottom-nav i {
-    font-size: 22px;
-  }
-
-  .hero {
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 80vh;
-  }
-  .shape {
-    position: absolute;
-    background: rgba(59, 184, 255, 0.2);
-    border: 2px solid #3bb8ff;
-    border-radius: 10px;
-    z-index: 0;
-    animation: float 6s ease-in-out infinite;
-  }
-  .shape.square {
-    width: 100px;
-    height: 100px;
-  }
-  .shape.small {
-    width: 50px;
-    height: 50px;
-  }
-  .shape.large {
-    width: 150px;
-    height: 150px;
-  }
-  .shape.circle {
-    border-radius: 50%;
-  }
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0px);
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif !important;
+      background: linear-gradient(135deg, #f9f9f9, #f1f1f1) !important;
+      color: #333 !important;
+      text-align: center;
+      overflow-x: hidden;
     }
-    50% {
-      transform: translateY(-20px);
+    .price-box {
+      margin: 25px auto;
+      padding: 20px 50px;
+      background: rgba(59, 184, 255, 0.1);
+      border: 2px solid #3bb8ff;
+      border-radius: 20px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      font-size: 1.6em;
+      font-weight: bold;
+      color: #3bb8ff;
+      display: inline-block;
+      transition: all 0.3s ease-in-out;
     }
-  }
-
-
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #f9f9f9, #f1f1f1);
-    color: #333;
-    text-align: center;
-    overflow-x: hidden;
-  }
-  .home-about {
-    background: rgba(255, 255, 255, 0.7);
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    position: relative;
-    z-index: 5;
-  }
-  .cta-button {
-    padding: 12px 25px;
-    margin: 10px;
-    border-radius: 25px;
-    font-size: 1em;
-    font-weight: bold;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    display: inline-block;
-  }
-  .cta-button.primary {
-    background: #3bb8ff;
-    color: white;
-    border: none;
-  }
-  .cta-button.primary:hover {
-    background: #339dd9;
-  }
-  .cta-button.secondary {
-    background: #fff;
-    border: 2px solid #3bb8ff;
-    color: #3bb8ff;
-  }
-  .cta-button.secondary:hover {
-    background: #3bb8ff;
-    color: #fff;
-  }
-
-
-  h1, h2, h3, h4, h5, h6 {
-    color: #3bb8ff !important;
-  }
-  p, li, span {
-    color: #000 !important;
-  }
-
-</style>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="on demand gas delivery in Pittsburgh. No more gas stations - just fuel to your car!" name="description"/>
-<title>Gas Me Up - Home</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Poppins:wght@500;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="styles.css" rel="stylesheet" type="text/css"/>
-<link href="nav.css" rel="stylesheet"/>
-<script defer="" src="navHome-loader.js"></script>
-<!-- Override to ensure friendly font applies site‑wide -->
-<style>
-  body, h1, h2, h3, h4, h5, h6, p, a, li, span, input, button {
-    font-family: 'Nunito', 'Inter', sans-serif !important;
-    -webkit-font-smoothing: antialiased;
-  }
-</style>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    .price-box:hover {
+      background: #3bb8ff;
+      color: #fff;
+      transform: scale(1.05);
+      cursor: default;
+    }
+  </style>
 </head>
 <body>
 <main class="page-content">
-<div class="hero">
-    <!-- Decorative Shapes -->
-    <div class="shape square" style="top: 10%; left: 5%;"></div>
-    <div class="shape small circle" style="top: 20%; right: 10%;"></div>
-    <div class="shape small square" style="bottom: 10%; right: 20%;"></div>
-    <div class="shape circle" style="top: 40%; left: 80%; width:80px; height:80px;"></div>
+  <div class="hero">
     <div class="home-container">
+      <div class="home-about" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+        <img src="./images/Finallogocircle4.png" alt="Gas Me Up Banner"
+             style="max-width: 100%; height: auto; width: 300px; margin-bottom: 20px; opacity: 0.7;" />
+        <h1>welcome to gas me up</h1>
+        <p class="intro-text">
+          <strong>Safe, affordable, and time-saving on-demand mobile fueling.</strong> Skip the gas station, avoid the hassle, and enjoy contactless fueling delivered straight to your car. <br/>
+          <strong>Pittsburgh Built. Pittsburgh Based. </strong>
+        </p>
 
-<div class="home-about" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-  <!-- Centered Logo Image -->
-  <img src="./images/Finallogocircle4.png" alt="Gas Me Up Banner"
-       style="max-width: 100%; height: auto; width: 300px; margin-bottom: 20px; opacity: 0.7;" />
+        <!-- NEW PRICE BOX -->
+        <div class="price-box">
+          $4.29 / gallon
+        </div>
 
-  <h1>welcome to gas me up</h1>
-  <p class="intro-text">
-<strong>Safe, affordable, and time-saving on-demand mobile fueling.</strong> Skip the gas station, avoid the hassle, and enjoy contactless fueling delivered straight to your car. <br/> <strong>Pittsburgh Built. Pittsburgh Based. </strong> </p>
-
-  <div style="margin-top: 30px; display: flex; flex-direction: column; align-items: center;">
-    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-      <a class="cta-button primary" href="index.html">Refill Now</a>
-      <a class="cta-button primary" href="reschedule.html">Subscriber Refill</a>
+        <div style="margin-top: 30px; display: flex; flex-direction: column; align-items: center;">
+          <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <a class="cta-button primary" href="index.html">Refill Now</a>
+            <a class="cta-button primary" href="reschedule.html">Subscriber Refill</a>
+          </div>
+          <a class="cta-button secondary" href="fleet-commercial.html" style="margin-top: 24px;">Fleet Fueling</a>
+        </div>
+      </div>
     </div>
-    <a class="cta-button secondary" href="fleet-commercial.html" style="margin-top: 24px;">Fleet Fueling</a>
   </div>
-</div>
-</div>
-
 </main>
+
 <!-- Bottom Navigation -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<style>
-  .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    background-color: #38b6ff; /* Matched blue */
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-  }
-
-  .bottom-nav a {
-    color: #ffffff;
-    text-align: center;
-    text-decoration: none;
-    font-size: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .bottom-nav i {
-    font-size: 20px;
-    margin-bottom: 3px;
-  }
-
-  body {
-    padding-bottom: 80px; /* Ensure content is not hidden behind nav */
-  }
-</style>
 <div class="bottom-nav">
-<a class="nav-link" href="home">
-<i class="fas fa-home"></i>
+  <a class="nav-link" href="home">
+    <i class="fas fa-home"></i>
     Home
   </a>
-<a class="nav-link" href="steps">
-<i class="fas fa-gas-pump"></i>
+  <a class="nav-link" href="steps">
+    <i class="fas fa-gas-pump"></i>
     How it Works
   </a>
-<!-- <a class="nav-link" href="index">
-<i class="fas fa-gas-pump"></i>
-    Refill
-  </a> -->
-<a class="nav-link" href="pricing">
-<i class="fas fa-dollar-sign"></i>
+  <a class="nav-link" href="pricing">
+    <i class="fas fa-dollar-sign"></i>
     Pricing
   </a>
-<a class="nav-link" href="contact">
-<i class="fas fa-envelope"></i>
+  <a class="nav-link" href="contact">
+    <i class="fas fa-envelope"></i>
     Contact
   </a>
 </div>
