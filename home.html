@@ -201,14 +201,14 @@
               font-weight: bold; 
               color: #3bb8ff; 
               display: inline-block;">
-            $4.29 / gallon
+            <span id="gas-price">Loading...</span>
           </div>
           <div style="
               font-size: 0.85em; 
               color: #000; 
               margin-top: 6px; 
               text-align: center;">
-            As of September 22, 2025
+            As of <span id="price-date"></span>
           </div>
         </div>
 
@@ -282,5 +282,28 @@
     Contact
   </a>
 </div>
+
+<script>
+  async function loadGasPrice() {
+    const sheetID = "1s-JLbBmyclhTqBO3zk1LkftbdCVdsvL8uCIvdvJR9EY"; // <-- replace with your published sheet ID
+    const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json`;
+
+    try {
+      const res = await fetch(url);
+      const text = await res.text();
+      const json = JSON.parse(text.substr(47).slice(0, -2));
+      const rows = json.table.rows;
+
+      const price = rows[0].c[1].v; // B1
+      document.getElementById("gas-price").textContent = `$${price} / gallon`;
+      document.getElementById("price-date").textContent = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+    } catch (err) {
+      document.getElementById("gas-price").textContent = "Error loading price";
+      document.getElementById("price-date").textContent = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+    }
+  }
+  loadGasPrice();
+</script>
+
 </body>
 </html>
