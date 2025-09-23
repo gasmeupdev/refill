@@ -288,29 +288,13 @@
 
 <script>
   async function loadGasPrice() {
-    const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTrPTW1EsZv1l-Ww-Mc348Ba193AkPNLcqzUQ7LhEAveRgfYnOzmx6LAdc7mvM1j48wsQm8FldrPCbQ/pub?gid=0&single=true&output=csv";
-
+    const url = "https://script.google.com/macros/s/AKfycbzlAne_tmRqmvycVu7_FXDuRou8YbD57EYct5Z9I71P3lxvifkp4Iz3kvAobTGnjNWN/exec"; // paste your /exec link from Google Apps Script
     try {
       const res = await fetch(url);
-      const text = await res.text();
+      const data = await res.json();
 
-      console.log("Fetched CSV:", text); // Debugging output
-
-      // Split CSV into rows + columns
-      const rows = text.trim().split("
-").map(r => r.split(","));
-
-      // Grab first row, second column (B1)
-      let price = rows[0][1];
-
-      if (price) {
-        document.getElementById("gas-price").textContent = `$${price} / gallon`;
-      } else {
-        document.getElementById("gas-price").textContent = "Price not found";
-      }
-
-      document.getElementById("price-date").textContent =
-        new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+      document.getElementById("gas-price").textContent = `$${data.price} / gallon`;
+      document.getElementById("price-date").textContent = data.updated;
     } catch (err) {
       document.getElementById("gas-price").textContent = "Error loading price";
       document.getElementById("price-date").textContent = "";
