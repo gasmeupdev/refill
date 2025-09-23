@@ -285,6 +285,7 @@
 
 
 
+
 <script>
   async function loadGasPrice() {
     const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTrPTW1EsZv1l-Ww-Mc348Ba193AkPNLcqzUQ7LhEAveRgfYnOzmx6LAdc7mvM1j48wsQm8FldrPCbQ/pub?output=csv";
@@ -293,7 +294,7 @@
       const res = await fetch(url);
       const text = await res.text();
 
-      // Split CSV into rows + columns
+      // Split CSV into rows + columns correctly
       const rows = text.trim().split("
 ").map(r => r.split(","));
 
@@ -316,6 +317,7 @@
   }
   loadGasPrice();
 </script>
+
 
 
 
