@@ -286,23 +286,20 @@
 
 <script>
   async function loadGasPrice() {
-    const sheetID = "1s-JLbBmyclhTqBO3zk1LkftbdCVdsvL8uCIvdvJR9EY"; // your published sheet ID
-    const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json`;
+    const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTrPTW1EsZv1l-Ww-Mc348Ba193AkPNLcqzUQ7LhEAveRgfYnOzmx6LAdc7mvM1j48wsQm8FldrPCbQ/pub?output=csv";
 
     try {
       const res = await fetch(url);
       const text = await res.text();
-      const json = JSON.parse(text.substr(47).slice(0, -2));
-      const rows = json.table.rows;
 
+      // Split CSV into rows and columns
+      const rows = text.trim().split("
+").map(r => r.split(","));
+
+      // Assume first row is headers, second row has data
       let price = null;
-      if (rows[0] && rows[0].c) {
-        // prefer column 1 (B1), otherwise column 0 (A1)
-        if (rows[0].c[1] && rows[0].c[1].v !== null) {
-          price = rows[0].c[1].v;
-        } else if (rows[0].c[0] && rows[0].c[0].v !== null) {
-          price = rows[0].c[0].v;
-        }
+      if (rows[1] && rows[1][1]) { // B1 is second column of first data row
+        price = rows[1][1];
       }
 
       if (price) {
