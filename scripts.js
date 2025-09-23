@@ -35,11 +35,12 @@ if (dateInput) {
 }
 
 function populateTimeSlots(date) {
-  timeSelect.innerHTML = "";
+  timeSelect.innerHTML = ""; // clear existing options
 
   if (!date) return;
 
-  const day = new Date(date).getDay(); 
+  const selectedDate = new Date(date + "T00:00:00"); // force midnight local
+  const day = selectedDate.getDay(); 
   // Sunday = 0, Monday = 1, ... Saturday = 6
   let startHour, endHour;
 
@@ -57,8 +58,8 @@ function populateTimeSlots(date) {
   for (let hour = startHour; hour < endHour; hour++) {
     const start = new Date();
     const end = new Date();
-    start.setHours(hour, 0);
-    end.setHours(hour + 1, 0);
+    start.setHours(hour, 0, 0, 0);
+    end.setHours(hour + 1, 0, 0, 0);
 
     const options = { hour: "numeric", minute: "2-digit", hour12: true };
     const slot =
@@ -79,10 +80,12 @@ function populateTimeSlots(date) {
   timeSelect.appendChild(option);
 }
 
-dateInput.addEventListener("change", function () {
+// ✅ Make sure it updates every time the user picks a date
+dateInput.addEventListener("input", function () {
   populateTimeSlots(this.value);
 });
 
+// Run once if there’s already a value
 if (dateInput.value) {
   populateTimeSlots(dateInput.value);
 }
