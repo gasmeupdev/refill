@@ -1,6 +1,6 @@
 //const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbx1AGoCM2ssoBsYVAmv52ENvajwaCJ38ycVwTf3w5TqpFgbeRmE9sFVCDCoj8D9i01M/exec";
 const GOOGLE_SHEET_WEBHOOK_URL1 = "https://script.google.com/macros/s/AKfycbzDLc_Fj4n_yXFktLdH7_qkPgBjzd7IPkw6-RlwyDWKklk8WJWw2kpl6gt2ZXI1xz44/exec";
-   const GOOGLE_SHEET_WEBHOOK_URL2 = "https://script.google.com/macros/s/AKfycbzuJvGkUZJ-KBy7cKm9Dbz57rZHispgy1DltRCGZmNueJHvuWA64TXpYJG8dbFvjp4V/exec"
+const GOOGLE_SHEET_WEBHOOK_URL2 = "https://script.google.com/macros/s/AKfycbzuJvGkUZJ-KBy7cKm9Dbz57rZHispgy1DltRCGZmNueJHvuWA64TXpYJG8dbFvjp4V/exec"
 const GOOGLE_SHEET_WEBHOOK_URL3 = "https://script.google.com/macros/s/AKfycbx9S-vZIIC9xIHNdnBLMnjBUT0sC6tnC3cbXJfo0ZBCuaJk045cgfZUadcVaRapb0oW/exec";
 
 // ✅ Multi-Step Navigation
@@ -36,43 +36,73 @@ function prevStep() {
 }
 
 
-// ✅ Time Selection Restricted
+// ✅ Time Selection Restricted by Day
 const timeSelect = document.getElementById("schedule_time");
+const dateInput = document.querySelector('input[name="Date"]');
 
 // Set today's date as min for the date input
-const dateInput = document.querySelector('input[name="Date"]');
 const today = new Date().toISOString().split("T")[0];
 if (dateInput) {
-    dateInput.min = today;
+  dateInput.min = today;
 }
 
-// Populate time options from 7AM to 12AM in 1-hour increments
-const timeSlots = [];
-for (let hour = 7; hour <= 23; hour++) {
+function populateTimeSlots(date) {
+  timeSelect.innerHTML = ""; // clear existing options
+
+  if (!date) return;
+
+  const day = new Date(date).getDay(); 
+  // Sunday = 0, Monday = 1, ... Saturday = 6
+  let startHour, endHour;
+
+  if (day === 0 || day === 6) {
+    // Weekend: 7AM - 1AM
+    startHour = 7;
+    endHour = 24; // midnight
+  } else {
+    // Weekday: 5PM - 1AM
+    startHour = 17;
+    endHour = 24; // midnight
+  }
+
+  // Generate hourly slots
+  for (let hour = startHour; hour < endHour; hour++) {
     const start = new Date();
     const end = new Date();
     start.setHours(hour, 0);
     end.setHours(hour + 1, 0);
-    const options = { hour: 'numeric', minute: '2-digit', hour12: true };
-    const slot = start.toLocaleTimeString([], options).replace(":00", "") + " - " +
-                 end.toLocaleTimeString([], options).replace(":00", "");
-    timeSlots.push(slot);
+
+    const options = { hour: "numeric", minute: "2-digit", hour12: true };
+    const slot =
+      start.toLocaleTimeString([], options).replace(":00", "") +
+      " - " +
+      end.toLocaleTimeString([], options).replace(":00", "");
+
+    const option = document.createElement("option");
+    option.value = slot;
+    option.textContent = slot;
+    timeSelect.appendChild(option);
+  }
+
+  // Always add "12 AM - 1 AM"
+  if (endHour === 24) {
+    const option = document.createElement("option");
+    option.value = "12 AM - 1 AM";
+    option.textContent = "12 AM - 1 AM";
+    timeSelect.appendChild(option);
+  }
 }
 
-timeSlots.push("12 AM - 1 AM");
+// Re-populate time slots whenever the date changes
+dateInput.addEventListener("change", function () {
+  populateTimeSlots(this.value);
+});
 
-timeSlots.forEach(time => {
-    const option = document.createElement("option");
-    option.value = time;
-    option.textContent = time;
-    timeSelect.appendChild(option);
-});
-(time => {
-    const option = document.createElement("option");
-    option.value = time;
-    option.textContent = time;
-    timeSelect.appendChild(option);
-});
+// Initialize if there's already a value
+if (dateInput.value) {
+  populateTimeSlots(dateInput.value);
+}
+
 
 // ✅ Neighborhood ZIP Mapping
 const zipToNeighborhood = {
@@ -139,7 +169,7 @@ function updateNeedle(val) {
   const barWidth = speedometer.offsetWidth;
 
   const px = barWidth * percent;
-  needle.style.left = `${px}px`;
+  needle.style.left = `${px}px";
   valueDisplay.textContent = val;
 }
 
@@ -157,65 +187,49 @@ document.getElementById("multiStepForm").addEventListener("submit", async functi
     const name = formData.get("Name");
     const email = formData.get("Email");
     const becomeSubscriber = formData.get("Become Subscriber");
-  console.log('Become Subscriber? ' + becomeSubscriber);
+    console.log('Become Subscriber? ' + becomeSubscriber);
 
     sessionStorage.setItem("userName", name);
     sessionStorage.setItem("userEmail", email);
     sessionStorage.setItem("becomeSubscriber", becomeSubscriber);
 
     try {
- if (becomeSubscriber == 'Yes') {
-     var response = await fetch(GOOGLE_SHEET_WEBHOOK_URL2, {
+      if (becomeSubscriber == 'Yes') {
+        var response = await fetch(GOOGLE_SHEET_WEBHOOK_URL2, {
             method: "POST",
             body: formData,
             redirect: "follow"  // Allows handling of redirects
         });
-
-  
- }
-
-      else {
-
-          var response = await fetch(GOOGLE_SHEET_WEBHOOK_URL1, {
+      } else {
+        var response = await fetch(GOOGLE_SHEET_WEBHOOK_URL1, {
             method: "POST",
             body: formData,
             redirect: "follow"  // Allows handling of redirects
         });
- }
+      }
 
-     
-      
-      
-        // const response = await fetch(GOOGLE_SHEET_WEBHOOK_URL2, {
-        //     method: "POST",
-        //     body: formData,
-        //     redirect: "follow"  // Allows handling of redirects
-        // });
+      console.log("Response Status: " + response.status);  // Log status
+      console.log("Response URL: " + response.url);  // Log final URL
 
-        console.log("Response Status: " + response.status);  // Log status
-        console.log("Response URL: " + response.url);  // Log final URL
+      if (response.ok) {
+          const result = await response.json();
+          console.log("Server response: ", result);
 
-        if (response.ok) {
-            const result = await response.json();
-            console.log("Server response: ", result);
+          if (result.result === 'success') {
+              alert("SUCCESS");
 
-            if (result.result === 'success') {
-                alert("SUCCESS");
-
-
-    if (becomeSubscriber == 'Yes')
-    {                 window.location.href = "./checkoutSubscriberFirst.html";
-}
-
-              else {                window.location.href = "./checkout2.html";
- }
-            } else {
-                const errorMsg = result.error || result.message || "Unknown error occurred.";
-                alert("Error: " + errorMsg);
-            }
-        } else {
-            throw new Error("Submission failed with status " + response.status);
-        }
+              if (becomeSubscriber == 'Yes') {
+                  window.location.href = "./checkoutSubscriberFirst.html";
+              } else {
+                  window.location.href = "./checkout2.html";
+              }
+          } else {
+              const errorMsg = result.error || result.message || "Unknown error occurred.";
+              alert("Error: " + errorMsg);
+          }
+      } else {
+          throw new Error("Submission failed with status " + response.status);
+      }
     } catch (error) {
         alert("Network error: " + error.message);
         console.error("Error during submission:", error);
