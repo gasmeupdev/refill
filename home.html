@@ -284,6 +284,7 @@
 </div>
 
 
+
 <script>
   async function loadGasPrice() {
     const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTrPTW1EsZv1l-Ww-Mc348Ba193AkPNLcqzUQ7LhEAveRgfYnOzmx6LAdc7mvM1j48wsQm8FldrPCbQ/pub?output=csv";
@@ -292,15 +293,12 @@
       const res = await fetch(url);
       const text = await res.text();
 
-      // Split CSV into rows and columns
+      // Split CSV into rows + columns
       const rows = text.trim().split("
 ").map(r => r.split(","));
 
-      // Assume first row is headers, second row has data
-      let price = null;
-      if (rows[1] && rows[1][1]) { // B1 is second column of first data row
-        price = rows[1][1];
-      }
+      // Grab first row, second column (B1)
+      let price = rows[0][1];
 
       if (price) {
         document.getElementById("gas-price").textContent = `$${price} / gallon`;
@@ -312,13 +310,13 @@
         new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
     } catch (err) {
       document.getElementById("gas-price").textContent = "Error loading price";
-      document.getElementById("price-date").textContent =
-        new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+      document.getElementById("price-date").textContent = "";
       console.error("Gas price fetch failed:", err);
     }
   }
   loadGasPrice();
 </script>
+
 
 
 </body>
