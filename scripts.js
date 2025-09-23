@@ -8,17 +8,6 @@ let stepIndex = 0;
 const steps = document.querySelectorAll(".step");
 const totalSteps = steps.length;
 
-// sce added 4/4/2025
-function myFunction() {
-  var x = document.getElementById("myLinks");
-  if (x.style.display === "block") {
-    x.style.display = "none";
-  } else {
-    x.style.display = "block";
-  }
-}
-// end sce 4/4 edits
-
 function nextStep() {
     if (stepIndex < totalSteps - 1) {
         steps[stepIndex].classList.remove("active");
@@ -35,7 +24,6 @@ function prevStep() {
     }
 }
 
-
 // ✅ Time Selection Restricted by Day
 const timeSelect = document.getElementById("schedule_time");
 const dateInput = document.querySelector('input[name="Date"]');
@@ -47,7 +35,7 @@ if (dateInput) {
 }
 
 function populateTimeSlots(date) {
-  timeSelect.innerHTML = ""; // clear existing options
+  timeSelect.innerHTML = "";
 
   if (!date) return;
 
@@ -58,11 +46,11 @@ function populateTimeSlots(date) {
   if (day === 0 || day === 6) {
     // Weekend: 7AM - 1AM
     startHour = 7;
-    endHour = 24; // midnight
+    endHour = 24;
   } else {
     // Weekday: 5PM - 1AM
     startHour = 17;
-    endHour = 24; // midnight
+    endHour = 24;
   }
 
   // Generate hourly slots
@@ -85,24 +73,19 @@ function populateTimeSlots(date) {
   }
 
   // Always add "12 AM - 1 AM"
-  if (endHour === 24) {
-    const option = document.createElement("option");
-    option.value = "12 AM - 1 AM";
-    option.textContent = "12 AM - 1 AM";
-    timeSelect.appendChild(option);
-  }
+  const option = document.createElement("option");
+  option.value = "12 AM - 1 AM";
+  option.textContent = "12 AM - 1 AM";
+  timeSelect.appendChild(option);
 }
 
-// Re-populate time slots whenever the date changes
 dateInput.addEventListener("change", function () {
   populateTimeSlots(this.value);
 });
 
-// Initialize if there's already a value
 if (dateInput.value) {
   populateTimeSlots(dateInput.value);
 }
-
 
 // ✅ Neighborhood ZIP Mapping
 const zipToNeighborhood = {
@@ -141,7 +124,6 @@ function initAutocomplete() {
 
         const neighborhood = zipToNeighborhood[zipCode] || "Other";
 
-        // ✅ Add or update hidden neighborhood field
         let neighborhoodInput = document.querySelector("input[name='Neighborhood']");
         if (!neighborhoodInput) {
             neighborhoodInput = document.createElement("input");
@@ -154,24 +136,6 @@ function initAutocomplete() {
 }
 
 window.addEventListener("load", initAutocomplete);
-// second test of fuel gauge test
-const input = document.getElementById("fuelInput");
-const needle = document.getElementById("needle");
-const valueDisplay = document.getElementById("fuelValue");
-const speedometer = document.querySelector(".speedometer");
-
-let isDragging = false;
-
-function updateNeedle(val) {
-  const min = parseInt(input.min);
-  const max = parseInt(input.max);
-  const percent = (val - min) / (max - min);
-  const barWidth = speedometer.offsetWidth;
-
-  const px = barWidth * percent;
-  needle.style.left = `${px}px";
-  valueDisplay.textContent = val;
-}
 
 // ✅ Handle Form Submission
 document.getElementById("multiStepForm").addEventListener("submit", async function(event) {
@@ -183,7 +147,6 @@ document.getElementById("multiStepForm").addEventListener("submit", async functi
         console.log(`${pair[0]}: ${pair[1]}`);
     }
   
-    //  Store name and email in sessionStorage
     const name = formData.get("Name");
     const email = formData.get("Email");
     const becomeSubscriber = formData.get("Become Subscriber");
@@ -198,18 +161,18 @@ document.getElementById("multiStepForm").addEventListener("submit", async functi
         var response = await fetch(GOOGLE_SHEET_WEBHOOK_URL2, {
             method: "POST",
             body: formData,
-            redirect: "follow"  // Allows handling of redirects
+            redirect: "follow"
         });
       } else {
         var response = await fetch(GOOGLE_SHEET_WEBHOOK_URL1, {
             method: "POST",
             body: formData,
-            redirect: "follow"  // Allows handling of redirects
+            redirect: "follow"
         });
       }
 
-      console.log("Response Status: " + response.status);  // Log status
-      console.log("Response URL: " + response.url);  // Log final URL
+      console.log("Response Status: " + response.status);
+      console.log("Response URL: " + response.url);
 
       if (response.ok) {
           const result = await response.json();
