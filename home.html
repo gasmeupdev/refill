@@ -288,13 +288,15 @@
 
 <script>
   async function loadGasPrice() {
-    const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTrPTW1EsZv1l-Ww-Mc348Ba193AkPNLcqzUQ7LhEAveRgfYnOzmx6LAdc7mvM1j48wsQm8FldrPCbQ/pub?output=csv";
+    const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTrPTW1EsZv1l-Ww-Mc348Ba193AkPNLcqzUQ7LhEAveRgfYnOzmx6LAdc7mvM1j48wsQm8FldrPCbQ/pub?gid=0&single=true&output=csv";
 
     try {
       const res = await fetch(url);
       const text = await res.text();
 
-      // Split CSV into rows + columns correctly
+      console.log("Fetched CSV:", text); // Debugging output
+
+      // Split CSV into rows + columns
       const rows = text.trim().split("
 ").map(r => r.split(","));
 
