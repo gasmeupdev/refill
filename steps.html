@@ -1,109 +1,145 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>How It Works</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <title>Gas Me Up - Steps</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="styles.css" rel="stylesheet" type="text/css"/>
+  <link href="nav.css" rel="stylesheet"/>
+  <script defer src="nav-loader.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
   <style>
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #f9f9f9, #f1f1f1) !important;
-      color: #333 !important;
+      background: linear-gradient(135deg, #f9f9f9, #f1f1f1);
+      color: #333;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      overflow-x: hidden;
-      padding-bottom: 100px;
+      padding-bottom: 140px;
     }
-    header {
-      background: rgba(255, 255, 255, 0.7);
+    h1 {
       color: #3bb8ff;
-      padding: 20px;
-      border-radius: 20px;
-      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+    .steps-container {
       width: 100%;
-      max-width: 960px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      margin-bottom: 32px;
-    }
-    header h1 {
-      font-size: 2rem;
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-    .cards {
-      width: 100%;
-      max-width: 960px;
-      display: grid;
-      gap: 24px;
-      position: relative;
-      z-index: 5;
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.7);
-      border: 1px solid #3bb8ff;
-      border-radius: 20px;
-      padding: 24px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      text-align: left;
-    }
-    .card h2 {
-      font-size: 1.5rem;
-      color: #3bb8ff;
-      margin-bottom: 12px;
-      font-weight: 600;
-    }
-    .card ul {
-      list-style: disc inside;
-      line-height: 1.6;
-      color: #000;
-    }
-    .card li {
-      margin-bottom: 8px;
-    }
-    .hero {
-      position: relative;
-      overflow: hidden;
+      max-width: 600px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      min-height: 80vh;
-      width: 100%;
     }
-    .shape {
+    .step-bubble {
+      border-radius: 25px;
+      padding: 12px 18px;
+      margin: 6px 0;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      max-width: 95%;
+      position: relative;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .step-bubble.blue {
+      background: #3bb8ff;
+      color: #fff;
+    }
+    .step-bubble.gray {
+      background: #eaeaea;
+      color: #333;
+    }
+    .step-bubble::after {
+      content: "";
       position: absolute;
-      background: rgba(59, 184, 255, 0.2);
-      border: 2px solid #3bb8ff;
-      border-radius: 10px;
-      z-index: 0;
-      animation: float 6s ease-in-out infinite;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0; 
+      height: 0; 
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 8px solid currentColor;
+      opacity: 0.7;
     }
-    .shape.square {
-      width: 100px;
-      height: 100px;
+    .arrow {
+      width: 0; 
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 12px solid #3bb8ff;
+      margin: 6px 0;
     }
-    .shape.small {
-      width: 50px;
-      height: 50px;
+    .receipts-container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 40px;
+      flex-wrap: wrap;
     }
-    .shape.large {
-      width: 150px;
-      height: 150px;
+    .receipt {
+      font-family: monospace;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 360px;
+      font-size: 1rem;
+      flex: 1;
     }
-    .shape.circle {
-      border-radius: 50%;
+    .receipt-header {
+      text-align: center;
+      margin-bottom: 14px;
+      font-weight: bold;
+      font-size: 1.2rem;
     }
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
+    .receipt table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .receipt td {
+      padding: 6px 0;
+      vertical-align: top;
+    }
+    .desc {
+      width: 70%;
+    }
+    .price {
+      width: 30%;
+      text-align: right;
+    }
+    .receipt .total {
+      border-top: 2px dashed;
+      font-weight: bold;
+    }
+    .receipt.non-subscriber {
+      background: #f0f6ff;
+      border: 2px dashed #3bb8ff;
+    }
+    .receipt.non-subscriber .receipt-header {
+      color: #007acc;
+    }
+    .receipt.non-subscriber .total {
+      border-color: #3bb8ff;
+    }
+    .receipt.subscriber {
+      background: #f1fff4;
+      border: 2px dashed #4CAF50;
+    }
+    .receipt.subscriber .receipt-header {
+      color: #2e7d32;
+    }
+    .receipt.subscriber .total {
+      border-color: #4CAF50;
+    }
+    .crossed {
+      text-decoration: line-through;
+      color: #888;
+    }
+    .small-text {
+      font-size: 0.85rem;
+      color: #555;
     }
     .bottom-nav {
       position: fixed;
@@ -131,45 +167,104 @@
       font-size: 22px;
       margin-bottom: 3px;
     }
-</style>
-
-  <link rel="stylesheet" href="nav.css">
-  <script src="nav-loader.js" defer></script>
-
+  </style>
 </head>
 <body>
-  <div class="hero">
-    <!-- Decorative Shapes -->
-    <div class="shape square" style="top: 10%; left: 5%;"></div>
-    <div class="shape small circle" style="top: 20%; right: 10%;"></div>
-    <div class="shape small square" style="bottom: 10%; right: 20%;"></div>
-    <div class="shape circle" style="top: 40%; left: 80%; width:80px; height:80px;"></div>
-
-  <header>
-    <h1>How It Works</h1>
-    <p></p>
-  </header>
-  <main class="cards">
-    <section class="card">
-      <h2>Step-by-Step</h2>
-      <ul>
-        <li>Choose your fill-up option: <strong>Refill now</strong> (one-time request or to start a subscription) or <strong>Subscriber refill</strong> (for active subscriptions).</li><li>Enter your contact, car, and location information.</li><li>Select the time and date you’d like your car fueled.</li><li>Ensure your gas cap door is unlocked, open, or left ajar. If inaccessible, the driver will wait 5 minutes before the service is forfeited.</li><li>We bring gas to you. You'll receive updates on your driver’s estimated arrival and refill progress.</li><li>Your payment is processed securely via Stripe. One-time fill-ups incur a $15 fee plus gas; subscribers pay only for gas (monthly $25 fee billed separately). Receipts are provided both digitally and physically.</li>
-      </ul>
-    </section>
-    <section class="card">
-      <h2>Additional Notes</h2>
-      <ul>
-        <li>If your vehicle is inaccessible due to traffic, parking, or other barriers, our driver will text you with options to reschedule or cancel at no charge.</li><li>Gas prices adjust daily based on local station rates. You'll be charged based on gallons dispensed multiplied by the day’s price (e.g., 10 gal x $3.50 = $35).</li>
-      </ul>
-    </section>
-  </main>
+  <h1>How It Works</h1>
+  <div class="steps-container">
+    <div class="step-bubble blue">Place a fuel request online through our easy-to-use form.</div>
+    <div class="arrow"></div>
+    <div class="step-bubble gray">A Gas Me Up driver is dispatched to your vehicle’s location.</div>
+    <div class="arrow"></div>
+    <div class="step-bubble blue">Your vehicle’s gas cap must be unlocked or accessible for fueling.</div>
+    <div class="arrow"></div>
+    <div class="step-bubble gray">The driver fills your vehicle with the requested amount of fuel.</div>
+    <div class="arrow"></div>
+    <div class="step-bubble blue">Your vehicle is fueled safely and securely.</div>
+    <div class="arrow"></div>
+    <div class="step-bubble gray">Payment is processed automatically through Stripe.</div>
+    <div class="arrow"></div>
+    <div class="step-bubble blue">You receive a confirmation notification when fueling is complete.</div>
   </div>
-  <nav class="bottom-nav">
-        <a href="home"><i class="fas fa-home"></i>Home</a>
-    <a href="steps"><i class="fas fa-gas-pump"></i>How It Works</a>
-<!--     <a href="index"><i class="fas fa-gas-pump"></i>Refill</a> -->
-    <a href="pricing"><i class="fas fa-dollar-sign"></i>Pricing</a>
-    <a href="contact"><i class="fas fa-envelope"></i>Contact</a>
-  </nav>
+
+  <!-- Receipts Section -->
+  <div class="receipts-container">
+    <!-- Non-Subscriber -->
+    <div class="receipt non-subscriber">
+      <div class="receipt-header">Non-Subscriber</div>
+      <table>
+        <tr><td class="desc">Fuel <span class="small-text">(5 gallons <span id="price-5-ns"></span>)</span></td><td id="nonsub-5" class="price">$--</td></tr>
+        <tr><td class="desc">Service Fee</td><td class="price">$15.00</td></tr>
+        <tr class="total"><td>Total (5 gal)</td><td id="nonsub-total-5" class="price">$--</td></tr>
+        <tr><td colspan="2">&nbsp;</td></tr>
+        <tr><td class="desc">Fuel <span class="small-text">(10 gallons <span id="price-10-ns"></span>)</span></td><td id="nonsub-10" class="price">$--</td></tr>
+        <tr><td class="desc">Service Fee</td><td class="price">$15.00</td></tr>
+        <tr class="total"><td>Total (10 gal)</td><td id="nonsub-total-10" class="price">$--</td></tr>
+        <tr><td colspan="2">&nbsp;</td></tr>
+        <tr><td class="desc">Fuel <span class="small-text">(15 gallons <span id="price-15-ns"></span>)</span></td><td id="nonsub-15" class="price">$--</td></tr>
+        <tr><td class="desc">Service Fee</td><td class="price">$15.00</td></tr>
+        <tr class="total"><td>Total (15 gal)</td><td id="nonsub-total-15" class="price">$--</td></tr>
+      </table>
+    </div>
+
+    <!-- Subscriber -->
+    <div class="receipt subscriber">
+      <div class="receipt-header">Subscriber</div>
+      <table>
+        <tr><td class="desc">Fuel <span class="small-text">(5 gallons <span id="price-5-sub"></span>)</span></td><td id="sub-5" class="price">$--</td></tr>
+        <tr><td class="desc crossed">Service Fee</td><td class="price crossed">$15.00</td></tr>
+        <tr class="total"><td>Total (5 gal)</td><td id="sub-total-5" class="price">$--</td></tr>
+        <tr><td colspan="2">&nbsp;</td></tr>
+        <tr><td class="desc">Fuel <span class="small-text">(10 gallons <span id="price-10-sub"></span>)</span></td><td id="sub-10" class="price">$--</td></tr>
+        <tr><td class="desc crossed">Service Fee</td><td class="price crossed">$15.00</td></tr>
+        <tr class="total"><td>Total (10 gal)</td><td id="sub-total-10" class="price">$--</td></tr>
+        <tr><td colspan="2">&nbsp;</td></tr>
+        <tr><td class="desc">Fuel <span class="small-text">(15 gallons <span id="price-15-sub"></span>)</span></td><td id="sub-15" class="price">$--</td></tr>
+        <tr><td class="desc crossed">Service Fee</td><td class="price crossed">$15.00</td></tr>
+        <tr class="total"><td>Total (15 gal)</td><td id="sub-total-15" class="price">$--</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <a class="nav-link" href="home"><i class="fas fa-home"></i> Home</a>
+    <a class="nav-link" href="steps"><i class="fas fa-gas-pump"></i> How It Works</a>
+    <a class="nav-link" href="pricing"><i class="fas fa-dollar-sign"></i> Pricing</a>
+    <a class="nav-link" href="contact"><i class="fas fa-envelope"></i> Contact</a>
+  </div>
+
+<script>
+async function loadGasPrice() {
+  const url = "https://script.google.com/macros/s/AKfycbzlAne_tmRqmvycVu7_FXDuRou8YbD57EYct5Z9I71P3lxvifkp4Iz3kvAobTGnjNWN/exec";
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    const price = parseFloat(data.price);
+
+    if (!isNaN(price)) {
+      [5, 10, 15].forEach(gallons => {
+        const fuelCost = price * gallons;
+        const nonSubTotal = fuelCost + 15;
+        const subTotal = fuelCost;
+
+        // Update fuel line items
+        document.getElementById(`price-${gallons}-ns`).textContent = `@ $${price.toFixed(2)}`;
+        document.getElementById(`price-${gallons}-sub`).textContent = `@ $${price.toFixed(2)}`;
+
+        document.getElementById(`nonsub-${gallons}`).textContent = `$${fuelCost.toFixed(2)}`;
+        document.getElementById(`sub-${gallons}`).textContent = `$${fuelCost.toFixed(2)}`;
+
+        // Update totals
+        document.getElementById(`nonsub-total-${gallons}`).textContent = `$${nonSubTotal.toFixed(2)}`;
+        document.getElementById(`sub-total-${gallons}`).textContent = `$${subTotal.toFixed(2)}`;
+      });
+    }
+  } catch (err) {
+    console.error("Gas price fetch failed:", err);
+  }
+}
+loadGasPrice();
+</script>
+
 </body>
 </html>
