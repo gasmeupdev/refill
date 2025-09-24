@@ -8,7 +8,6 @@
   <link href="styles.css" rel="stylesheet" type="text/css"/>
   <link href="nav.css" rel="stylesheet"/>
   <script defer src="nav-loader.js"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
   <style>
     body {
       margin: 0;
@@ -73,74 +72,6 @@
       border-top: 12px solid #3bb8ff;
       margin: 6px 0;
     }
-    .receipts-container {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin-top: 40px;
-      flex-wrap: wrap;
-    }
-    .receipt {
-      font-family: monospace;
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 360px;
-      font-size: 1rem;
-      flex: 1;
-    }
-    .receipt-header {
-      text-align: center;
-      margin-bottom: 14px;
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
-    .receipt table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    .receipt td {
-      padding: 6px 0;
-      vertical-align: top;
-    }
-    .desc {
-      width: 70%;
-    }
-    .price {
-      width: 30%;
-      text-align: right;
-    }
-    .receipt .total {
-      border-top: 2px dashed;
-      font-weight: bold;
-    }
-    .receipt.non-subscriber {
-      background: #f0f6ff;
-      border: 2px dashed #3bb8ff;
-    }
-    .receipt.non-subscriber .receipt-header {
-      color: #007acc;
-    }
-    .receipt.non-subscriber .total {
-      border-color: #3bb8ff;
-    }
-    .receipt.subscriber {
-      background: #f1fff4;
-      border: 2px dashed #4CAF50;
-    }
-    .receipt.subscriber .receipt-header {
-      color: #2e7d32;
-    }
-    .receipt.subscriber .total {
-      border-color: #4CAF50;
-    }
-    .crossed {
-      text-decoration: line-through;
-      color: #888;
-    }
-    .small-text {
-      font-size: 0.85rem;
-      color: #555;
-    }
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -187,84 +118,11 @@
     <div class="step-bubble blue">You receive a confirmation notification when fueling is complete.</div>
   </div>
 
-  <!-- Receipts Section -->
-  <div class="receipts-container">
-    <!-- Non-Subscriber -->
-    <div class="receipt non-subscriber">
-      <div class="receipt-header">Non-Subscriber</div>
-      <table>
-        <tr><td class="desc">Fuel <span class="small-text">(5 gallons <span id="price-5-ns"></span>)</span></td><td id="nonsub-5" class="price">$--</td></tr>
-        <tr><td class="desc">Service Fee</td><td class="price">$15.00</td></tr>
-        <tr class="total"><td>Total (5 gal)</td><td id="nonsub-total-5" class="price">$--</td></tr>
-        <tr><td colspan="2">&nbsp;</td></tr>
-        <tr><td class="desc">Fuel <span class="small-text">(10 gallons <span id="price-10-ns"></span>)</span></td><td id="nonsub-10" class="price">$--</td></tr>
-        <tr><td class="desc">Service Fee</td><td class="price">$15.00</td></tr>
-        <tr class="total"><td>Total (10 gal)</td><td id="nonsub-total-10" class="price">$--</td></tr>
-        <tr><td colspan="2">&nbsp;</td></tr>
-        <tr><td class="desc">Fuel <span class="small-text">(15 gallons <span id="price-15-ns"></span>)</span></td><td id="nonsub-15" class="price">$--</td></tr>
-        <tr><td class="desc">Service Fee</td><td class="price">$15.00</td></tr>
-        <tr class="total"><td>Total (15 gal)</td><td id="nonsub-total-15" class="price">$--</td></tr>
-      </table>
-    </div>
-
-    <!-- Subscriber -->
-    <div class="receipt subscriber">
-      <div class="receipt-header">Subscriber</div>
-      <table>
-        <tr><td class="desc">Fuel <span class="small-text">(5 gallons <span id="price-5-sub"></span>)</span></td><td id="sub-5" class="price">$--</td></tr>
-        <tr><td class="desc crossed">Service Fee</td><td class="price crossed">$15.00</td></tr>
-        <tr class="total"><td>Total (5 gal)</td><td id="sub-total-5" class="price">$--</td></tr>
-        <tr><td colspan="2">&nbsp;</td></tr>
-        <tr><td class="desc">Fuel <span class="small-text">(10 gallons <span id="price-10-sub"></span>)</span></td><td id="sub-10" class="price">$--</td></tr>
-        <tr><td class="desc crossed">Service Fee</td><td class="price crossed">$15.00</td></tr>
-        <tr class="total"><td>Total (10 gal)</td><td id="sub-total-10" class="price">$--</td></tr>
-        <tr><td colspan="2">&nbsp;</td></tr>
-        <tr><td class="desc">Fuel <span class="small-text">(15 gallons <span id="price-15-sub"></span>)</span></td><td id="sub-15" class="price">$--</td></tr>
-        <tr><td class="desc crossed">Service Fee</td><td class="price crossed">$15.00</td></tr>
-        <tr class="total"><td>Total (15 gal)</td><td id="sub-total-15" class="price">$--</td></tr>
-      </table>
-    </div>
-  </div>
-
   <div class="bottom-nav">
     <a class="nav-link" href="home"><i class="fas fa-home"></i> Home</a>
     <a class="nav-link" href="steps"><i class="fas fa-gas-pump"></i> How It Works</a>
     <a class="nav-link" href="pricing"><i class="fas fa-dollar-sign"></i> Pricing</a>
     <a class="nav-link" href="contact"><i class="fas fa-envelope"></i> Contact</a>
   </div>
-
-<script>
-async function loadGasPrice() {
-  const url = "https://script.google.com/macros/s/AKfycbzlAne_tmRqmvycVu7_FXDuRou8YbD57EYct5Z9I71P3lxvifkp4Iz3kvAobTGnjNWN/exec";
-  try {
-    const res = await fetch(url);
-    const data = await res.json();
-    const price = parseFloat(data.price);
-
-    if (!isNaN(price)) {
-      [5, 10, 15].forEach(gallons => {
-        const fuelCost = price * gallons;
-        const nonSubTotal = fuelCost + 15;
-        const subTotal = fuelCost;
-
-        // Update fuel line items
-        document.getElementById(`price-${gallons}-ns`).textContent = `@ $${price.toFixed(2)}`;
-        document.getElementById(`price-${gallons}-sub`).textContent = `@ $${price.toFixed(2)}`;
-
-        document.getElementById(`nonsub-${gallons}`).textContent = `$${fuelCost.toFixed(2)}`;
-        document.getElementById(`sub-${gallons}`).textContent = `$${fuelCost.toFixed(2)}`;
-
-        // Update totals
-        document.getElementById(`nonsub-total-${gallons}`).textContent = `$${nonSubTotal.toFixed(2)}`;
-        document.getElementById(`sub-total-${gallons}`).textContent = `$${subTotal.toFixed(2)}`;
-      });
-    }
-  } catch (err) {
-    console.error("Gas price fetch failed:", err);
-  }
-}
-loadGasPrice();
-</script>
-
 </body>
 </html>
