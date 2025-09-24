@@ -1,79 +1,267 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7KV1XDEBW2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7KV1XDEBW2');
+</script>
+
+    
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Book your gas refill now! We come straight to you. Fill your car up without lifting a finger." name="description"/>
 <title>Gas Refill Booking</title>
 <link href="styles.css" rel="stylesheet" type="text/css"/>
 <link href="nav.css" rel="stylesheet"/>
-<script defer src="nav-loader.js"></script>
+<script defer="" src="nav-loader.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh5XxodKgwBLU3RipuMvQr-WwsqVN12w8&amp;libraries=places"></script>
+<script src="https://js.stripe.com/v3/"></script>
+<!-- Fonts from TESTHOMEPAGE -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Poppins:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f9f9f9, #f1f1f1) !important;
+      color: #333 !important;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      overflow-x: hidden;
+      padding-bottom: 100px;
+    }
+    h2, h3 { color: #3bb8ff; }
+    p, label, input, select { color: #000; }
+    .container, .step {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid #3bb8ff;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+      width: 100%;
+    }
+    
+    .shape {
+      position: absolute;
+      background: rgba(59, 184, 255, 0.15); /* lighter transparency */
+      border: 1px solid rgba(59, 184, 255, 0.4); /* lighter border */
+      border-radius: 10px;
+      z-index: 0;
+      animation: float 6s ease-in-out infinite;
+    }
+    .shape.square { width: 60px; height: 60px; }
+    .shape.small { width: 30px; height: 30px; }
+    .shape.large { width: 100px; height: 100px; }
+    .shape.circle { border-radius: 50%; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .btn {
+      padding: 12px 25px;
+      margin: 10px 5px;
+      border-radius: 25px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    .btn-primary {
+      background: #3bb8ff;
+      color: white;
+      border: none;
+    }
+    .btn-primary:hover {
+      background: #339dd9;
+    }
+    .btn-secondary {
+      background: #fff;
+      border: 2px solid #3bb8ff;
+      color: #3bb8ff;
+    }
+    .btn-secondary:hover {
+      background: #3bb8ff;
+      color: #fff;
+    }
+
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: #38b6ff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+.bottom-nav a {
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.bottom-nav i {
+  font-size: 22px;
+  margin-bottom: 3px;
+}
+
+</style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 </head>
 <body>
-  <main class="page-content">
-    <div class="container">
-      <h2>Book Your Gas Refill</h2>
-      <form id="multiStepForm">
-        
-        <div class="step active" id="step1">
-          <h3>Contact Information</h3>
-          <input name="Name" placeholder="Full Name" required type="text"/>
-          <input name="Email" placeholder="Email" required type="email"/>
-          <input name="Phone" placeholder="Phone Number" required type="text"/>
-          <div class="button-row">
-            <button onclick="prevStep()" type="button">Back</button>
-            <button onclick="if(validateStep(stepIndex)) nextStep();" type="button">Next</button>
-          </div>
-        </div>
+  <div class="hero">
+    <!-- Decorative Shapes -->
+    <div class="shape square" style="top: 10%; left: 5%;"></div>
+    <div class="shape small circle" style="top: 20%; right: 10%;"></div>
+    <div class="shape small square" style="bottom: 10%; right: 20%;"></div>
+    <div class="shape circle" style="top: 40%; left: 80%; width:80px; height:80px;"></div>
 
-        <div class="step" id="step2">
-          <h3>Choose Your Refill Time</h3>
-          <!-- Hidden date/time with defaults -->
-          <input type="hidden" name="Date" value="<?php echo date('Y-m-d'); ?>"/>
-          <input type="hidden" name="Time" value="5PM"/>
-          <div class="button-row">
-            <button onclick="prevStep()" type="button" class="btn btn-secondary">Back</button>
-            <button onclick="if(validateStep(stepIndex)) nextStep();" type="button" class="btn btn-primary">Next</button>
-          </div>
-        </div>
-
-        <div class="step" id="step3">
-          <h3>Vehicle Information</h3>
-          <input name="Car Make" placeholder="Car Make" required type="text"/>
-          <input name="Car Model" placeholder="Car Model" required type="text"/>
-          <input name="Car Year" placeholder="Car Year" required type="text"/>
-          <input name="Car Color" placeholder="Car Color" required type="text"/>
-          <input name="License Plate" placeholder="License Plate Number" required type="text"/>
-          <!-- Hidden car location -->
-          <input type="hidden" id="address" name="Address" value="N/A"/>
-          <!-- Hidden gas cap ajar -->
-          <input type="hidden" name="Keys Available" value="Yes"/>
-          <div class="button-row">
-            <button onclick="prevStep()" type="button" class="btn btn-secondary">Back</button>
-            <button onclick="if(validateStep(stepIndex)) nextStep();" type="button" class="btn btn-primary">Next</button>
-          </div>
-        </div>
-
-        <div class="step" id="step4">
-          <h3>Fuel Type</h3>
-          <select name="Gas Type" required>
-            <option value="Regular 87">Regular 87</option>
-            <option value="Mid-Grade 89">Mid-Grade 89</option>
-            <option value="Premium 91">Premium 91 - Coming Soon</option>
-            <option value="Diesel">Diesel - Coming Soon</option>
-          </select>
-          <!-- Hidden subscription default -->
-          <input type="hidden" name="Become Subscriber" value="Yes"/>
-          <div class="button-row">
-            <button onclick="prevStep()" type="button" class="btn btn-secondary">Back</button>
-            <button type="submit" class="btn btn-primary">Proceed to Checkout</button>
-          </div>
-        </div>
-
-      </form>
-    </div>
-  </main>
+<main class="page-content">
+<div class="container">
+<a href="./home.html"></a>
+<h2>Book Your Gas Refill</h2>
+<form id="multiStepForm">
+<div class="step active" id="step1">
+<h3>contact informantion</h3>
+<input name="Name" placeholder="full name" required="" type="text"/>
+<input name="Email" placeholder="email" required="" type="email"/>
+<input name="Phone" placeholder="phone number" required="" type="text"/>
+<div class="button-row">
+<button onclick="prevStep()" type="button">back</button>
+<button onclick="if(validateStep(stepIndex)) nextStep();" type="button">next</button>
+</div>
+</div>
+<div class="step" id="step2">
+<h3> choose your refill time</h3>
+<p> Drivers will arrive within the 1-hour time slot you’ve selected. 
+                        You'll receive periodic updates of the drivers status and estimated arrival times.</p>
+<input name="Date" id="dateField" required="" type="date"/>
+<select id="schedule_time" name="Time" required="">
+  <option value="5PM" selected>5PM</option>
+</select>
+<p id="time_warning" style="color: red; display: none;">FYI: Our hours are 5PM - 11PM &amp; 5AM - 7AM.</p>
+<p style="color: #38b6ff; font-size: 14px; margin-top: 10px;">Our hours are 5PM - 1AM Monday through Friday and 7AM - 1AM Saturday and Sunday.</p>
+<div class="button-row">
+<button onclick="prevStep()" type="button" class="btn btn-secondary">Back</button>
+<button onclick="if(validateStep(stepIndex)) nextStep();" type="button" class="btn btn-primary">Next</button>
+</div>
+</div>
+<div class="step" id="step3">
+<h3>vehicle information</h3>
+<input name="Car Make" placeholder="car make" required="" type="text"/>
+<input name="Car Model" placeholder="car model" required="" type="text"/>
+<input name="Car Year" placeholder="car year" required="" type="text"/>
+<input name="Car Color" placeholder="car color" required="" type="text"/>
+<input name="License Plate" placeholder="license plate number" required="" type="text"/>
+<input id="address" name="Address" placeholder="car location" value="N/A" required="" type="text"/>
+<label for="keys_available">Please confirm the gas cap will be ajar and accessible upon the driver’s arrival</label>
+<select id="keys_available" name="Keys Available" required="">
+<option value="Yes" selected>Yes</option>
+<option value="No">No</option>
+</select>
+<div class="button-row">
+<button onclick="prevStep()" type="button" class="btn btn-secondary">Back</button>
+<button onclick="if(validateStep(stepIndex)) nextStep();" type="button" class="btn btn-primary">Next</button>
+</div>
+</div>
+<div class="step" id="step4">
+<br/>
+<br/>
+<h3>fuel type:</h3>
+<select name="Gas Type" required="">
+<option value="Regular 87">Regular 87</option>
+<option value="Mid-Grade 89">Mid-Grade 89</option>
+<option value="Premium 91">Premium 91 - Coming Soon</option>
+<option value="Diesel">Diesel - Coming Soon</option>
+</select>
+<br/> <br/> <br/>
+<h3>Optional: Would you like to become a monthly subscriber?</h3>
+<p>  Note: By selecting <strong> Yes </strong> you agree to renewal billing and the subscriber terms and conditions. See our <a href="pricing.html">pricing page</a> for more information. </p>
+<select id="subscriber" name="Become Subscriber" required="">
+<option value="No">No</option>
+<option value="Yes" selected>Yes</option>
+</select>
+<br/>
+<div class="button-row">
+<button onclick="prevStep()" type="button" class="btn btn-secondary">Back</button>
+<button type="submit" class="btn btn-primary">Proceed to Checkout</button>
+</div>
+</div>
+</form>
+</div>
 <script src="validation.js"></script>
 <script src="scripts.js"></script>
+</main>
+
+<div class="bottom-nav">
+<a class="nav-link" href="home">
+<i class="fas fa-home"></i>
+    Home
+  </a>
+<a class="nav-link" href="steps">
+<i class="fas fa-question-circle"></i>
+    How it Works
+  </a>
+<a class="nav-link" href="pricing">
+<i class="fas fa-dollar-sign"></i>
+    Pricing
+  </a>
+<a class="nav-link" href="contact">
+<i class="fas fa-envelope"></i>
+    Contact
+  </a>
+</div>
+
+<script>
+  // Auto-default today’s date
+  window.addEventListener("DOMContentLoaded", function() {
+    const dateField = document.getElementById("dateField");
+    if (dateField) {
+      const today = new Date().toISOString().split("T")[0];
+      dateField.value = today;
+    }
+  });
+
+  window.addEventListener("load", function() {
+    const addressInput = document.getElementById("address");
+    if (addressInput && window.google && google.maps.places) {
+      new google.maps.places.Autocomplete(addressInput);
+    }
+  });
+</script>
+
 </body>
 </html>
