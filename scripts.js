@@ -182,7 +182,7 @@ document.getElementById("multiStepForm").addEventListener("submit", async functi
           console.log("Server response: ", result);
 
           if (result.result === 'success') {
-              alert("SUCCESS");
+             
 
               if (becomeSubscriber == 'Yes') {
                   window.location.href = "./checkoutSubscriberFirst.html";
