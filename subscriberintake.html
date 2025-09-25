@@ -161,8 +161,17 @@
 </div>
 </div>
 
-<div class="step" id="step2" >
-<h3> choose your refill time</h3>
+<div class="step" id="step2">
+<h3>choose your refill time</h3>
+<p><strong>Our service area is currently the Pittsburgh Metropolitan Area and adjacent neighborhoods.</strong></p>
+<label for="service_area_confirm">Are you aware of this?</label>
+<select id="service_area_confirm" name="Service Area Confirm" required>
+  <option value="">-- Please Select --</option>
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
+</select>
+<br/><br/>
+
 <input name="Date" id="dateField" type="hidden"/>
 <input id="schedule_time" name="Time" type="hidden" value="5PM"/>
 <div class="button-row">
