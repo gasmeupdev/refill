@@ -144,4 +144,101 @@
     <div class="shape square" style="top: 10%; left: 5%;"></div>
     <div class="shape small circle" style="top: 20%; right: 10%;"></div>
     <div class="shape small square" style="bottom: 10%; right: 20%;"></div>
-    <div class="shape circle" style="t
+    <div class="shape circle" style="top: 40%; left: 80%; width:80px; height:80px;"></div>
+
+<main class="page-content">
+<div class="container">
+<h2>Book Your Gas Refill</h2>
+<form id="multiStepForm">
+<div class="step active" id="step1">
+<h3>contact informantion</h3>
+<input name="Name" placeholder="full name" required type="text"/>
+<input name="Email" placeholder="email" required type="email"/>
+<input name="Phone" placeholder="phone number" required type="text"/>
+<div class="button-row">
+<button onclick="prevStep()" type="button">back</button>
+<button onclick="if(validateStep(stepIndex)) nextStep();" type="button">next</button>
+</div>
+</div>
+
+<div class="step" id="step2">
+<h3> choose your refill time</h3>
+<input name="Date" id="dateField" type="hidden"/>
+<input id="schedule_time" name="Time" type="hidden" value="5PM"/>
+<div class="button-row">
+<button onclick="prevStep()" type="button" class="btn btn-secondary">Back</button>
+<button onclick="if(validateStep(stepIndex)) nextStep();" type="button" class="btn btn-primary">Next</button>
+</div>
+</div>
+
+<div class="step" id="step3">
+<h3>vehicle information</h3>
+<input name="Car Make" placeholder="car make" required type="text"/>
+<input name="Car Model" placeholder="car model" required type="text"/>
+<input name="Car Year" placeholder="car year" required type="text"/>
+<input name="Car Color" placeholder="car color" required type="text"/>
+<input name="License Plate" placeholder="license plate number" required type="text"/>
+<input id="address" name="Address" type="hidden" value="N/A"/>
+<input id="keys_available" name="Keys Available" type="hidden" value="Yes"/>
+<div class="button-row">
+<button onclick="prevStep()" type="button" class="btn btn-secondary">Back</button>
+<button onclick="if(validateStep(stepIndex)) nextStep();" type="button" class="btn btn-primary">Next</button>
+</div>
+</div>
+
+<div class="step" id="step4">
+<h3>fuel type:</h3>
+<select name="Gas Type" required>
+<option value="Regular 87">Regular 87</option>
+<option value="Mid-Grade 89">Mid-Grade 89</option>
+<option value="Premium 91">Premium 91 - Coming Soon</option>
+<option value="Diesel">Diesel - Coming Soon</option>
+</select>
+<input id="subscriber" name="Become Subscriber" type="hidden" value="Yes"/>
+<br/>
+<div class="button-row">
+<button onclick="prevStep()" type="button" class="btn btn-secondary">Back</button>
+<button type="submit" class="btn btn-primary">Proceed to Checkout</button>
+</div>
+</div>
+</form>
+</div>
+</main>
+
+<div id="loadingBox">Please wait... loading</div>
+
+<div class="bottom-nav">
+<a class="nav-link" href="home"><i class="fas fa-home"></i> Home</a>
+<a class="nav-link" href="steps"><i class="fas fa-question-circle"></i> How it Works</a>
+<a class="nav-link" href="pricing"><i class="fas fa-dollar-sign"></i> Pricing</a>
+<a class="nav-link" href="contact"><i class="fas fa-envelope"></i> Contact</a>
+</div>
+
+<script src="validation.js"></script>
+<script src="scripts.js"></script>
+<script>
+  // Auto-default today’s date
+  window.addEventListener("DOMContentLoaded", function() {
+    const dateField = document.getElementById("dateField");
+    if (dateField) {
+      const today = new Date().toISOString().split("T")[0];
+      dateField.value = today;
+    }
+  });
+
+  // Autocomplete kept for compatibility
+  window.addEventListener("load", function() {
+    const addressInput = document.getElementById("address");
+    if (addressInput && window.google && google.maps.places) {
+      new google.maps.places.Autocomplete(addressInput);
+    }
+  });
+
+  // Show loading box on form submit
+  document.getElementById("multiStepForm").addEventListener("submit", function() {
+    document.getElementById("loadingBox").style.display = "block";
+  });
+</script>
+
+</body>
+</html>
