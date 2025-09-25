@@ -1,30 +1,119 @@
-<!-- CHECKOUT PAGE (checkout2.html) -->
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Checkout</title>
-<link href="styles.css" rel="stylesheet" type="text/css"/>
-<link href="nav.css" rel="stylesheet"/>
-<script defer="" src="nav-loader.js"></script>
-<script src="https://js.stripe.com/v3/"></script>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout</title>
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <!-- Styles + Nav -->
+  <link href="styles.css" rel="stylesheet" type="text/css"/>
+  <link href="nav.css" rel="stylesheet"/>
+  <script defer src="nav-loader.js"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 
- <style>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f9f9f9, #f1f1f1) !important;
+      color: #333 !important;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      overflow-x: hidden;
+      padding-bottom: 100px;
+    }
+
+    h2, h3 { color: #3bb8ff; }
+    p, label { color: #000; }
+
+    .container {
+      max-width: 450px;
+      margin: 100px auto;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid #3bb8ff;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: left;
+      position: relative;
+      z-index: 1;
+    }
+
+    #card-element {
+      background-color: white;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 15px;
+    }
+
+    button {
+      background-color: #3bb8ff;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      width: 100%;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      background-color: #339dd9;
+    }
+
+    .stripe-disclaimer {
+      font-size: 0.85em;
+      color: #555;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    /* Floating decorative shapes */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      width: 100%;
+    }
+    .shape {
+      position: absolute;
+      background: rgba(59, 184, 255, 0.15);
+      border: 1px solid rgba(59, 184, 255, 0.4);
+      border-radius: 10px;
+      z-index: 0;
+      animation: float 6s ease-in-out infinite;
+    }
+    .shape.square { width: 60px; height: 60px; }
+    .shape.small { width: 30px; height: 30px; }
+    .shape.large { width: 100px; height: 100px; }
+    .shape.circle { border-radius: 50%; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
     .bottom-nav {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
       height: 60px;
-      background-color: #007bff;
+      background: #38b6ff;
       display: flex;
       justify-content: space-around;
       align-items: center;
-      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
       z-index: 1000;
     }
     .bottom-nav a {
@@ -40,129 +129,69 @@
       font-size: 22px;
       margin-bottom: 3px;
     }
-    body {
-      background: #354952;
-      color: white;
-      font-family: 'Poppins', sans-serif;
-      padding-bottom: 100px;
-      margin: 0;
-    }
-    .container {
-      max-width: 400px;
-      margin: 100px auto;
-      background: #2e2e2e;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.3);
-    }
-    h2 {
-      text-align: center;
-      color: #00bfff;
-      margin-bottom: 20px;
-    }
-    p {
-      font-size: 0.95em;
-      color: #ccc;
-      text-align: center;
-    }
-    button {
-      background-color: #00bfff;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      padding: 10px 15px;
-      font-size: 16px;
-      width: 100%;
-      margin-top: 20px;
-      cursor: pointer;
-    }
-    #card-element {
-      background-color: white;
-      padding: 10px;
-      border-radius: 6px;
-      margin-top: 10px;
-    }
-    .stripe-disclaimer {
-      font-size: 0.85em;
-      color: #999;
-      text-align: center;
-      margin-top: 15px;
-    }
   </style>
 </head>
 <body>
-<main class="page-content">
-<div class="container">
-<h2 class="checkout-title">Complete Your Payment</h2>
-   <p>We use Stripe, a globally trusted and secure third-party payment processor, to handle all transactions.</p>
-<!-- Stripe Payment Section -->
-<div id="payment-section">
-<div id="card-element"></div>
-<div id="card-errors" role="alert"></div>
-<button id="pay-now" type="button">Submit $25 Payment</button>
-   <div class="stripe-disclaimer">
-     The 25$ payment made today will apply to the first month of your subscription and will auto-bill 30 days from today's date.
-    </div>
-</div>
-<div id="error-message"></div>
-</div>
-<!-- Stripe Logic -->
-<script src="stripe.js"></script>
-<script>
-            const stripe = Stripe('pk_test_51R9BywPMg9X62KxRp69187eQPCaiWUVuLyn04BJPf3nNXkul7aznceDJs5Q20CZpbxoxZ0JAzPm6eIoPdhnHsX6J00kAUJ8RP2');
-            const elements = stripe.elements();
-            const card = elements.create('card');
-            card.mount('#card-element');
-    
-            const payButton = document.getElementById('pay-now');
-            payButton.addEventListener('click', function () {
-                //grab the session storage values 
-                const name = sessionStorage.getItem('userName');
-                const email = sessionStorage.getItem('userEmail');
-                fetch('/create-payment-intent', { method: 'POST' })
-                    .then(res => res.json())
-                    .then(data => {
-                        stripe.confirmCardPayment(data.clientSecret, {
-                            payment_method: {
-                                card: card,
-                            },
-                        }).then(result => {
-                            if (result.error) {
-                                document.getElementById('error-message').textContent = result.error.message;
-                            } else if (result.paymentIntent.status === 'requires_capture') {
-                                alert("Card sucessfully authorized");
+  <div class="hero">
+    <!-- Floating Decorative Shapes -->
+    <div class="shape square" style="top: 10%; left: 5%;"></div>
+    <div class="shape small circle" style="top: 20%; right: 10%;"></div>
+    <div class="shape small square" style="bottom: 10%; right: 20%;"></div>
+    <div class="shape circle" style="top: 40%; left: 80%; width:80px; height:80px;"></div>
 
-                            }
-                        });
-                    });
-            });
-        </script>
-</main>
-<div class="bottom-nav">
-<a class="nav-link" href="home">
-<i class="fas fa-home"></i>
-    Home
-  </a>
- <a class="nav-link" href="steps">
-<i class="fas fa-gas-pump"></i>
-    How it Works
-  </a>
-<!-- <a class="nav-link" href="index.html">
-<i class="fas fa-gas-pump"></i>
-    Refill
-  </a> -->
-<a class="nav-link" href="pricing">
-<i class="fas fa-dollar-sign"></i>
-    Pricing
-  </a>
-<a class="nav-link" href="about">
-<i class="fas fa-info-circle"></i>
-    About
-  </a>
-<a class="nav-link" href="contact">
-<i class="fas fa-envelope"></i>
-    Contact
-  </a>
-</div>
+    <main class="page-content">
+      <div class="container">
+        <h2 class="checkout-title">Complete Your Payment</h2>
+        <p>We use Stripe, a globally trusted and secure third-party payment processor, to handle all transactions.</p>
+
+        <!-- Stripe Payment Section -->
+        <div id="payment-section">
+          <div id="card-element"></div>
+          <div id="card-errors" role="alert"></div>
+          <button id="pay-now" type="button">Submit $25 Payment</button>
+          <div class="stripe-disclaimer">
+            The $25 payment made today will apply to the first month of your subscription and will auto-bill 30 days from today's date.
+          </div>
+        </div>
+        <div id="error-message"></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Stripe Logic -->
+  <script src="stripe.js"></script>
+  <script>
+    const stripe = Stripe('pk_test_51R9BywPMg9X62KxRp69187eQPCaiWUVuLyn04BJPf3nNXkul7aznceDJs5Q20CZpbxoxZ0JAzPm6eIoPdhnHsX6J00kAUJ8RP2');
+    const elements = stripe.elements();
+    const card = elements.create('card');
+    card.mount('#card-element');
+
+    const payButton = document.getElementById('pay-now');
+    payButton.addEventListener('click', function () {
+      const name = sessionStorage.getItem('userName');
+      const email = sessionStorage.getItem('userEmail');
+      fetch('/create-payment-intent', { method: 'POST' })
+        .then(res => res.json())
+        .then(data => {
+          stripe.confirmCardPayment(data.clientSecret, {
+            payment_method: { card: card }
+          }).then(result => {
+            if (result.error) {
+              document.getElementById('error-message').textContent = result.error.message;
+            } else if (result.paymentIntent.status === 'requires_capture') {
+              alert("Card successfully authorized");
+            }
+          });
+        });
+    });
+  </script>
+
+  <!-- Bottom Nav -->
+  <div class="bottom-nav">
+    <a class="nav-link" href="home"><i class="fas fa-home"></i> Home</a>
+    <a class="nav-link" href="steps"><i class="fas fa-question-circle"></i> How it Works</a>
+    <a class="nav-link" href="pricing"><i class="fas fa-dollar-sign"></i> Pricing</a>
+    <a class="nav-link" href="contact"><i class="fas fa-envelope"></i> Contact</a>
+  </div>
 </body>
 </html>
