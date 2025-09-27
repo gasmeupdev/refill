@@ -1,202 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7KV1XDEBW2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-7KV1XDEBW2');
-</script>
-
-  
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Subscriber Terms & Conditions</title>
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <!-- Font Awesome for nav icons -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7KV1XDEBW2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7KV1XDEBW2');
+  </script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+
   <style>
-    /* ===== Base & Layout ===== */
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    body{
-      background:#354952;
-      color:#fff;
-      font-family:'Poppins',sans-serif;
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      padding:24px;
-      padding-bottom:100px; /* space for bottom nav */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f9f9f9, #f1f1f1) !important;
+      color: #333 !important;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      overflow-x: hidden;
+      padding-bottom: 100px;
+    }
+    h1, h2 { color: #3bb8ff; }
+    p, li { color: #000; }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 60vh;
+      width: 100%;
+      padding: 30px;
+    }
+    .shape {
+      position: absolute;
+      background: rgba(59, 184, 255, 0.15);
+      border: 1px solid rgba(59, 184, 255, 0.4);
+      border-radius: 10px;
+      z-index: 0;
+      animation: float 6s ease-in-out infinite;
+    }
+    .shape.square { width: 60px; height: 60px; }
+    .shape.small { width: 30px; height: 30px; }
+    .shape.large { width: 100px; height: 100px; }
+    .shape.circle { border-radius: 50%; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
     }
 
-    /* ===== Header (hero banner) ===== */
-    header{
-      background:#38b6ff;
-      color:#fff;
-      padding:24px 32px;
-      border-radius:12px;
-      text-align:center;
-      width:100%;
-      max-width:960px;
-      box-shadow:0 4px 12px rgba(0,0,0,0.3);
-      margin-bottom:32px;
+    .container {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid #3bb8ff;
+      border-radius: 20px;
+      padding: 25px;
+      margin-bottom: 20px;
+      max-width: 960px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: left;
+      position: relative;
+      z-index: 1;
     }
-    header h1{font-size:1.75rem;margin-bottom:8px;font-weight:600;}
-    header p{font-size:1rem;line-height:1.4;}
+    .container h2 {
+      margin-top: 0;
+    }
+    ul { margin-left: 20px; line-height: 1.6; }
 
-    /* ===== Cards grid ===== */
-    .cards{
-      width:100%;
-      max-width:960px;
-      display:grid;
-      gap:24px;
+    .btn {
+      padding: 12px 25px;
+      margin: 20px auto 0;
+      border-radius: 25px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
     }
-    .card{
-      background:#2e2e2e;
-      border:1px solid #38b6ff;
-      border-radius:12px;
-      padding:24px;
-      box-shadow:0 3px 10px rgba(0,0,0,0.3);
+    .btn-primary {
+      background: #3bb8ff;
+      color: white;
+      border: none;
     }
-    .card h2{
-      font-size:1.25rem;
-      color:#38b6ff;
-      margin-bottom:12px;
-      font-weight:600;
-    }
-    .card ul{
-      list-style:disc inside;
-      line-height:1.6;
-      color:#ccc;
-    }
-    .card li{margin-bottom:8px;}
-
-    /* ===== Bottom Navigation ===== */
-    .bottom-nav{
-      position:fixed;
-      bottom:0;
-      left:0;
-      width:100%;
-      height:60px;
-      background:#38b6ff;
-      display:flex;
-      justify-content:space-around;
-      align-items:center;
-      box-shadow:0 -2px 5px rgba(0,0,0,0.4);
-      z-index:1000;
-    }
-    .bottom-nav a{
-      color:#ffffff;
-      text-align:center;
-      text-decoration:none;
-      font-size:14px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-    }
-    .bottom-nav i{
-      font-size:22px;
-      margin-bottom:3px;
+    .btn-primary:hover {
+      background: #339dd9;
     }
 
-    /* ===== Responsive tweaks ===== */
-    @media(max-width:600px){
-      header h1{font-size:1.5rem;}
-      .card ul{padding-left:4px;}
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: #38b6ff;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+      z-index: 1000;
     }
+    .bottom-nav a {
+      color: #ffffff;
+      text-align: center;
+      text-decoration: none;
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .bottom-nav i { font-size: 22px; margin-bottom: 3px; }
   </style>
 </head>
 <body>
+  <div class="hero">
+    <!-- Floating shapes -->
+    <div class="shape square" style="top: 10%; left: 5%;"></div>
+    <div class="shape small circle" style="top: 20%; right: 10%;"></div>
+    <div class="shape small square" style="bottom: 10%; right: 20%;"></div>
+    <div class="shape circle" style="top: 40%; left: 80%; width:80px; height:80px;"></div>
 
-  <!-- ===== Hero ===== -->
-  <header>
-    <h1>Subscriber Terms & Conditions</h1>
-    <p>Effective Date: <strong>July&nbsp;2, 2025</strong></p>
-  </header>
+    <div class="container">
+      <h1>Subscriber Terms & Conditions</h1>
+      <p><strong>Effective Date: July 2, 2025</strong></p>
+    </div>
 
-  <!-- ===== Terms Cards ===== -->
-  <main class="cards">
-
-    <!-- Subscription & Billing -->
-    <section class="card">
-      <h2>1. Subscription &amp; Billing</h2>
+    <!-- Sections -->
+    <div class="container">
+      <h2>1. Subscription & Billing</h2>
       <ul>
-        <li><strong>Subscription Plans&nbsp;–</strong> We currently offer one subscriber plan, with additional options coming soon. Full plan details, including price and billing cycle, are displayed at sign‑up.</li>
-        <li><strong>Billing &amp; Payment&nbsp;–</strong> By subscribing you authorize recurring charges to your chosen payment method (e.g., monthly).</li>
-        <li><strong>Auto‑Renewal&nbsp;–</strong> Plans renew automatically at the end of each cycle unless cancelled beforehand.</li>
-        <li><strong>Gasonline Pricing&nbsp;–</strong>Our fuel price tracks the Pennsylvania state average, using live data from AAA Gas Prices, so you always pay a fair, transparent rate—never a penny more. </li>
+        <li>Subscribers enroll in the designated plan, with billing cycles and fees disclosed at enrollment.</li>
+        <li>By subscribing, you authorize recurring charges to your designated payment method.</li>
+        <li>Plans renew automatically unless cancelled prior to the renewal date.</li>
+        <li>Fuel pricing is tied to the Pennsylvania state average, based on AAA Gas Prices, ensuring transparent and fair charges.</li>
       </ul>
-    </section>
+    </div>
 
-    <!-- Price Changes -->
-    <section class="card">
-      <h2>2. Price Changes</h2>
+    <div class="container">
+      <h2>2. Price Adjustments</h2>
       <ul>
-        <li>We may adjust subscription pricing with at least <strong>60&nbsp;days’ notice</strong>.</li>
-        <li>If you dont want to continue your service, you may cancel before the change takes effect; continued use after that date equals acceptance.</li>
+        <li>Gas Me Up reserves the right to modify subscription pricing with at least sixty (60) days’ prior notice.</li>
+        <li>Continued use of the service following the effective date constitutes acceptance of the new pricing.</li>
       </ul>
-    </section>
+    </div>
 
-    <!-- Cancellations & Refunds -->
-    <section class="card">
-      <h2>3. Cancellations &amp; Refunds</h2>
+    <div class="container">
+      <h2>3. Cancellations & Refunds</h2>
       <ul>
-        <li><strong>Cancel Anytime&nbsp;–</strong> End your plan through account settings or by contacting support; service continues until the current period ends.</li>
-        <li><strong>Refunds&nbsp;–</strong> All subscription payments are non-refundable. This policy lets us keep pricing simple and predictable for every member while continuing to invest in the safe, reliable service you count on.”.</li>
+        <li>Subscribers may cancel at any time through account settings or by contacting support. Service will continue until the end of the current billing period.</li>
+        <li>All subscription payments are final and non-refundable, ensuring consistency and stability for all members.</li>
       </ul>
-    </section>
+    </div>
 
-    <!-- Use of Service -->
-    <section class="card">
+    <div class="container">
       <h2>4. Use of Service</h2>
       <ul>
-        <li><strong>Eligibility&nbsp;–</strong> Subscribers must be at least 18&nbsp;years old.</li>
-        <li><strong>Account Responsibility&nbsp;–</strong> Keep login credentials secure; you are liable for activity under your account.</li>
-        <li><strong>Secure Payments&nbsp;–</strong> All processing is handled independently by <em>Stripe, Inc.</em></li>
+        <li>Subscribers must be at least eighteen (18) years of age.</li>
+        <li>Subscribers are responsible for safeguarding login credentials and all activity conducted under their accounts.</li>
+        <li>Payments are processed securely via Stripe, Inc.</li>
       </ul>
-    </section>
+    </div>
 
-    <!-- Modifications -->
-    <section class="card">
-      <h2>5. Modifications to Service</h2>
+    <div class="container">
+      <h2>5. Service Modifications</h2>
       <ul>
-        <li>We may modify, suspend, or discontinue any part of the service at any time, with or without notice.</li>
-        <li>We are not liable for any resulting loss or inconvenience.</li>
+        <li>Gas Me Up may modify, suspend, or discontinue any part of the service at its discretion, with or without prior notice.</li>
+        <li>Gas Me Up shall not be liable for any resulting inconvenience or loss.</li>
       </ul>
-    </section>
+    </div>
 
-    <!-- Limitation of Liability -->
-    <section class="card">
+    <div class="container">
       <h2>6. Limitation of Liability</h2>
       <ul>
-        <li>To the maximum extent permitted by law, Gas&nbsp;Me&nbsp;Up is not liable for indirect, incidental, special, or consequential damages arising from use of the service.</li>
+        <li>To the maximum extent permitted by law, Gas Me Up shall not be held liable for indirect, incidental, or consequential damages arising from use of the service.</li>
       </ul>
-    </section>
+    </div>
 
-    <!-- Governing Law -->
-    <section class="card">
+    <div class="container">
       <h2>7. Governing Law</h2>
       <ul>
-        <li>These Terms are governed by and construed in accordance with the laws of the Commonwealth of Pennsylvania.</li>
+        <li>These Terms are governed by the laws of the Commonwealth of Pennsylvania, without regard to conflicts of law principles.</li>
       </ul>
-    </section>
+    </div>
 
-   
+    <!-- Subscribe Button -->
+    <a href="subscriberintake.html" class="btn btn-primary">Subscribe Today</a>
+  </div>
 
-  </main>
-
-  <!-- ===== Bottom Navigation ===== -->
-  <nav class="bottom-nav">
-    <a href="home"><i class="fas fa-home"></i>Home</a>
-    <a href="index"><i class="fas fa-gas-pump"></i>Refill</a>
-    <a href="pricing"><i class="fas fa-dollar-sign"></i>Pricing</a>
-    <a href="contact"><i class="fas fa-envelope"></i>Contact</a>
-  </nav>
-
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav">
+    <a class="nav-link" href="home"><i class="fas fa-home"></i>Home</a>
+    <a class="nav-link" href="index"><i class="fas fa-gas-pump"></i>Refill</a>
+    <a class="nav-link" href="pricing"><i class="fas fa-dollar-sign"></i>Pricing</a>
+    <a class="nav-link" href="contact"><i class="fas fa-envelope"></i>Contact</a>
+  </div>
 </body>
 </html>
