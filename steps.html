@@ -14,97 +14,132 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 
   <style>
+    :root{
+      /* Single theme color for ALL bubbles */
+      --gmu-theme: #38b6ff;  /* GMU blue */
+      --page-bg-1: #f9f9f9;
+      --page-bg-2: #f1f1f1;
+      --text-dark: #1f1f1f;
+      --text-light: #ffffff;
+    }
+
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #f9f9f9, #f1f1f1);
-      color: #333;
+      background: linear-gradient(135deg, var(--page-bg-1), var(--page-bg-2));
+      color: var(--text-dark);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding-bottom: 140px;
+      padding-bottom: 140px; /* space for bottom nav */
     }
+
     h1 {
-      color: #3bb8ff;
+      color: var(--gmu-theme);
       margin-top: 20px;
       margin-bottom: 10px;
     }
+
     .subtitle {
       margin: 0 0 22px 0;
       font-size: 0.95rem;
       color: #555;
-      max-width: 720px;
+      max-width: 780px;
       padding: 0 18px;
-      line-height: 1.35;
+      line-height: 1.45;
     }
+
     .steps-container {
       width: 100%;
-      max-width: 650px;
+      max-width: 700px;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 0 14px;
       box-sizing: border-box;
     }
+
+    /* One theme color for all bubbles */
     .step-bubble {
-      border-radius: 25px;
-      padding: 12px 18px;
-      margin: 6px 0;
+      border-radius: 22px;
+      padding: 14px 18px;
+      margin: 8px 0;
       font-size: 0.95rem;
-      line-height: 1.4;
+      line-height: 1.5;
       width: 100%;
       max-width: 95%;
-      position: relative;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
       box-sizing: border-box;
+      text-align: left;
+
+      background: var(--gmu-theme);
+      color: var(--text-light);
     }
-    .step-bubble.blue {
-      background: #3bb8ff;
+
+    .step-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .step-badge {
+      min-width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      background: rgba(255,255,255,0.22);
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    .step-body {
+      margin: 0;
+      font-weight: 400;
+      color: rgba(255,255,255,0.98);
+    }
+
+    .step-body b {
       color: #fff;
     }
-    .step-bubble.gray {
-      background: #eaeaea;
-      color: #333;
+
+    .subline {
+      margin-top: 8px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.92);
     }
+
     .arrow {
       width: 0;
       height: 0;
-      border-left: 8px solid transparent;
-      border-right: 8px solid transparent;
-      border-top: 12px solid #3bb8ff;
+      border-left: 9px solid transparent;
+      border-right: 9px solid transparent;
+      border-top: 14px solid var(--gmu-theme);
       margin: 6px 0;
+      filter: drop-shadow(0 1px 1px rgba(0,0,0,0.12));
     }
 
-    /* Optional: small highlight text inside bubbles */
-    .pill {
-      display: inline-block;
-      padding: 2px 10px;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      margin-right: 8px;
-      vertical-align: middle;
-      background: rgba(255,255,255,0.25);
-    }
-    .pill.dark {
-      background: rgba(0,0,0,0.08);
-    }
-
+    /* Bottom nav (kept same as your style) */
     .bottom-nav {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
       height: 60px;
-      background: #38b6ff;
+      background: var(--gmu-theme);
       display: flex;
       justify-content: space-around;
       align-items: center;
       box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
       z-index: 1000;
     }
+
     .bottom-nav a {
       color: #ffffff;
       text-align: center;
@@ -114,6 +149,7 @@
       flex-direction: column;
       align-items: center;
     }
+
     .bottom-nav i {
       font-size: 22px;
       margin-bottom: 3px;
@@ -124,60 +160,129 @@
 <body>
   <h1>How It Works</h1>
   <p class="subtitle">
-    Order fuel in minutes. Our drivers come to you—home, work, or wherever your vehicle is parked.
+    Place an order in the Gas Me Up app and we’ll dispatch a driver to refuel your vehicle at your selected location.
+    Follow the steps below to make sure everything goes smoothly.
   </p>
 
   <div class="steps-container">
-    <div class="step-bubble blue">
-      <span class="pill">Step 1</span>
-      Sign up in the app and choose <b>Subscriber</b> or a <b>One-Time Refill</b>.
-      <br/><br/>
-      <b>One-Time Refill:</b> includes a <b>$15 service fee</b>.
-      <br/>
-      <b>Subscribers:</b> the <b>$15 service fee is waived</b>.
+
+    <!-- Step 1 -->
+    <div class="step-bubble">
+      <div class="step-title">
+        <span class="step-badge">1</span>
+        Create your order (Subscriber or One-Time)
+      </div>
+      <p class="step-body">
+        Open the app, create your account, and choose either a <b>Subscriber</b> plan or a <b>One-Time Refill</b>.
+        Subscribers get the <b>$15 service fee waived</b> on refills, while One-Time Refills include a <b>$15 service fee</b>.
+      </p>
+      <div class="subline">
+        Tip: Subscribers are best if you refill regularly and want the service fee waived each time.
+      </div>
     </div>
 
     <div class="arrow"></div>
 
-    <div class="step-bubble gray">
-      <span class="pill dark">Step 2</span>
-      Select your <b>fuel type</b> and choose your <b>preferred refueling time</b>.
+    <!-- Step 2 -->
+    <div class="step-bubble">
+      <div class="step-title">
+        <span class="step-badge">2</span>
+        Select fuel type and time window
+      </div>
+      <p class="step-body">
+        Choose your <b>fuel grade</b> (Regular / Mid / Premium) and select a <b>refueling time window</b>.
+        Confirm the <b>vehicle</b> and the exact <b>address/parking location</b> where the vehicle will be when the driver arrives.
+      </p>
+      <div class="subline">
+        Tip: Add helpful notes like “parked behind building” or “use side lot entrance.”
+      </div>
     </div>
 
     <div class="arrow"></div>
 
-    <div class="step-bubble blue">
-      <span class="pill">Step 3</span>
-      A Gas Me Up driver will be <b>assigned</b> and <b>dispatched</b> to your location.
+    <!-- Step 3 -->
+    <div class="step-bubble">
+      <div class="step-title">
+        <span class="step-badge">3</span>
+        Driver assignment and dispatch
+      </div>
+      <p class="step-body">
+        Once your order is confirmed, a Gas Me Up driver is <b>assigned</b> and <b>dispatched</b>.
+        You’ll receive app updates so you know when your driver is on the way and when they arrive.
+      </p>
+      <div class="subline">
+        Tip: Keep your phone nearby in case the driver needs a quick clarification.
+      </div>
     </div>
 
     <div class="arrow"></div>
 
-    <div class="step-bubble gray">
-      <span class="pill dark">Step 4</span>
-      Please make sure your <b>gas cap is ajar</b> and <b>accessible</b> for our driver.
+    <!-- Step 4 -->
+    <div class="step-bubble">
+      <div class="step-title">
+        <span class="step-badge">4</span>
+        Prepare your vehicle (gas cap accessible)
+      </div>
+      <p class="step-body">
+        Before the driver arrives, please make sure your <b>gas cap is ajar</b> and <b>easily accessible</b>.
+        If the fuel door is locked or blocked, the driver may not be able to complete the refill.
+      </p>
+      <div class="subline">
+        Tip: If your vehicle has a capless system, ensure the fuel door is unlocked and reachable.
+      </div>
     </div>
 
     <div class="arrow"></div>
 
-    <div class="step-bubble blue">
-      <span class="pill">Step 5</span>
-      After refueling is complete, your driver will <b>secure your gas cap</b>.
+    <!-- Step 5 -->
+    <div class="step-bubble">
+      <div class="step-title">
+        <span class="step-badge">5</span>
+        Refueling and secure the gas cap
+      </div>
+      <p class="step-body">
+        Your driver will refuel your vehicle according to your selected order details.
+        After refueling is complete, the driver will <b>secure your gas cap</b> (and close the fuel door when applicable).
+      </p>
+      <div class="subline">
+        Tip: For safety, please keep the area around the vehicle clear while fueling is in progress.
+      </div>
     </div>
 
     <div class="arrow"></div>
 
-    <div class="step-bubble gray">
-      <span class="pill dark">Step 6</span>
-      We process your <b>final payment</b> (including fuel + any applicable fees).
+    <!-- Step 6 -->
+    <div class="step-bubble">
+      <div class="step-title">
+        <span class="step-badge">6</span>
+        Finalize charges and process payment
+      </div>
+      <p class="step-body">
+        Once fueling is complete, we calculate your <b>final total</b> based on the fuel delivered, your plan type
+        (Subscriber vs One-Time), and any applicable fees. Your payment method on file is then <b>processed securely</b>.
+      </p>
+      <div class="subline">
+        Tip: Make sure your payment method is up to date to avoid delays.
+      </div>
     </div>
 
     <div class="arrow"></div>
 
-    <div class="step-bubble blue">
-      <span class="pill">Step 7</span>
-      You’ll receive a <b>completion notification</b>, and we’ll generate a <b>digital receipt</b> for your records.
+    <!-- Step 7 -->
+    <div class="step-bubble">
+      <div class="step-title">
+        <span class="step-badge">7</span>
+        Completion notification and digital receipt
+      </div>
+      <p class="step-body">
+        You’ll receive a <b>completion notification</b> once the order is finished.
+        A <b>digital receipt</b> is generated and sent for your records, including key details like fuel type, quantity, and total charge.
+      </p>
+      <div class="subline">
+        Tip: You can view past receipts anytime inside the app.
+      </div>
     </div>
+
   </div>
 
   <div class="bottom-nav">
