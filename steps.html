@@ -10,265 +10,102 @@
   <link href="nav.css" rel="stylesheet"/>
   <script defer src="nav-loader.js"></script>
 
-  <!-- Font Awesome -->
+  <!-- Font Awesome for nav bar icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 
   <style>
-    :root{
-      --gmu-blue:#38b6ff;
-      --bg:#f5f7fb;
-      --card:#ffffff;
-      --text:#1f2937;
-      --muted:#6b7280;
-      --border:rgba(0,0,0,0.08);
-      --shadow:0 10px 26px rgba(0,0,0,0.08);
-      --shadow-soft:0 3px 12px rgba(0,0,0,0.06);
-      --radius:18px;
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f9f9f9, #f1f1f1);
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding-bottom: 140px;
     }
-    *{ box-sizing:border-box; }
-
-    body{
-      margin:0;
-      font-family:'Poppins', sans-serif;
-      background: linear-gradient(180deg, #f7fbff, var(--bg));
-      color:var(--text);
-      padding-bottom:120px; /* space for bottom nav */
+    h1 {
+      color: #3bb8ff;
+      margin-top: 20px;
+      margin-bottom: 10px;
     }
-
-    .wrap{
-      width:100%;
-      max-width:980px;
-      margin:0 auto;
-      padding:22px 16px 40px;
+    .subtitle {
+      margin: 0 0 22px 0;
+      font-size: 0.95rem;
+      color: #555;
+      max-width: 720px;
+      padding: 0 18px;
+      line-height: 1.35;
     }
-
-    /* Header */
-    .hero{
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      box-shadow: var(--shadow-soft);
-      padding: 18px 18px 16px;
-      text-align:left;
-      position:relative;
-      overflow:hidden;
+    .steps-container {
+      width: 100%;
+      max-width: 650px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 14px;
+      box-sizing: border-box;
     }
-    .hero::before{
-      content:"";
-      position:absolute;
-      top:-120px;
-      right:-120px;
-      width:260px;
-      height:260px;
-      background: radial-gradient(circle at 30% 30%, rgba(56,182,255,0.35), rgba(56,182,255,0.0) 65%);
-      pointer-events:none;
+    .step-bubble {
+      border-radius: 25px;
+      padding: 12px 18px;
+      margin: 6px 0;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      width: 100%;
+      max-width: 95%;
+      position: relative;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-sizing: border-box;
     }
-    .hero h1{
-      margin:0;
-      font-size:1.65rem;
-      letter-spacing:0.2px;
-      color:#0f172a;
+    .step-bubble.blue {
+      background: #3bb8ff;
+      color: #fff;
     }
-    .hero p{
-      margin:10px 0 0;
-      color:var(--muted);
-      line-height:1.6;
-      max-width:760px;
-      font-size:0.98rem;
+    .step-bubble.gray {
+      background: #eaeaea;
+      color: #333;
     }
-
-    /* Section titles */
-    .section-title{
-      margin:18px 0 10px;
-      font-size:1.05rem;
-      font-weight:600;
-      color:#0f172a;
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    .section-title i{
-      color:var(--gmu-blue);
+    .arrow {
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 12px solid #3bb8ff;
+      margin: 6px 0;
     }
 
-    /* Cards */
-    .card{
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-soft);
-      overflow:hidden;
+    /* Optional: small highlight text inside bubbles */
+    .pill {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      margin-right: 8px;
+      vertical-align: middle;
+      background: rgba(255,255,255,0.25);
     }
-    .card-inner{ padding:14px; }
-
-    /* Plans */
-    .plans{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-    }
-    @media (max-width:760px){
-      .plans{ grid-template-columns:1fr; }
+    .pill.dark {
+      background: rgba(0,0,0,0.08);
     }
 
-    .plan{
-      border:1px solid rgba(0,0,0,0.07);
-      border-radius:16px;
-      padding:14px;
-      background: linear-gradient(180deg, #ffffff, #fbfdff);
-    }
-    .plan-top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .plan h3{
-      margin:0;
-      font-size:1rem;
-      font-weight:600;
-    }
-    .tag{
-      padding:6px 10px;
-      border-radius:999px;
-      font-size:0.82rem;
-      font-weight:600;
-      border:1px solid rgba(0,0,0,0.08);
-      background:#fff;
-      white-space:nowrap;
-    }
-    .tag.green{
-      border-color: rgba(34,197,94,0.30);
-      background: rgba(34,197,94,0.12);
-      color:#166534;
-    }
-    .tag.blue{
-      border-color: rgba(56,182,255,0.35);
-      background: rgba(56,182,255,0.12);
-      color:#0b4e79;
-    }
-    .plan p{
-      margin:8px 0 0;
-      color:var(--muted);
-      line-height:1.55;
-      font-size:0.93rem;
-    }
-
-    /* Steps grid */
-    .steps{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-    }
-    @media (max-width:860px){
-      .steps{ grid-template-columns:1fr; }
-    }
-
-    .step{
-      border:1px solid rgba(0,0,0,0.07);
-      border-radius:16px;
-      padding:14px;
-      background:#fff;
-      position:relative;
-    }
-
-    .step-head{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-    }
-
-    .step-num{
-      width:34px;
-      height:34px;
-      min-width:34px;
-      border-radius:12px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background: rgba(56,182,255,0.14);
-      border:1px solid rgba(56,182,255,0.30);
-      color:#0b4e79;
-      font-weight:700;
-    }
-
-    .step-title{
-      margin:0;
-      font-weight:600;
-      font-size:1rem;
-      line-height:1.25;
-      color:#0f172a;
-    }
-
-    .step-sub{
-      margin:6px 0 0;
-      color:var(--muted);
-      font-size:0.93rem;
-      line-height:1.55;
-    }
-
-    .bullets{
-      margin:10px 0 0 18px;
-      padding:0;
-      color:#374151;
-      font-size:0.93rem;
-      line-height:1.55;
-    }
-    .bullets li{ margin:6px 0; }
-
-    /* Checklist */
-    .checklist{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-    }
-    @media (max-width:760px){
-      .checklist{ grid-template-columns:1fr; }
-    }
-    .check{
-      border:1px solid rgba(0,0,0,0.07);
-      border-radius:16px;
-      padding:12px;
-      background:#fff;
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-    }
-    .check i{
-      color:var(--gmu-blue);
-      margin-top:2px;
-      min-width:18px;
-    }
-    .check .lbl{
-      margin:0;
-      font-weight:600;
-      font-size:0.95rem;
-      line-height:1.35;
-      color:#0f172a;
-    }
-    .check .txt{
-      margin:6px 0 0;
-      color:var(--muted);
-      font-size:0.91rem;
-      line-height:1.55;
-    }
-
-    /* Bottom nav (keep your style) */
-    .bottom-nav{
+    .bottom-nav {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
       height: 60px;
-      background: var(--gmu-blue);
+      background: #38b6ff;
       display: flex;
       justify-content: space-around;
       align-items: center;
       box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
       z-index: 1000;
     }
-    .bottom-nav a{
+    .bottom-nav a {
       color: #ffffff;
       text-align: center;
       text-decoration: none;
@@ -277,7 +114,7 @@
       flex-direction: column;
       align-items: center;
     }
-    .bottom-nav i{
+    .bottom-nav i {
       font-size: 22px;
       margin-bottom: 3px;
     }
@@ -285,232 +122,64 @@
 </head>
 
 <body>
-  <div class="wrap">
-    <!-- HERO -->
-    <div class="hero">
-      <h1>How It Works</h1>
-      <p>
-        Gas Me Up brings fuel directly to your vehicle. Place an order in the app, pick your fuel and time window,
-        and our driver arrives to refuel your car safely and conveniently—then you receive a digital receipt.
-      </p>
+  <h1>How It Works</h1>
+  <p class="subtitle">
+    Order fuel in minutes. Our drivers come to you—home, work, or wherever your vehicle is parked.
+  </p>
+
+  <div class="steps-container">
+    <div class="step-bubble blue">
+      <span class="pill">Step 1</span>
+      Sign up in the app and choose <b>Subscriber</b> or a <b>One-Time Refill</b>.
+      <br/><br/>
+      <b>One-Time Refill:</b> includes a <b>$15 service fee</b>.
+      <br/>
+      <b>Subscribers:</b> the <b>$15 service fee is waived</b>.
     </div>
 
-    <!-- PLANS -->
-    <div class="section-title"><i class="fa-solid fa-tags"></i> Plans & fees</div>
-    <div class="card">
-      <div class="card-inner">
-        <div class="plans">
-          <div class="plan">
-            <div class="plan-top">
-              <h3>Subscriber</h3>
-              <span class="tag green">Service fee waived</span>
-            </div>
-            <p>
-              Best for frequent refuels. Subscriber orders automatically apply your benefits and waive the
-              $15 service fee so checkout stays fast and simple.
-            </p>
-          </div>
+    <div class="arrow"></div>
 
-          <div class="plan">
-            <div class="plan-top">
-              <h3>One-Time Refill</h3>
-              <span class="tag blue">$15 service fee</span>
-            </div>
-            <p>
-              Perfect for occasional use. One-time refills include a $15 service fee added to your final order total,
-              plus the cost of fuel delivered.
-            </p>
-          </div>
-        </div>
-      </div>
+    <div class="step-bubble gray">
+      <span class="pill dark">Step 2</span>
+      Select your <b>fuel type</b> and choose your <b>preferred refueling time</b>.
     </div>
 
-    <!-- STEPS -->
-    <div class="section-title"><i class="fa-solid fa-list-check"></i> Step-by-step</div>
-    <div class="card">
-      <div class="card-inner">
-        <div class="steps">
+    <div class="arrow"></div>
 
-          <!-- 1 -->
-          <div class="step">
-            <div class="step-head">
-              <div class="step-num">1</div>
-              <div>
-                <p class="step-title">Sign up and choose your plan</p>
-                <p class="step-sub">
-                  Create your account, add your vehicle, and choose between a subscriber plan or a one-time refill.
-                </p>
-              </div>
-            </div>
-            <ul class="bullets">
-              <li><strong>Subscriber:</strong> service fee is <strong>waived</strong> on eligible subscriber orders.</li>
-              <li><strong>One-time refill:</strong> includes a <strong>$15 service fee</strong> added to your total.</li>
-              <li>Add your <strong>vehicle details</strong> (make/model) and confirm the correct <strong>fuel type</strong>.</li>
-              <li>Add a <strong>payment method</strong> so checkout is quick and secure.</li>
-              <li>Optional: Add <strong>notes</strong> (gate code, “spot #22,” “parked behind building,” etc.).</li>
-            </ul>
-          </div>
-
-          <!-- 2 -->
-          <div class="step">
-            <div class="step-head">
-              <div class="step-num">2</div>
-              <div>
-                <p class="step-title">Select your fuel grade + time window</p>
-                <p class="step-sub">
-                  Choose the fuel type you need and the delivery window that works best (same-day or scheduled windows as available).
-                </p>
-              </div>
-            </div>
-            <ul class="bullets">
-              <li>Select your <strong>fuel grade</strong> (Regular / Mid / Premium) based on your vehicle’s recommendation.</li>
-              <li>Confirm the <strong>refuel location</strong> and add clear instructions for finding your vehicle.</li>
-              <li>Add helpful details like <strong>parking level</strong>, <strong>spot number</strong>, or <strong>nearest entrance</strong>.</li>
-              <li>Make sure the location is safe and legal for a quick service stop during your selected window.</li>
-            </ul>
-          </div>
-
-          <!-- 3 -->
-          <div class="step">
-            <div class="step-head">
-              <div class="step-num">3</div>
-              <div>
-                <p class="step-title">Driver assigned + dispatched</p>
-                <p class="step-sub">
-                  Once your order is confirmed, we assign a Gas Me Up driver and dispatch them to your vehicle.
-                </p>
-              </div>
-            </div>
-            <ul class="bullets">
-              <li>You’ll receive <strong>order updates</strong> when a driver is assigned and en route.</li>
-              <li>Drivers follow your notes to locate the vehicle quickly and complete service within the window.</li>
-              <li>If something is unclear (vehicle not found, access blocked), we may <strong>message/call through the app</strong>.</li>
-            </ul>
-          </div>
-
-          <!-- 4 -->
-          <div class="step">
-            <div class="step-head">
-              <div class="step-num">4</div>
-              <div>
-                <p class="step-title">Make your gas cap accessible</p>
-                <p class="step-sub">
-                  To keep things fast and hands-off, your fuel door and gas cap area must be unlocked and reachable.
-                </p>
-              </div>
-            </div>
-            <ul class="bullets">
-              <li>Ensure your <strong>fuel door is unlocked</strong> (some vehicles lock the fuel door with the doors).</li>
-              <li>If your vehicle uses an interior release, <strong>open the fuel door ahead of time</strong>.</li>
-              <li>Clear obstacles (snow/ice, tight parking, cargo blocking access) so the driver can reach the cap safely.</li>
-              <li>If the cap/door is not accessible, service may be delayed or may need to be rescheduled.</li>
-            </ul>
-          </div>
-
-          <!-- 5 -->
-          <div class="step">
-            <div class="step-head">
-              <div class="step-num">5</div>
-              <div>
-                <p class="step-title">We refuel, then secure your gas cap</p>
-                <p class="step-sub">
-                  Your driver confirms the correct vehicle and fuel grade, refuels your car, then secures everything before leaving.
-                </p>
-              </div>
-            </div>
-            <ul class="bullets">
-              <li>Driver verifies <strong>vehicle + fuel grade</strong> before beginning service.</li>
-              <li>Refueling is performed carefully and professionally.</li>
-              <li>After fueling, the driver <strong>tightens and secures the gas cap</strong> and closes the fuel door when applicable.</li>
-              <li>If an issue is found (blocked access, mismatched fuel type), the driver will contact you through the app.</li>
-            </ul>
-          </div>
-
-          <!-- 6 -->
-          <div class="step">
-            <div class="step-head">
-              <div class="step-num">6</div>
-              <div>
-                <p class="step-title">Final payment is processed</p>
-                <p class="step-sub">
-                  Once fueling is complete, we process the final total using the payment method on file.
-                </p>
-              </div>
-            </div>
-            <ul class="bullets">
-              <li>Your final total reflects the <strong>fuel delivered</strong> plus any applicable fees.</li>
-              <li><strong>Subscribers:</strong> service fee waived automatically.</li>
-              <li><strong>One-time orders:</strong> include the <strong>$15 service fee</strong>.</li>
-              <li>You’ll receive confirmation once payment is successful and the order is completed.</li>
-            </ul>
-          </div>
-
-          <!-- 7 -->
-          <div class="step">
-            <div class="step-head">
-              <div class="step-num">7</div>
-              <div>
-                <p class="step-title">Completion notification + digital receipt</p>
-                <p class="step-sub">
-                  We notify you when the job is done and provide a digital receipt for your records.
-                </p>
-              </div>
-            </div>
-            <ul class="bullets">
-              <li>The app notifies you when service is <strong>finished</strong> and the vehicle is secured.</li>
-              <li>Your receipt includes key details like <strong>fuel type</strong>, <strong>delivery time</strong>, and <strong>total paid</strong>.</li>
-              <li>Receipts are stored digitally so you can reference them anytime.</li>
-              <li>If you ever need support, your receipt helps us quickly identify the order and assist you.</li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
+    <div class="step-bubble blue">
+      <span class="pill">Step 3</span>
+      A Gas Me Up driver will be <b>assigned</b> and <b>dispatched</b> to your location.
     </div>
 
-    <!-- CHECKLIST -->
-    <div class="section-title"><i class="fa-solid fa-circle-info"></i> Quick prep checklist</div>
-    <div class="card">
-      <div class="card-inner">
-        <div class="checklist">
-          <div class="check">
-            <i class="fa-solid fa-location-dot"></i>
-            <div>
-              <p class="lbl">Add clear location details</p>
-              <p class="txt">Spot number, garage level, nearest entrance, or a landmark helps your driver find your vehicle fast.</p>
-            </div>
-          </div>
+    <div class="arrow"></div>
 
-          <div class="check">
-            <i class="fa-solid fa-unlock"></i>
-            <div>
-              <p class="lbl">Unlock the fuel door</p>
-              <p class="txt">Some vehicles lock the fuel door with the doors. Make sure it’s unlocked during the service window.</p>
-            </div>
-          </div>
-
-          <div class="check">
-            <i class="fa-solid fa-car"></i>
-            <div>
-              <p class="lbl">Keep the gas cap area accessible</p>
-              <p class="txt">Clear snow/ice and avoid parking too close to walls so the driver can safely reach the cap.</p>
-            </div>
-          </div>
-
-          <div class="check">
-            <i class="fa-solid fa-receipt"></i>
-            <div>
-              <p class="lbl">Save your receipt automatically</p>
-              <p class="txt">You’ll receive a digital receipt after completion for personal or business tracking.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="step-bubble gray">
+      <span class="pill dark">Step 4</span>
+      Please make sure your <b>gas cap is ajar</b> and <b>accessible</b> for our driver.
     </div>
 
+    <div class="arrow"></div>
+
+    <div class="step-bubble blue">
+      <span class="pill">Step 5</span>
+      After refueling is complete, your driver will <b>secure your gas cap</b>.
+    </div>
+
+    <div class="arrow"></div>
+
+    <div class="step-bubble gray">
+      <span class="pill dark">Step 6</span>
+      We process your <b>final payment</b> (including fuel + any applicable fees).
+    </div>
+
+    <div class="arrow"></div>
+
+    <div class="step-bubble blue">
+      <span class="pill">Step 7</span>
+      You’ll receive a <b>completion notification</b>, and we’ll generate a <b>digital receipt</b> for your records.
+    </div>
   </div>
 
-  <!-- Bottom nav -->
   <div class="bottom-nav">
     <a class="nav-link" href="index"><i class="fas fa-home"></i> Home</a>
     <a class="nav-link" href="steps"><i class="fas fa-gas-pump"></i> How It Works</a>
